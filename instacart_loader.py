@@ -436,6 +436,30 @@ class CSR_Loader:
                     
             items.append(basket_distribution)
         return items
+    
+    def get_cooccurrence_matrix(self, k=120):
+
+        matrix = self.load("hot_baskets_products")
+        product_ids = pd.read_parquet(Path(__file__).parent / "parquet_files" / "hot_map_products.parquet")
+        product_names = pd.read_csv(Path(__file__).parent / "instacart_data" / "products.csv")
+
+        product_counts = np.array(matrix.sum(axis=0)).flatten()
+        top_indices = np.argsort(product_counts)[-k:][::-1]
+        top_products = product_ids.iloc[top_indices]["product_id"]
+        matrix_filtered = matrix[:, top_indices]
+        co_occurrence_top = matrix_filtered.T @ matrix_filtered
+        co_occurrence_top.setdiag(0)
+        co_occurrence_top.eliminate_zeros()
+
+        id_to_name = product_names.set_index('product_id')['product_name']
+        top_names = top_products.map(id_to_name)
+
+        co_occurrence_df = pd.DataFrame(
+            co_occurrence_top.toarray(),
+            index=top_names.values,
+            columns=top_names.values
+        )
+        return co_occurrence_df, top_names
 
 class CSR_Reader:
 
