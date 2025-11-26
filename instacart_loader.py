@@ -369,7 +369,7 @@ class CSR_Loader:
             np.random.seed(seed)
         
         indices = np.random.choice(csr.shape[0], size=n, replace=False)
-        return csr[indices, :]
+        return csr[indices, :], indices
     
     def retrieve_target_information(self, targets, tdata, names=False):
         if "product" in tdata:

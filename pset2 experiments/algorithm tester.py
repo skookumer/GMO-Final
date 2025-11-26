@@ -1,3 +1,11 @@
+from pathlib import Path
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -8,7 +16,7 @@ import tracemalloc
 from instacart_loader import CSR_Loader
 from instacart_loader import process_parquet
 
-from sklearn.decomposition import TruncatedSVD
+from sklearn.decomposition import TruncatedSVD, PCA
 from sklearn.mixture import BayesianGaussianMixture, GaussianMixture
 from sklearn.cluster import KMeans, AffinityPropagation
 from scipy.cluster.hierarchy import linkage, fcluster
@@ -19,6 +27,8 @@ from pyclustering.cluster import clique
 
 import umap
 from pathlib import Path
+import psutil, os
+import gc
 
 class hac_centroid:
 
@@ -45,37 +55,59 @@ def calculate_wcss(data, labels):
         wcss += np.sum((pts - mu) ** 2)
     
     return wcss
+
+
+def plot_algorithm(axis, target, x_lab, y_lab, title, log=False):
+    for algo in algorithms:
+        algo_data = df[df['Algorithm'] == algo].sort_values('k')
+        if len(algo_data) > 0:
+            if not log:
+                axis.plot(algo_data['k'], algo_data[target], 
+                        marker='o', label=algo, color=color_map[algo], 
+                        linewidth=2, markersize=6, alpha=0.8)
+            else:
+                axis.plot(algo_data['k'], np.log(algo_data[target]), 
+                        marker='o', label=algo, color=color_map[algo], 
+                        linewidth=2, markersize=6, alpha=0.8)
+    axis.set_xlabel(x_lab, fontsize=12)
+    axis.set_ylabel(y_lab, fontsize=12)
+    axis.set_title(title, fontsize=13, fontweight='bold')
+    axis.legend(fontsize=9, loc='best')
+    axis.grid(True, alpha=0.3)
     
 
-
-
-process_parquet()
+process = psutil.Process(os.getpid())
+print(f"Starting: {process.memory_info().rss / 1024**3:.1f} GB")
+# process_parquet()
 loader = CSR_Loader()
 
-                                
-data = loader.load_reduced_random("hot_baskets_products", seed=42, n=1000) #This is for loading data from instacart
-# data = loader.load("hot_groceries_basekts") #FOR GROCERIES
 
-#junk code
-# matrix = loader.load("hot_baskets_products")
-# product_ids = pd.read_parquet(Path(__file__).parent / "parquet_files" / "hot_map_products.parquet")
-# product_names = pd.read_csv(Path(__file__).parent / "instacart_data" / "products.csv")
+                                
+# data, indices = loader.load_reduced_random("hot_baskets_products", seed=42, n=10000) #This is for loading data from instacart
+data = loader.load("hot_groceries_baskets") #FOR GROCERIES
 
 # data , top_names = loader.get_cooccurrence_matrix(k=120)
+data, top_names = loader.get_cooccurrence_matrix()
 
-tsvd = TruncatedSVD(n_components=4)
-data = tsvd.fit_transform(data)
+
+pca = PCA(n_components=2)
+data = pca.fit_transform(data)
+# tsvd = TruncatedSVD(n_components=16)
+# data = tsvd.fit_transform(data)
+# data = data.astype(np.float32)
 
 # data = np.array(data.todense())
 
-ks = [k * 10 for k in range(1, 5)] #SET THIS FOR INTERVALS OF K
+ks = [k * 10 for k in range(1, 11)] #SET THIS FOR INTERVALS OF K
+
+# ks=[5, 10]
 
 '''********TSNE COMES AT THE END. YOU HAVE TO ENTER PERPLEXITY AND THE VALUE OF K MANUALLY********'''
 
 results = []
 for k in ks:
     algorithms = {
-        # 'AffinityPropagation': AffinityPropagation(random_state=42, max_iter=10000), #Takes a very long time
+        'AffinityPropagation': AffinityPropagation(damping=0.9, random_state=42, max_iter=10000), #Takes a very long time
         'KMeans': KMeans(n_clusters=k, random_state=42, max_iter=10000, algorithm="elkan"),
         'GMM': GaussianMixture(n_components=k, max_iter=10000, random_state=42),
         'HAC Centroid': hac_centroid(k=k),
@@ -126,10 +158,6 @@ df = pd.DataFrame(results)
 k_based_algos = ['KMeans', "HAC Centroid", 'GMM', 'BGMM prior=0.1', 'BGMM prior=1', 'BGMM prior=100']
 auto_algos = ['AffinityPropagation']
 
-
-fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-fig.suptitle('Clustering Algorithm Performance Across k Values', fontsize=16, fontweight='bold')
-
 color_map = {
     'KMeans': 'blue',
     "HAC Centroid": 'cyan',
@@ -140,166 +168,49 @@ color_map = {
     'AffinityPropagation': 'brown'
 }
 
+
+fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+fig.suptitle('Clustering Algorithm Performance Across k Values', fontsize=16, fontweight='bold')
+
 ax1 = axes[0, 0]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax1.plot(algo_data['k'], algo_data['Silhouette'], 
-                marker='o', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=6, alpha=0.8)
-ax1.set_xlabel('Number of Clusters', fontsize=12)
-ax1.set_ylabel('Silhouette', fontsize=12)
-ax1.set_title('Silhouette Score vs k', fontsize=13, fontweight='bold')
-ax1.legend(fontsize=9, loc='best')
-ax1.grid(True, alpha=0.3)
+plot_algorithm(ax1, "Silhouette", "Number of Clusters", "Silhouette", "Silhouette Score vs k")
 
 ax2 = axes[0, 1]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax2.plot(algo_data['k'], algo_data['Davies-Bouldin'], 
-                marker='s', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=6, alpha=0.8)
-ax2.set_xlabel('Number of Clusters', fontsize=12)
-ax2.set_ylabel('D-B Index', fontsize=12)
-ax2.set_title('Davies-Bouldin Index vs k', fontsize=13, fontweight='bold')
-ax2.legend(fontsize=9, loc='best')
-ax2.grid(True, alpha=0.3)
+plot_algorithm(ax2, "Davies-Bouldin", "Number of Clusters", "D-B Index", "Davies-Bouldin Index vs k")
 
 ax3 = axes[1, 0]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax3.plot(algo_data['k'], algo_data['Calinski-Harabasz'], 
-                marker='^', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=6, alpha=0.8)
-ax3.set_xlabel('Number of Clusters', fontsize=12)
-ax3.set_ylabel('C-H Index', fontsize=12)
-ax3.set_title('Calinski-Harabasz Index vs k', fontsize=13, fontweight='bold')
-ax3.legend(fontsize=9, loc='best')
-ax3.grid(True, alpha=0.3)
-
+plot_algorithm(ax3, "Calinski-Harabasz", "Number of Clusters", "C-H Index", "Calinski-Harabasz Index vs k")
 
 ax4 = axes[1, 1]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax4.plot(algo_data['k'], algo_data['WCSS'], 
-                marker='o', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=6, alpha=0.8)
-ax4.set_xlabel('Number of Clusters', fontsize=12)
-ax4.set_ylabel('WCSS', fontsize=12)
-ax4.set_title('WCSS vs k', fontsize=13, fontweight='bold')
-ax4.legend(fontsize=9, loc='best')
-ax4.grid(True, alpha=0.3)
+plot_algorithm(ax4, "WCSS", "Number of clusters", "WCSS", "WCSS vs k")
 
 plt.tight_layout()
 plt.show()
 
-# Create separate figure for Time and Memory
 fig, axes = plt.subplots(1, 2, figsize=(16, 6))
 fig.suptitle('Algorithm Performance: Time and Memory Usage', fontsize=16, fontweight='bold')
 
-# Get unique algorithms and colors
-algorithms = df['Algorithm'].unique()
-colors = plt.cm.tab10(range(len(algorithms)))
-color_map = dict(zip(algorithms, colors))
-
-# Plot 1: Execution Time
 ax1 = axes[0]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax1.plot(algo_data['k'], np.log(algo_data['Time']), 
-                marker='o', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=8, alpha=0.8)
-ax1.set_xlabel('Number of Clusters', fontsize=12)
-ax1.set_ylabel('Execution Time (log scale) (seconds)', fontsize=12)
-ax1.set_title('Execution Time vs k', fontsize=13, fontweight='bold')
-ax1.legend(fontsize=10)
-ax1.grid(True, alpha=0.3)
+plot_algorithm(ax1, "Time", "Number of Clusters", "Execution Time (log scale) (seconds)", "Execution Time vs k", log=True)
 
-# Plot 2: Peak Memory Usage
 ax2 = axes[1]
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax2.plot(algo_data['k'], np.log(algo_data['Memory_MB']), 
-                marker='s', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=8, alpha=0.8)
-ax2.set_xlabel('Number of Clusters', fontsize=12)
-ax2.set_ylabel('Peak Memory (log scale) (MB)', fontsize=12)
-ax2.set_title('Memory Usage vs k', fontsize=13, fontweight='bold')
-ax2.legend(fontsize=10)
-ax2.grid(True, alpha=0.3)
+plot_algorithm(ax2, "Memory_MB", "Number of Clusters", "Peak Memory (log scale) (MB)", "Memory Usage vs k", log=True)
 
 plt.tight_layout()
 plt.show()
 
 fig2, ax = plt.subplots(figsize=(10, 8))
+plot_algorithm(ax, "Clusters", "k", "Clusters Found", "Actual vs Expected Number of Clusters")
 
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0:
-        ax.plot(algo_data['k'], algo_data['Clusters'], 
-                marker='D', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=6, alpha=0.8)
-
-ax.set_xlabel('k', fontsize=12)
-ax.set_ylabel('Clusters Found', fontsize=12)
-ax.set_title('Actual vs Expected Number of Clusters', fontsize=13, fontweight='bold')
-ax.legend(fontsize=9, loc='best')
-ax.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# fig2, ax = plt.subplots(figsize=(10, 8))
-# for algo in algorithms:
-#     algo_data = df[df['Algorithm'] == algo]
-#     if len(algo_data) > 0:
-#         ax.scatter(algo_data['Time'], np.log(algo_data['Memory_MB']), 
-#                   label=algo, color=color_map[algo], s=150, alpha=0.7, edgecolors='black', linewidths=1.5)
-#         # Add k labels to each point
-#         for _, row in algo_data.iterrows():
-#             ax.annotate(f"k={row['k']}", 
-#                        (row['Time'], row['Memory_MB']),
-#                        textcoords="offset points", 
-#                        xytext=(5, 5), 
-#                        fontsize=8, 
-#                        alpha=0.7)
-
-# ax.set_xlabel('Execution Time (log scale) (seconds)', fontsize=12)
-# ax.set_ylabel('Peak Memory (MB)', fontsize=12)
-# ax.set_title('Time vs Memory Trade-off', fontsize=14, fontweight='bold')
-# ax.legend(fontsize=10)
-# ax.grid(True, alpha=0.3)
-# plt.tight_layout()
-# plt.show()
-
-# Create figure for iterations
 fig, ax = plt.subplots(figsize=(12, 6))
 fig.suptitle('Iterations to Convergence (log scale)', fontsize=16, fontweight='bold')
 
-# Get unique algorithms and colors
-algorithms = df['Algorithm'].unique()
-colors = plt.cm.tab10(range(len(algorithms)))
-color_map = dict(zip(algorithms, colors))
+plot_algorithm(ax, "Iterations", "Number of Clusters", "Iterations to Convergence (log scale)", "Iterations vs k")
 
-# Plot iterations vs k
-for algo in algorithms:
-    algo_data = df[df['Algorithm'] == algo].sort_values('k')
-    if len(algo_data) > 0 and 'Iterations' in algo_data.columns:
-        ax.plot(algo_data['k'], np.log(algo_data['Iterations']), 
-                marker='o', label=algo, color=color_map[algo], 
-                linewidth=2, markersize=8, alpha=0.8)
 
-ax.set_xlabel('Number of Clusters', fontsize=12)
-ax.set_ylabel('Iterations to Convergence (log scale)', fontsize=12)
-ax.set_title('Iterations vs k', fontsize=13, fontweight='bold')
-ax.legend(fontsize=10)
-ax.grid(True, alpha=0.3)
-plt.tight_layout()
-plt.show()
 
 while True:
 
@@ -315,16 +226,11 @@ while True:
 
     k_to_plot = int(plot_k)
 
-    k_results = df[df['k'] == k_to_plot]
-
     # Filter results for this k value
     k_results = df[df['k'] == k_to_plot]
     algorithms = k_results['Algorithm'].unique()
 
-    # Automatically determine optimal grid size
     n_algorithms = len(algorithms)
-
-    # Calculate rows and columns for a roughly square grid
     n_cols = int(np.ceil(np.sqrt(n_algorithms)))
     n_rows = int(np.ceil(n_algorithms / n_cols))
 
@@ -362,8 +268,8 @@ while True:
                     f"Clusters: {n_clusters} | Silhouette: {algo_row['Silhouette']:.3f}\n"
                     f"Time: {algo_row['Time']:.2f}s | Iterations: {round(np.exp(algo_row['Iterations']))}", 
                     fontsize=10, fontweight='bold')
-        ax.set_xlabel('UMAP 1', fontsize=9)
-        ax.set_ylabel('UMAP 2', fontsize=9)
+        ax.set_xlabel('TSNE 1', fontsize=9)
+        ax.set_ylabel('TSNE 2', fontsize=9)
         ax.grid(True, alpha=0.2)
         
         # Add colorbar
