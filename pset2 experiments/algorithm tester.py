@@ -83,17 +83,15 @@ loader = CSR_Loader()
 
 
                                 
-# data, indices = loader.load_reduced_random("hot_baskets_products", seed=42, n=10000) #This is for loading data from instacart
-data = loader.load("hot_groceries_baskets") #FOR GROCERIES
+data, indices = loader.load_reduced_random("hot_baskets_products", seed=42, n=10000) #This is for loading data from instacart
+# data = loader.load("hot_groceries_baskets") #FOR GROCERIES
 
 # data , top_names = loader.get_cooccurrence_matrix(k=120)
-data, top_names = loader.get_cooccurrence_matrix()
 
-
-pca = PCA(n_components=2)
-data = pca.fit_transform(data)
-# tsvd = TruncatedSVD(n_components=16)
-# data = tsvd.fit_transform(data)
+# pca = PCA(n_components=5)
+# data = pca.fit_transform(data)
+tsvd = TruncatedSVD(n_components=4)
+data = tsvd.fit_transform(data)
 # data = data.astype(np.float32)
 
 # data = np.array(data.todense())
