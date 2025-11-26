@@ -1,3 +1,11 @@
+#code to let this run from the subfolder
+from pathlib import Path
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
 """
 DS5230 - Group Project 2
 Group 4
@@ -354,7 +362,7 @@ def plot_elbow(metrics_df, out_path):
 
 # Main script
 def main():
-    groceries_path = "Groceries_dataset.csv"
+    groceries_path = gmo_final_path / "instacart_data" / "Groceries_dataset.csv"
     top_n = 60
     ks = [3, 4, 5, 6, 7]
 
