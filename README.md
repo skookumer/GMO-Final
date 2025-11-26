@@ -12,16 +12,16 @@ https://northeastern-my.sharepoint.com/:f:/g/personal/arnold_e_northeastern_edu/
 
 -pset2 experiments: This folder contains all scripts used to conduct experiments for group problem set 2. Experiments include:
 
-  -Zach's centroid clustering and visualization script
+    -Zach's centroid clustering and visualization script
   
-  -"Algorithm Tester" the code used to test all the algorithms on basket data from the groceries and instacart datasets
+    -"Algorithm Tester" the code used to test all the algorithms on basket data from the groceries and instacart datasets
   
-  -"KMeans basket characterizer" script that makes bar plots of aggregated items within clusters
+    -"KMeans basket characterizer" script that makes bar plots of aggregated items within clusters
   
-  -"KMeans basket separator" a script similar to the previous that makes a bar plot of the maximum item differences in the most different clusters (weighted by size)
+    -"KMeans basket separator" a script similar to the previous that makes a bar plot of the maximum item differences in the most different clusters (weighted by size)
   
-  -"KMeans entropy characterizer" opptimization script that uses various values of d and k to find the cluster entropy for the aisles the products come from
+    -"KMeans entropy characterizer" opptimization script that uses various values of d and k to find the cluster entropy for the aisles the products come from
   
-  -"reduction visualizer" script that visualizes dimensionally-reduced datasets using both umap and tsne to get a sense of overall structure
+    -"reduction visualizer" script that visualizes dimensionally-reduced datasets using both umap and tsne to get a sense of overall structure
   
-  -"SVD visualizer" script that specifically visualizes SVD dimensions using numerous plots. Intended to diagnose why KMeans was so effective
+    -"SVD visualizer" script that specifically visualizes SVD dimensions using numerous plots. Intended to diagnose why KMeans was so effective
