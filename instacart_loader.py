@@ -7,10 +7,6 @@ import os
 import pyarrow as pa
 import pyarrow.parquet as pq
 from scipy.sparse import csr_matrix, coo_matrix
-from scipy.sparse import spmatrix
-
-from itertools import combinations
-from functools import reduce
 
 
 path = Path(__file__).parent / "instacart_data"
@@ -465,162 +461,60 @@ class CSR_Loader:
         )
         return co_occurrence_df, top_names
 
-    
-    def initialize_tidsets(self, filename):
-        dense_name = f"{filename}_tidset_dense.parquet"
 
-        if not os.path.isfile(self.path / dense_name):
-            print("initializing matrices")
-            pid_map = pd.read_parquet(self.path / self.name_map[filename][0])
+# for i in range(data.shape[1]):
+#     name, x = loader.get_itemset_support_basic([i])
+#     item_counts[name[0]] = x
+#     print(i, x)
+# sorted_counts = sorted(item_counts.items(), key=lambda x: x[1], reverse=True)
+# print(sorted_counts[:100])
+# process_instacart()
 
-            matrix = self.load(filename)
-            matrix_T = matrix.transpose()
-            matrix_T = matrix_T.tocsr()
+# import umap
+# from matplotlib import pyplot as plt
+# from sklearn.decomposition import TruncatedSVD
 
-            indices = matrix_T.indices
-            indptr = matrix_T.indptr
-            n_rows = matrix_T.shape[0]
+# loader = CSR_Loader()
+# # data = loader.load_reduced_random("hot_customers_products")
 
-            tidset_dense = []
-            for i in range(n_rows):
-                start_idx = indptr[i]
-                end_idx = indptr[i+1]
+# x = loader.retrieve_target_information([1, 2, 3], "hot_groceries_customers", names=False)
 
-                tids = indices[start_idx:end_idx]
-                tidset_dense.append({"product_id": i, "tids": tids, "len": len(tids)})
-            
-            dense_df = pd.DataFrame(tidset_dense)
-            dense_df.to_parquet(self.path / dense_name)
+# x = loader.retrieve_target_information([1], "hot_customers_depts", names=False)
+# print(x)
+# x = loader.retrieve_target_information([1], "hot_customers_aisles", names=False)
+# print(x)
+# x = loader.retrieve_target_information([i for i in range(1, 10)], "hot_customers_products", names=False)
+# for i in range(9):
+#     print(x[i])
+# input()
 
-        tidset_dense = pd.read_parquet(self.path / dense_name)
-        self.tidset_dense = tidset_dense.set_index("product_id")
-        tidset_sparse = self.load(filename)
-        self.N = tidset_sparse.sum()
-        self.tidset_sparse = tidset_sparse.tocsc()
-        self.pid_map = pd.read_parquet(self.path / "hot_map_products.parquet")
+# read_instacart_old()
 
 
-    def get_itemset_support(self, pfx_key, ivec, m2, names=False):
-        '''
-        this retrieves the smallest product from the dense dataframe to get specfific indices
-        to check in the CSR matrix columns. This avoids having to iterate through the whole sparse
-        matrix
-        '''
-        if names:
-            pid_series = self.pid_map.set_index("col_id").loc[product_ids, "product_id"]
-            names = self.product_names_df.loc[pid_series, 'product_name']
-            print(names)
-
-        if isinstance(ivec, spmatrix):
-            product_ids = ivec.indices
-        else:
-            product_ids = ivec
-
-        pfx = m2[pfx_key]
-        iset_df = self.tidset_dense.loc[product_ids, ["tids", "len"]]
-
-        min_prod = iset_df["len"].idxmin()
-        tids = np.intersect1d(iset_df.loc[min_prod, "tids"], pfx["tids"])
-
-        sparse_rows = self.tidset_sparse[:, product_ids]
-        sparse_filtered = sparse_rows[tids, :] #add tids and counts here
-        binary_intersection = sparse_filtered.sign()
-        cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
-        if len(cap) > 0:
-            counts = sparse_filtered[cap, :]
-            pfx_counts = pfx["counts"][np.searchsorted(pfx["tids"], tids)]
-            filtered_tids = tids[cap]
-            m2[tuple()]
-            print(counts, pfx_counts, filtered_tids)
+# tsvd = TruncatedSVD(n_components=200)
+# print("truncated")
+# data = tsvd.fit_transform(data)
+# print(data.shape)
+# umapper = umap.UMAP(n_jobs=-1)
+# embeddings = umapper.fit_transform(data)
 
 
-    def get_itemset_support_basic(self, ivec, names=False):
-        '''
-        this retrieves the smallest product from the dense dataframe to get specfific indices
-        to check in the CSR matrix columns. This avoids having to iterate through the whole sparse
-        matrix
-        '''
-        if names:
-            pid_series = self.pid_map.set_index("col_id").loc[product_ids, "product_id"]
-            names = self.product_names_df.loc[pid_series, 'product_name']
-            print(names)
+# plt.figure(figsize=(10, 8))
 
-        if isinstance(ivec, spmatrix):
-            product_ids = ivec.indices
-        else:
-            product_ids = ivec
+# # Create the scatter plot using the first two dimensions
+# # Alpha (opacity) is often reduced for large datasets to show density
+# plt.scatter(
+#     embeddings[:, 0], 
+#     embeddings[:, 1], 
+#     s=0.5, # Size of points (set small for large datasets)
+#     alpha=0.7 # Opacity of points
+# )
 
-        iset_df = self.tidset_dense.loc[product_ids, ["tids", "len"]]
-
-        min_prod = iset_df["len"].idxmin()
-        tids = iset_df.loc[min_prod, "tids"]
-
-        sparse_rows = self.tidset_sparse[:, product_ids]
-        sparse_filtered = sparse_rows[tids, :] #add tids and counts here
-        binary_intersection = sparse_filtered.sign()
-        cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
-        if len(cap) > 0:
-            counts = sparse_filtered[cap, :]
-            filtered_tids = tids[cap]
-            print(counts, filtered_tids)
-
-
-    def compute_fitness(self, ivec, m1, m2):
-
-        def intersect_memoized(k1, k2):
-            cap_name = t1 + t2
-            t1 = m2[k1]
-            t2 = m2[k2]
-            tids1 = t1["tids"]
-            tids2 = t2["tids"]
-
-            cap_tids = np.intersect1d(tids1, tids2)
-
-            if len(cap_tids) == 0:
-                output = {"tids": np.array([]), "counts": np.array([])}
-            else:
-                cap_counts = t1["counts"][np.searchsorted(tids1, cap_tids)] + t2["counts"][np.searchsorted(tids2, cap_tids)]
-                output = {"tids": cap_tids, "counts": cap_counts}
-            m2[cap_name] = output
-            return output
-
-        if isinstance(ivec, spmatrix):
-            key = ivec.indices
-        else:
-            key = ivec
-        
-        #check if fitness has been calculated
-        if key in m1:
-            return m1[key]
-        
-        #check if any subsets have been computed
-        if len(key) > 1 and len(key) <= 10:
-            k = len(key) - 1
-            subset_tids = []
-            while  k > 1 and len(key) > 1:
-                found = False
-                subsets = combinations(key, k)
-                for subset in subsets:
-                    if subset in m2:
-                        if len(m2[subset]["tids"]) > 0:
-                            subset_tids.append(m2[subset])
-                            for item in subset:
-                                key.pop(item)
-                            found = True
-                            break
-                if found == False:
-                    k -= 1
-        
-        prefix = reduce(intersect_memoized, subset_tids)
-
-
-
-
-            
-        
-
-
-
+# plt.gca().set_aspect('equal', 'datalim')
+# plt.title("UMAP", fontsize=16)
+# plt.xlabel('UMAP Dimension 1')
+# plt.ylabel('UMAP Dimension 2')
+# plt.show()
 
 
 
@@ -701,55 +595,3 @@ class CSR_Reader:
             except:
                 pass
         return customer_vector_sum
-
-    
-loader = CSR_Loader()
-loader.initialize_tidsets("hot_customers_products")
-loader.get_itemset_support([13173, 1])
-# process_instacart()
-
-# import umap
-# from matplotlib import pyplot as plt
-# from sklearn.decomposition import TruncatedSVD
-
-# loader = CSR_Loader()
-# # data = loader.load_reduced_random("hot_customers_products")
-
-# x = loader.retrieve_target_information([1, 2, 3], "hot_groceries_customers", names=False)
-
-# x = loader.retrieve_target_information([1], "hot_customers_depts", names=False)
-# print(x)
-# x = loader.retrieve_target_information([1], "hot_customers_aisles", names=False)
-# print(x)
-# x = loader.retrieve_target_information([i for i in range(1, 10)], "hot_customers_products", names=False)
-# for i in range(9):
-#     print(x[i])
-# input()
-
-# read_instacart_old()
-
-
-# tsvd = TruncatedSVD(n_components=200)
-# print("truncated")
-# data = tsvd.fit_transform(data)
-# print(data.shape)
-# umapper = umap.UMAP(n_jobs=-1)
-# embeddings = umapper.fit_transform(data)
-
-
-# plt.figure(figsize=(10, 8))
-
-# # Create the scatter plot using the first two dimensions
-# # Alpha (opacity) is often reduced for large datasets to show density
-# plt.scatter(
-#     embeddings[:, 0], 
-#     embeddings[:, 1], 
-#     s=0.5, # Size of points (set small for large datasets)
-#     alpha=0.7 # Opacity of points
-# )
-
-# plt.gca().set_aspect('equal', 'datalim')
-# plt.title("UMAP", fontsize=16)
-# plt.xlabel('UMAP Dimension 1')
-# plt.ylabel('UMAP Dimension 2')
-# plt.show()
