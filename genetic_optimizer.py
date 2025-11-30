@@ -628,46 +628,48 @@ class Gen_Optimizer:
                 print(m2_df)
                 print(self.m1)
                 input("ENTER to Continue")
+    
+    def get_support_mapping(self):
+        if self.testmode:
+            items = self.high_item_ids
+            length = len(self.high_item_ids)
+            map_type = "highitem"
+        else:
+            items = self.tidset_sparse
+            length = self.tidset_sparse.shape[1]
+            map_type = "dense"
+        if not os.path.exists(self.path / f"support_map_{map_type}.parquet"):
+            supports = {}
+            for i in range(length):
+                print(i)
+                product_ids, tids, counts = self.get_itemset_support_basic([items[i]])
+                supports[product_ids[0]] = sum(counts) / self.N
+            sort_by_sup = sorted(supports.items(), key = lambda x: x[1], reverse=True)
+            to_df = []
+            for i in range(len(sort_by_sup)):
+                entry = sort_by_sup[i]
+                to_df.append({"new_idx": i, "old_idx": entry[0]})
+            df = pd.DataFrame(to_df)
+            df.to_parquet(self.path / f"support_map_{map_type}.parquet")
+        prod_map = pd.read_parquet(self.path / f"support_map_{map_type}.parquet")
+        mapping = dict(zip(prod_map["old_idx"], prod_map["new_idx"]))
+        return mapping
 
 
     def dot_plot_popn(self, order_sup=True):
 
         if order_sup:
-            if self.testmode:
-                items = self.high_item_ids
-                length = len(self.high_item_ids)
-                map_type = "highitem"
-            else:
-                items = self.tidset_sparse
-                length = self.tidset_sparse.shape[1]
-                map_type = "dense"
-            if not os.path.exists(self.path / f"support_map_{map_type}.parquet"):
-                supports = {}
-                for i in range(length):
-                    print(i)
-                    product_ids, tids, counts = self.get_itemset_support_basic([items[i]])
-                    supports[product_ids[0]] = sum(counts) / self.N
-                sort_by_sup = sorted(supports.items(), key = lambda x: x[1], reverse=True)
-                to_df = []
-                for i in range(len(sort_by_sup)):
-                    entry = sort_by_sup[i]
-                    to_df.append({"new_idx": i, "old_idx": entry[0]})
-                df = pd.DataFrame(to_df)
-                df.to_parquet(self.path / f"support_map_{map_type}.parquet")
-            prod_map = pd.read_parquet(self.path / f"support_map_{map_type}.parquet")
-                    
-
+            mapping = self.get_support_mapping()
+                
         popn, cyc = self.load_popn(return_obj=False)
-        print(len(popn))
 
         #flatten popn
         cycles = []
         for i in range(len(popn)):
             if order_sup:
                 array = np.array(list(chain.from_iterable(popn[i])))
-                lookup = np.full(prod_map["old_idx"].max() + 1, -1, dtype=int)
-                lookup[prod_map["old_idx"].values] = prod_map["new_idx"].values
-                cycles.append(lookup[array])
+                remap = np.array([mapping[val] for val in array if val in mapping])
+                cycles.append(remap)
             else:
                 cycles.append(np.array(list(chain.from_iterable(popn[i]))))
 
@@ -680,6 +682,48 @@ class Gen_Optimizer:
         ax.set_xlabel('Value')
         ax.set_ylabel('Cycle')
         ax.set_title('Gene Map')
+        ax.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+
+
+    def kde_plot_popn(self, order_sup=True):
+
+        from sklearn.neighbors import KernelDensity
+
+        if order_sup:
+            mapping = self.get_support_mapping()
+                    
+        popn, cyc = self.load_popn(return_obj=False)
+
+        #flatten popn
+        cycles = []
+        for i in range(len(popn)):
+            if order_sup:
+                array = np.array(list(chain.from_iterable(popn[i])))
+                remap = np.array([mapping[val] for val in array if val in mapping])
+                cycles.extend(remap)
+            else:
+                cycles.extend(np.array(list(chain.from_iterable(popn[i]))))
+
+        cycles = np.array(cycles)
+
+        # Create uniform kernel KDE (tophat = uniform)
+        kde = KernelDensity(kernel='linear', bandwidth=1.0)
+        kde.fit(cycles.reshape(-1, 1))
+
+        # Evaluate on grid
+        x_range = np.linspace(cycles.min(), cycles.max(), 1000)
+        log_density = kde.score_samples(x_range.reshape(-1, 1))
+        density = np.exp(log_density)
+
+        # Plot
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.plot(x_range, density, linewidth=2)
+        ax.fill_between(x_range, density, alpha=0.3)
+        ax.set_xlabel('Value')
+        ax.set_ylabel('Density')
+        ax.set_title('Gene Distribution KDE')
         ax.grid(True, alpha=0.3)
         plt.tight_layout()
         plt.show()
@@ -722,5 +766,6 @@ class Gen_Optimizer:
 
 geno = Gen_Optimizer("hot_customers_products", smoothing_alpha=.1, pop_cap=40, testmode=True, toprint=True)
 # geno.test(3, 10, 5, toprint=True)
-# geno.dot_plot_popn()
-geno.genetically_modify(cycles=10)
+geno.dot_plot_popn()
+geno.kde_plot_popn()
+# geno.genetically_modify(cycles=10)
