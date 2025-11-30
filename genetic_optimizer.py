@@ -3,11 +3,13 @@ import numpy as np
 from pathlib import Path
 import platform
 import os
+import random
 
 from scipy.sparse import csr_matrix, coo_matrix
 from scipy.sparse import spmatrix
+import matplotlib.pyplot as plt
 
-from itertools import combinations
+from itertools import combinations, chain
 from functools import reduce
 import json
 from collections import deque, defaultdict
@@ -31,8 +33,11 @@ def convert_to_numpy(obj):
     if isinstance(obj, dict):
         return {k: convert_to_numpy(v) for k, v in obj.items()}
     elif isinstance(obj, list):
-        # Check if it's a numeric list that should be a numpy array
-        if obj and isinstance(obj[0], (int, float)):
+        # Flatten if it's a list of single-element lists
+        if obj and isinstance(obj[0], list) and len(obj[0]) == 1:
+            return np.array([item[0] for item in obj])
+        # Empty or numeric list
+        if not obj or isinstance(obj[0], (int, float)):
             return np.array(obj)
         return [convert_to_numpy(item) for item in obj]
     elif isinstance(obj, int):
@@ -43,11 +48,13 @@ def convert_to_numpy(obj):
 
 class Gen_Optimizer:
 
-    def __init__(self, filename, sys_username="Eric Arnold", smoothing_alpha=1, cycle_limit=10, combi_limit=3, pop_cap=1000):
+    def __init__(self, filename, sys_username="Eric Arnold", smoothing_alpha=1, cycle_limit=2, combi_limit=3, pop_cap=1000, testmode=False, toprint=False):
         self.cycle_limit = cycle_limit
         self.combi_limit = combi_limit
         self.username = sys_username
         self.pop_cap = pop_cap
+        self.testmode = testmode
+        self.toprint = toprint
 
         self.high_item_ids = [24849, 13173, 21134, 21900, 47205, 47762, 47622, 16794, 26206, 27842, 27963, 22932, 24961, 45004, 39272, 49679, 28201, 5874, 40703, 8274, 4918, 30388, 45063, 42262, 44629, 49231, 19054, 4603, 21613, 37643, 17791, 27101, 30486, 31714, 27083, 46975, 8515, 44356, 28982, 41947, 26601, 5075, 34123, 22032, 39874, 43349, 35948, 10746, 19657, 9073, 24181, 21935, 43958, 34966, 48675, 46663, 12338, 25887, 31503, 5448, 39925, 24835, 22822, 5783, 35218, 28839, 33728, 8421, 27518, 33195, 8171, 44139, 20111, 27341, 11517, 29484, 18462, 28196, 15287, 46902, 9836, 27153, 3955, 43119, 23906, 34355, 4797, 9384, 16756, 195, 42733, 4208, 38686, 41784, 47140, 41217, 7778, 32997, 20992, 21706]
 
@@ -117,26 +124,46 @@ class Gen_Optimizer:
             product_ids = ivec.indices
         else:
             product_ids = ivec
-
+        
         iset_df = self.tidset_dense.loc[product_ids, ["tids", "len"]]
 
-        min_prod = iset_df["len"].idxmin()
-        tids = iset_df.loc[min_prod, "tids"]
+        if len(product_ids) > 1:
+            min_prod = iset_df["len"].idxmin()
+            tids = iset_df.loc[min_prod, "tids"]
 
-        sparse_rows = self.tidset_sparse[:, product_ids]
-        sparse_filtered = sparse_rows[tids, :]
-        binary_intersection = sparse_filtered.sign()
-        cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
-        if len(cap) > 0:
-            # counts = sparse_filtered[cap, :].sum(axis=1).A1
-            counts = sparse_filtered[cap, :].min(axis=1).A
-            filtered_tids = tids[cap]
-            return product_ids, np.array(filtered_tids), counts
+            try:
+                sparse_rows = self.tidset_sparse[:, product_ids]
+                sparse_filtered = sparse_rows[tids, :]
+            except:
+                print("SIMPLE SPARSE ERROR\n", product_ids, tids, iset_df)
+                input()
+            binary_intersection = sparse_filtered.sign()
+            cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
+            if len(cap) > 0:
+                # counts = sparse_filtered[cap, :].sum(axis=1).A1
+                counts = sparse_filtered[cap, :].min(axis=1).A.flatten()
+                filtered_tids = tids[cap]
+                return product_ids, np.array(filtered_tids), np.array(counts)
+            else:
+                return product_ids, [], []
         else:
-            return product_ids, np.array([]), np.array([])
+            tids = iset_df["tids"].iloc[0]
+            sparse_rows = self.tidset_sparse[:, product_ids]
+            sparse_filtered = sparse_rows[tids, :]
+            return product_ids, tids, sparse_filtered.A.flatten()
 
-    def update_memo_2(self, key, tids, counts):
-        self.m2[key] = {"tids": tids, "counts": counts, "sum": counts.sum(), "cycle": self.cycle}
+
+    def update_memo_2(self, key, tids=[], counts=[]):
+        tids = np.array(tids)
+        counts = np.array(counts)
+        sort_idx = np.argsort(tids)
+        self.m2[key] = {
+                        "tids": np.array(tids)[sort_idx], 
+                        "counts": np.array(counts)[sort_idx], 
+                        "sum": int(counts.sum()), 
+                        "cycle": self.cycle
+                    }
+
 
     def get_itemset_support(self, pfx_key, ivec, names=False):
         '''
@@ -154,9 +181,10 @@ class Gen_Optimizer:
         else:
             product_ids = ivec
 
-        if len(pfx_key) > 0:
-            pfx = self.m2[pfx_key]
+
+        if len(pfx_key) > 0 and len(product_ids) > 0:
             iset_df = self.tidset_dense.loc[product_ids, ["tids", "len"]]
+            pfx = self.m2[pfx_key]
             key_all = tuple(sorted(product_ids + pfx_key))
 
             min_prod = iset_df["len"].idxmin()
@@ -169,14 +197,29 @@ class Gen_Optimizer:
             cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
             if len(cap) > 0:
                 # iset_counts = sparse_filtered[cap, :].sum(axis=1).A1
-                counts = np.minimum(sparse_filtered[cap, :].min(axis=1).A, pfx_counts[cap])
+                counts = np.minimum(sparse_filtered[cap, :].min(axis=1).A.flatten(), pfx_counts[cap])
                 filtered_tids = tids[cap]
-                self.update_memo_2(key_all, np.array(filtered_tids), np.array(counts))
+                self.update_memo_2(key_all, filtered_tids, counts)
             else:
-                self.update_memo_2(key_all, np.array([]), np.array([]))
-        else:
+                self.update_memo_2(key_all)
+        elif len(pfx_key) > 0 and len(product_ids) == 0:
+            pfx = self.m2[pfx_key]
+            self.update_memo_2(pfx, np.array(pfx["tids"]), np.array(pfx["counts"]).min(axis=1))
+        elif len(pfx_key) == 0 and len(product_ids) > 1:
             product_ids, tids, counts = self.get_itemset_support_basic(product_ids)
             self.update_memo_2(product_ids, tids, counts)
+        else:
+            try:
+                iset_df = self.tidset_dense.loc[product_ids, ["tids", "len"]]
+                tids = iset_df["tids"].iloc[0]
+                sparse_rows = self.tidset_sparse[:, product_ids]
+                sparse_filtered = sparse_rows[tids, :]
+                self.update_memo_2(product_ids, tids, sparse_filtered.A.flatten())
+            except:
+                print("FAILED")
+                print(product_ids)
+                print(iset_df)
+                input()
 
 
     def get_metrics(self, ivec, i):
@@ -190,7 +233,7 @@ class Gen_Optimizer:
             product_ids = ivec.indices
         else:
             product_ids = ivec
-
+        
         ants = {}
         for r in range(min(i, len(product_ids) - 1), 0, -1):
             combos = combinations(product_ids, r)
@@ -239,8 +282,24 @@ class Gen_Optimizer:
             cap_tids = np.intersect1d(tids1, tids2)
 
             if len(cap_tids) > 0:
-                cap_counts = np.minimum(t1["counts"][np.searchsorted(tids1, cap_tids)],
-                                        t2["counts"][np.searchsorted(tids2, cap_tids)])
+                try:
+                    cap_counts = np.minimum(t1["counts"][np.searchsorted(tids1, cap_tids)],
+                                            t2["counts"][np.searchsorted(tids2, cap_tids)])
+                except:
+                    print("PREFIX COMBI FAILURE", k1, k2, "\n")
+                    print(f"tids1 (len={len(tids1)}): {tids1}")
+                    print(f"tids2 (len={len(tids2)}): {tids2}")
+                    print(f"counts1 (len={len(t1['counts'])}): {t1['counts']}")
+                    print(f"counts2 (len={len(t2['counts'])}): {t2['counts']}")
+                    print(f"cap_tids (len={len(cap_tids)}): {cap_tids}")
+                    print(f"tids1 sorted? {np.all(tids1[:-1] <= tids1[1:])}")
+                    print(f"tids2 sorted? {np.all(tids2[:-1] <= tids2[1:])}")
+
+                    print("\nTable 1:")
+                    print(pd.DataFrame({"tids": tids1, "counts": t1["counts"]}))
+                    print("\nTable 2:")
+                    print(pd.DataFrame({"tids": tids2, "counts": t2["counts"]}))
+                    input()
             else:
                 cap_counts = np.array([])
             self.update_memo_2(cap_name, cap_tids, cap_counts)
@@ -253,7 +312,7 @@ class Gen_Optimizer:
         
         #check if fitness has been calculated
         if key in self.m1:
-            return self.m1[key]
+            return
         
         #check if any subsets have been computed
         original_key = key
@@ -282,8 +341,7 @@ class Gen_Optimizer:
             prefix = tuple()
 
         if self.toprint:
-            print("ORIG", original_key)
-            print("P", prefix, "K", key)
+            print("P", prefix, "K", key, "ORIG", original_key)
 
         if len(key) > 0:
             self.get_itemset_support(prefix, key)
@@ -322,28 +380,41 @@ class Gen_Optimizer:
         for i in range(2):
             to_pop = []
             for key in memos[i]:
-                if memos[i][key]["cycles"] < self.cycles - self.cycle_limit:
+                if memos[i][key]["cycle"] <= self.cycle - self.cycle_limit:
                     to_pop.append(key)
 
             for key in to_pop:
                 memos[i].pop(key)
 
-    def load_popn(self):
+    def load_popn(self, return_obj=True):
 
         filepath = self.memo_path / "popn.jsonl"
 
         if os.path.exists(filepath):
             print("load popn from saved")
-            with open(self.memo_path / "popn.jsonl") as f:
-                line = deque(f, maxlen=1)[0]
-                line = json.loads(line)
-                self.popn = [tuple(individual) for individual in line["population_array"]]
-                self.cycle = line["cycle"]
-                print("loaded cycle", self.cycle)
+            if return_obj:
+                with open(self.memo_path / "popn.jsonl") as f:
+                    line = deque(f, maxlen=1)[0]
+                    line = json.loads(line)
+                    self.popn = [tuple(individual) for individual in line["population_array"]]
+                    self.cycle = line["cycle"]
+                    print("loaded cycle", self.cycle)
+            else:
+                population = []
+                cycles = []
+                with open(self.memo_path / "popn.jsonl") as f:
+                    for line in f.readlines():
+                        line = json.loads(line)
+                        popn = [tuple(individual) for individual in line["population_array"]]
+                        cycle = line["cycle"]
+                        population.append(popn.copy())
+                        cycles.append(cycle)
+                return population, cycles
         else:
             print("genereated popn")
-            self.popn = self.init_popn(test=True)
+            self.popn = self.init_popn(test=self.testmode)
             self.cycle = 1
+            self.save_popn()
     
     def save_popn(self):
         print("\nsaving popn")
@@ -405,12 +476,30 @@ class Gen_Optimizer:
                 dom_keys[q].add(p)
                 dom_counts[p] += 1
         
-        def crowding_distance(k, front):
+        def crowding_distance(n, front):
+            
+            if len(front) <= 2:
+                return {k: np.inf for k in front}
+            
+            dists = {k:0 for k in front}
+            for metric in metrics:
+                sf = sorted(front, key = lambda x: self.m1[x][metric])
+                dists[sf[0]] = np.inf
+                dists[sf[-1]] = np.inf
 
+                mrange = self.m1[sf[-1]][metric] - self.m1[sf[0]][metric]
 
-
-                
+                if mrange != 0:
+                    for i in range(1, len(sf) - 1):
+                        if dists[sf[i]] != np.inf:
+                            p = self.m1[sf[i + 1]][metric]
+                            q = self.m1[sf[i - 1]][metric]
+                            dists[sf[i]] += (p - q) / mrange
+            
+            sorted_dists = sorted(dists.items(), key = lambda x: x[1], reverse=True)
+            return [k for k, dist in sorted_dists[:n]]
         
+
         m1_keys = list(self.m1.keys())
 
         fronts =[[]]
@@ -437,7 +526,6 @@ class Gen_Optimizer:
             fronts.append(front.copy())
         
         sorted_individuals = []
-
         for i in range(len(fronts)):
             if len(sorted_individuals) + len(fronts[i]) < self.pop_cap:
                 sorted_individuals.extend(fronts[i])
@@ -445,39 +533,85 @@ class Gen_Optimizer:
                 k = self.pop_cap - len(sorted_individuals)
                 rem = crowding_distance(k, fronts[i])
                 sorted_individuals.extend(rem)
-
-
+                break
         return sorted_individuals
 
 
-    def cross_mutate(self):
-        pass
+    def cross_mutate(self, survivors, test=False, uniform=False):
+
+        if test:
+            items = self.high_item_ids
+            uniform = True
+        else:
+            items = self.item_id_range
 
 
+        def choose_nonredundant_random(n, child):
+            child_set = set(child)  # Convert once for faster lookup
+            while True:
+                if uniform:
+                    mutant = np.random.choice(items, n, replace=False)
+                else:
+                    mutant = np.random.choice(items, n, p=self.pdist, replace=False)
+                
+                # Check if ANY element in mutant is already in child
+                if not any(m in child_set for m in mutant):
+                    return mutant
 
 
+        def crossover(p, q):
+            children = []
+            p = set(p)
+            q = set(q)
+            r = p & q
+            u = list((p | q) - r)
+            n_children = np.random.poisson(lam=2)
+            for i in range(n_children):
+                l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
+                if l > len(r):
+                    child = [np.int64(k) for k in r]
+                    remainder = l - len(child)
 
+                    if remainder < len(u) and remainder > 0:
+                        child.extend(np.random.choice(u, remainder, replace=False))
+                    else:
+                        child.extend(u)
+                        mutant = choose_nonredundant_random(remainder, child)
+                        child.extend(mutant)
+                elif l <= len(u):
+                    child = list(np.random.choice(u, l, replace=False))
+                else:
+                    child = list(u)
+                    mutant = choose_nonredundant_random(l - len(u), child)
+                    child.extend(mutant)
+                children.append(child)
+            return children
 
+        random.shuffle(survivors)
 
-
-    def genetically_modify(self, n_workers=2, cycles=10):
-        self.toprint=True
-        self.load_memos(u = 1)
-        self.load_popn()
+        n = 0
+        while n < 1:
+            offspring = []
+            for i in range(0, len(survivors) - 1, 2):
+                p = survivors[i]
+                q = survivors[i + 1]
+                children = crossover(p, q)
+                offspring.extend(children)
+            n = len(offspring)
         
-        for i in range(cycles):
-            with ThreadPoolExecutor(max_workers=n_workers) as executor:
-                list(executor.map(lambda p: self.compute_fitness(p, self.combi_limit), self.popn))
-            self.cycle += 1
-            survivors = self.select_survivors()
-            self.cross_mutate(survivors)
-            self.save_memos()
-            self.save_popn()
+        muts = np.random.randint(int(n/2), int(n*2))
+        to_mutate = np.random.choice(range(len(offspring)), muts, replace=True)
+        for i in to_mutate:
+            x = random.randint(0, 1)
+            if x == 0 and len(offspring[i]) > 2:
+                offspring[i].remove(np.random.choice(offspring[i]))
+            else:
+                mutant = choose_nonredundant_random(1, offspring[i])            
+                offspring[i].extend(mutant)
+        sorted_children = [tuple(sorted(child)) for child in offspring]
+        self.popn = survivors + sorted_children
 
-
-
-    
-
+    '''auxiliary code -------------------------------------------------------------'''
     def test_miner(self, i, k, j, toprint=False):
         self.toprint = toprint
 
@@ -496,8 +630,97 @@ class Gen_Optimizer:
                 input("ENTER to Continue")
 
 
+    def dot_plot_popn(self, order_sup=True):
+
+        if order_sup:
+            if self.testmode:
+                items = self.high_item_ids
+                length = len(self.high_item_ids)
+                map_type = "highitem"
+            else:
+                items = self.tidset_sparse
+                length = self.tidset_sparse.shape[1]
+                map_type = "dense"
+            if not os.path.exists(self.path / f"support_map_{map_type}.parquet"):
+                supports = {}
+                for i in range(length):
+                    print(i)
+                    product_ids, tids, counts = self.get_itemset_support_basic([items[i]])
+                    supports[product_ids[0]] = sum(counts) / self.N
+                sort_by_sup = sorted(supports.items(), key = lambda x: x[1], reverse=True)
+                to_df = []
+                for i in range(len(sort_by_sup)):
+                    entry = sort_by_sup[i]
+                    to_df.append({"new_idx": i, "old_idx": entry[0]})
+                df = pd.DataFrame(to_df)
+                df.to_parquet(self.path / f"support_map_{map_type}.parquet")
+            prod_map = pd.read_parquet(self.path / f"support_map_{map_type}.parquet")
+                    
+
+        popn, cyc = self.load_popn(return_obj=False)
+        print(len(popn))
+
+        #flatten popn
+        cycles = []
+        for i in range(len(popn)):
+            if order_sup:
+                array = np.array(list(chain.from_iterable(popn[i])))
+                lookup = np.full(prod_map["old_idx"].max() + 1, -1, dtype=int)
+                lookup[prod_map["old_idx"].values] = prod_map["new_idx"].values
+                cycles.append(lookup[array])
+            else:
+                cycles.append(np.array(list(chain.from_iterable(popn[i]))))
 
 
-geno = Gen_Optimizer("hot_customers_products")
+        fig, ax = plt.subplots(figsize=(12, 8))
+
+        for i in range(len(popn)):
+            ax.scatter(cycles[i], np.full(len(cycles[i]), i), alpha=.5, s=20)
+
+        ax.set_xlabel('Value')
+        ax.set_ylabel('Cycle')
+        ax.set_title('Gene Map')
+        ax.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+
+        
+
+
+
+
+
+
+
+
+    def genetically_modify(self, n_workers=1, cycles=10):
+        # self.load_memos()
+        self.load_popn()
+
+        if self.cycle == 1 or len(self.m1) == 0:
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                list(executor.map(lambda p: self.compute_fitness(p, self.combi_limit), self.popn))
+        
+        for i in range(cycles):
+
+            survivors = self.select_survivors()
+            self.cross_mutate(survivors)
+
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                list(executor.map(lambda p: self.compute_fitness(p, self.combi_limit), self.popn))
+
+            self.prune_memos()
+            self.cycle += 1
+            self.save_popn()
+            self.dot_plot_popn()
+        
+        # self.save_memos()
+
+
+
+
+
+geno = Gen_Optimizer("hot_customers_products", smoothing_alpha=.1, pop_cap=40, testmode=True, toprint=True)
 # geno.test(3, 10, 5, toprint=True)
-geno.genetically_modify(cycles=1)
+# geno.dot_plot_popn()
+geno.genetically_modify(cycles=10)
