@@ -460,6 +460,51 @@ class CSR_Loader:
             columns=top_names.values
         )
         return co_occurrence_df, top_names
+    
+    def get_entropy(self, rows, target="hot_customers_aisles"):
+        
+        matrix = self.load(target)
+        selected_rows = matrix[rows, :]
+        dist = np.asarray(np.sum(selected_rows, axis=0)).flatten()
+        nz_dist = dist[dist != 0]
+        nz_dist /= nz_dist.sum()
+        dist_raw = dist + 0.01
+        dist_raw /= dist_raw.sum()
+        raw_entropy = -np.sum(dist_raw * np.log2(dist_raw)) / np.log2(len(dist_raw))
+        norm_entropy = -np.sum(nz_dist * np.log2(nz_dist)) / np.log2(len(nz_dist))
+        x = np.arange(len(dist))
+        mean_position = np.sum(x * dist) / np.sum(dist)
+        mean_position = float(mean_position)
+        return norm_entropy, raw_entropy, dist, mean_position
+    
+    def get_aisle_means(self, labels, indices, target="hot_customers_aisles"):
+
+        if len(labels) != len(indices):
+            raise ValueError("Arrays need to be same length.")
+
+        matrix = self.load(target)
+        cluster_names = np.unique(labels)
+        cluster_pts = [[] for _ in range(len(cluster_names))]
+        for i in range(len(cluster_names)):
+            idx = cluster_names[i]
+            for j in range(len(labels)):
+                if labels[j] == idx:
+                    row = matrix[indices[j]].toarray()
+                    cluster_pts[idx].append(row)
+
+        
+        cluster_means = []
+        cluster_aisles = []
+        for i in range(len(cluster_pts)):
+            cluster_matrix = np.vstack(cluster_pts[i])
+            row_sum = cluster_matrix.sum(axis=0).flatten()
+            indices = np.arange(len(row_sum))
+            tot = row_sum.sum()
+            cluster_aisles.append(row_sum)
+            cluster_means.append(np.dot(indices, row_sum) / tot)
+        
+        return cluster_means, cluster_aisles
+
 
 
 # for i in range(data.shape[1]):
