@@ -477,7 +477,7 @@ class CSR_Loader:
         mean_position = float(mean_position)
         return norm_entropy, raw_entropy, dist, mean_position
     
-    def get_aisle_means(self, labels, indices, target="hot_customers_aisles"):
+    def get_aisles(self, labels, indices, target="hot_customers_aisles"):
 
         if len(labels) != len(indices):
             raise ValueError("Arrays need to be same length.")
