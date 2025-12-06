@@ -8,13 +8,48 @@ from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
 
 
+def get_cluster_dists(labels, indices=None):
+
+    pca = PCA(n_components=4)
+
+    if indices is None:
+        indices = np.arange(len(labels))
+    
+    means, cluster_aisles = l.get_aisles(labels, indices)
+
+    normalized_aisles = []
+    for i in range(len(cluster_aisles)):
+        normalized_aisles.append(cluster_aisles[i] / cluster_aisles[i].sum())
+
+    normalized_aisles = pca.fit_transform(normalized_aisles)
+
+    cluster_matrix = np.vstack(normalized_aisles)
+    cluster_profiles = normalize(cluster_matrix, norm='l1', axis=1)
+    dist_matrix = euclidean_distances(cluster_profiles, cluster_profiles)
+    mask = np.triu(np.ones_like(dist_matrix, dtype=bool), k=1)
+
+    avg_separation = np.mean(dist_matrix[mask])
+    min_separation = np.min(dist_matrix[mask])
+
+    return means, cluster_aisles, normalized_aisles, avg_separation, min_separation, dist_matrix
+
+
+        
 
 
 l = CSR_Loader()
 pc = PCA(n_components=6) #from sindico
 km = KMeans(n_clusters=4)
 
-'''discrepancies in plotting are due to '''
+
+
+
+
+
+
+
+
+'''REPLICATING SINDICO ON REDUCED DATA. DISCREPANCIES DUE TO TRANSACTION COUNT'''
 
 aisle_matrix, indices = l.load_reduced_random(filename="hot_customers_aisles", seed=42, n=10000)
 # aisle_matrix = l.load("hot_customers_aisles")
@@ -45,24 +80,14 @@ plt.gca().add_artist(legend)
 
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.colorbar(scatter, label='Cluster ID')
-# plt.show()
-
-means, cluster_aisles = l.get_aisle_means(labels, indices)
-
-for i in range(len(cluster_aisles)):
-    cluster_aisles[i] = np.sqrt(cluster_aisles[i] / cluster_aisles[i].sum())
-
-print(means, np.var(means))
+plt.show()
 
 
 
 
 
-cluster_matrix = np.vstack(cluster_aisles)
-cluster_profiles = normalize(cluster_matrix, norm='l1', axis=1)
-dist_matrix = euclidean_distances(cluster_profiles, cluster_profiles)
-cluster_profiles = normalize(cluster_matrix, norm='l1', axis=1)
-dist_matrix = euclidean_distances(cluster_profiles, cluster_profiles)
+
+means, cluster_aisles, norm_aisles, avg_separation, min_separation, dist_matrix = get_cluster_dists(labels)
 
 plt.figure(figsize=(8, 6))
 sns.heatmap(
@@ -75,16 +100,6 @@ sns.heatmap(
 )
 plt.title("L2 Distances Between Cluster Distributions")
 plt.show()
-
-
-
-# Assuming 'dist_matrix' is the one you calculated in the previous step
-# We use a mask to ignore the diagonal (0) and the duplicates (lower triangle)
-mask = np.triu(np.ones_like(dist_matrix, dtype=bool), k=1)
-
-# Calculate the mean of just the valid distances
-avg_separation = np.mean(dist_matrix[mask])
-min_separation = np.min(dist_matrix[mask])
 
 print(f"Average Distance between Cluster Centers: {avg_separation:.4f}")
 print(f"Minimum Distance (The 'Weakest Link'):    {min_separation:.4f}")
@@ -102,15 +117,14 @@ print(f"Minimum Distance (The 'Weakest Link'):    {min_separation:.4f}")
 
 
 
+'''SOME OTHER PLOTTING. TOTALLY NOT NECESSARY'''
 
-
-
-
+data = norm_aisles
 
 plt.figure(figsize=(15, 8))
 
 # Loop through each cluster
-for i, counts in enumerate(cluster_aisles):
+for i, counts in enumerate(data):
     
     aisle_indices = np.arange(len(counts))
     
@@ -140,8 +154,8 @@ plt.ylabel('Total Items Purchased') # or 'Proportion' if normalized
 plt.legend(title="Clusters")
 plt.grid(True, linestyle='--', alpha=0.4)
 
-plt.xticks(np.arange(0, 135, 10))
-plt.xlim(0, 134)             # Ensure the shading starts/ends cleanly
+plt.xticks(np.arange(0, len(data), 3))
+plt.xlim(0, len(data))             # Ensure the shading starts/ends cleanly
 plt.ylim(bottom=0)           # Start Y-axis at 0
 
 plt.show()
