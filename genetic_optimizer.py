@@ -14,7 +14,6 @@ from functools import reduce
 import json
 from collections import deque, defaultdict
 from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import ProcessPoolExecutor
 import ast
 
 from instacart_loader import CSR_Loader
@@ -51,7 +50,7 @@ class Gen_Optimizer:
 
     def __init__(self, sys_username="Eric Arnold", smoothing_alpha=1, 
                  cycle_limit=2, combi_limit=3, pop_cap=1000, mode="rulemine", 
-                 toprint=False, uniform=False, k_range=(2, 10)):
+                 toprint=False, uniform=False, k_range=(2, 10), mut_rate=0.1, n_components=8, minsup=20, metrics=["sup", "conf"]):
         self.cycle_limit = cycle_limit
         self.combi_limit = combi_limit
         self.username = sys_username
@@ -60,6 +59,8 @@ class Gen_Optimizer:
         self.toprint = toprint
         self.uniform = uniform
         self.k_range=k_range
+        self.mut_rate = mut_rate
+        self.minsup = minsup
 
 
         self.high_item_ids = [24849, 13173, 21134, 21900, 47205, 47762, 47622, 16794, 26206, 27842, 27963, 22932, 24961, 45004, 39272, 49679, 28201, 5874, 40703, 8274, 4918, 30388, 45063, 42262, 44629, 49231, 19054, 4603, 21613, 37643, 17791, 27101, 30486, 31714, 27083, 46975, 8515, 44356, 28982, 41947, 26601, 5075, 34123, 22032, 39874, 43349, 35948, 10746, 19657, 9073, 24181, 21935, 43958, 34966, 48675, 46663, 12338, 25887, 31503, 5448, 39925, 24835, 22822, 5783, 35218, 28839, 33728, 8421, 27518, 33195, 8171, 44139, 20111, 27341, 11517, 29484, 18462, 28196, 15287, 46902, 9836, 27153, 3955, 43119, 23906, 34355, 4797, 9384, 16756, 195, 42733, 4208, 38686, 41784, 47140, 41217, 7778, 32997, 20992, 21706]
@@ -74,17 +75,17 @@ class Gen_Optimizer:
             self.memo_path = Path.home() / "Documents" / "NSGA_data"
 
         self.loader = CSR_Loader()
-        self.filename = "hot_customers_products"
+        self.filename = "hot_baskets_products"
         self.path = Path(__file__).parent / "parquet_files"
 
         if mode in ["testmode", "rulemine"]:
             dense_name = f"{self.filename}_tidset_dense.parquet"
-            self.metrics = ["sup", "conf", "lift"]
+            self.metrics = metrics
             self.memo_path = self.memo_path / "miner"
             if not os.path.isfile(self.path / dense_name):
                 print("initializing matrices")
 
-                matrix = self.loader.load(self.filename)
+                matrix = self.loader.load(self.filename)#[:10000]
                 matrix_T = matrix.transpose()
                 matrix_T = matrix_T.tocsr()
 
@@ -105,27 +106,34 @@ class Gen_Optimizer:
 
             tidset_dense = pd.read_parquet(self.path / dense_name)
             self.tidset_dense = tidset_dense.set_index("product_id")
-            tidset_sparse = self.loader.load(self.filename)
+            tidset_sparse = self.loader.load(self.filename)#[:10000]
             self.N = tidset_sparse.sum()
+
+            sups = np.array((tidset_sparse > 0).sum(axis=0)).flatten()
+            minsup_cols = np.where(sups >= minsup)[0]
+
             self.tidset_sparse = tidset_sparse.tocsc()
             self.pid_map = pd.read_parquet(self.path / "hot_map_products.parquet")
             pdist = np.array(tidset_sparse.sum(axis=0)).flatten() / self.N
             pdist += smoothing_alpha
-            self.pdist = pdist / pdist.sum()
-            self.item_id_range = tidset_sparse.shape[1]
+            # self.pdist = pdist / pdist.sum() #matching the size of pdist based on minsup
+            self.pdist = pdist[minsup_cols] / pdist[minsup_cols].sum()
+            self.item_id_range = minsup_cols #tidset_sparse.shape[1]
 
         elif mode in ["testclustomers", "clustomers"]:
             from sklearn.decomposition import TruncatedSVD as TSVD
-            self.metrics =["WCSS", "CH-I", "al_ent"]
+            self.metrics = ["WCSS", "CH-I"]
             self.memo_path = self.memo_path / "clusterer"
             
             print("initializing matrices")
 
-            matrix = self.loader.load(self.filename)
-            svd = TSVD(n_components=8)
+            # matrix = self.loader.load(self.filename)
+            matrix, indices = self.loader.load_reduced_random("hot_customers_products", seed=42, n=10000)
+            svd = TSVD(n_components=n_components)
             self.cid_matrix = svd.fit_transform(matrix)
-            self.aid_matrix = self.loader.load("hot_customers_aisles")
-            self.did_matrix = self.loader.load("hot_customers_depts")
+            self.cid_bounds = [(self.cid_matrix[:, i].min(), self.cid_matrix[:, i].max()) for i in range(self.cid_matrix.shape[1])]
+            self.aid_matrix = self.loader.load("hot_customers_aisles")[indices, :]
+            self.did_matrix = self.loader.load("hot_customers_depts")[indices, :]
             if mode == "testclustomers":
                 self.cid_range = 250
             elif mode == "clustomers":
@@ -133,6 +141,7 @@ class Gen_Optimizer:
 
         if mode == "testmode":
             self.items = self.high_item_ids
+            self.pdist = np.full(len(self.high_item_ids), 1) / len(self.high_item_ids)
             self.uniform = True
             self.testmode = True
         elif mode == "rulemine":
@@ -168,12 +177,12 @@ class Gen_Optimizer:
             min_prod = iset_df["len"].idxmin()
             tids = iset_df.loc[min_prod, "tids"]
 
-            try:
-                sparse_rows = self.tidset_sparse[:, product_ids]
-                sparse_filtered = sparse_rows[tids, :]
-            except:
-                print("SIMPLE SPARSE ERROR\n", product_ids, tids, iset_df)
-                input()
+            #try:
+            sparse_rows = self.tidset_sparse[:, product_ids]
+            sparse_filtered = sparse_rows[tids, :]
+            # except:
+            #     print("SIMPLE SPARSE ERROR\n", product_ids, tids, iset_df)
+            #     input()
             binary_intersection = sparse_filtered.sign()
             cap = np.where(binary_intersection.getnnz(axis=1) == binary_intersection.shape[1])[0]
             if len(cap) > 0:
@@ -277,28 +286,34 @@ class Gen_Optimizer:
             for ant_key in combos:
                 if ant_key not in self.m2:
                     self.get_itemset_support(tuple(), ant_key)
-                ants[ant_key] = self.m2[ant_key]["sum"] / self.N
-        sup_all = self.m2[product_ids]["sum"] / self.N
+                ants[ant_key] = self.m2[ant_key]["sum"]
+        sup_all = self.m2[product_ids]["sum"]
         ant_key, sup_ant = min(ants.items(), key=lambda x: x[1]) #select the lowest_support antecedent to get highest-confidence rule
         coq_key = tuple(x for x in product_ids if x not in set(ant_key))
         if coq_key not in self.m2:
             self.get_itemset_support(tuple(), coq_key)
-        sup_coq = self.m2[coq_key]["sum"] / self.N
+        sup_coq = self.m2[coq_key]["sum"]
 
-        if sup_all != 0:
-            conf = sup_all / sup_ant
-            lift = sup_all / (sup_coq * sup_ant)
-        else:
-            conf = 0
-            lift = 0
+        if sup_all != 0 and sup_ant != 0 and sup_coq != 0:
 
-        self.m1[product_ids] = {"tag": (ant_key, coq_key),
-                                "sup": sup_all,
-                                "conf": conf, 
-                                "lift": lift, 
-                                "length": len(product_ids),
-                                "cycle": self.cycle
-                                }
+            # ind_sups = []
+            # for i in range(len(product_ids)):
+            #     ind_sups.append(self.m2[product_ids[i]])
+            
+            # x = sum(ind_sups)
+            # sup_ent = -np.sum([(sup / x) * np.log2(sup / x)  for sup in ind_sups]) / np.log2(len(ind_sups))
+
+
+            self.m1[product_ids] = {"tag": (ant_key, coq_key),
+                                    "sup": sup_all,
+                                    # "sup_ent": sup_ent,
+                                    "jacc": sup_all / (sup_ant + sup_coq - sup_all),
+                                    "conf": (sup_all / sup_ant),
+                                    "kulc": (sup_all * (sup_ant + sup_coq)) / (2 * sup_ant * sup_coq),
+                                    "lift": (sup_all * self.N) / (sup_coq * sup_ant), 
+                                    "length": len(product_ids),
+                                    "cycle": self.cycle
+                                    }
 
 
     def compute_itemset_fitness(self, ivec, i):
@@ -448,12 +463,12 @@ class Gen_Optimizer:
                         cycles.append(cycle)
                 return population, cycles
         else:
-            print("genereated popn")
+            print("generating popn")
+            self.cycle = 1
             if self.mode in ["testmode", "rulemine"]:
                 self.popn = self.init_popn()
             else:
                 self.popn = self.init_clusters()
-            self.cycle = 1
             self.save_popn()
     
     def save_popn(self):
@@ -481,7 +496,13 @@ class Gen_Optimizer:
         for _ in range(self.pop_cap):
             k = np.random.choice(self.k_range)
             if self.uniform:
-                ind = tuple(sorted(np.random.choice(self.items, k, replace=False)))
+                ind = tuple(sorted(np.random.choice(self.items, k, replace=False, p=self.pdist)))
+                pids, tids, counts = self.get_itemset_support_basic(ind)
+                while np.sum(counts) < self.minsup:
+                    ind = tuple(sorted(np.random.choice(self.items, k, replace=False, p=self.pdist)))
+                    pids, tids, counts  = self.get_itemset_support_basic(ind)
+                print(pids, np.sum(counts))
+                self.update_memo_2(ind, tids, counts)
             else:
                 ind = tuple(sorted(np.random.choice(self.items, k, replace=False, p=self.pdist)))
             population.append(ind)
@@ -512,10 +533,102 @@ class Gen_Optimizer:
             samples.append(make_cluster(pool))
 
         self.popn = samples
+
+
+    def _crowding_distance_vectorized(self, front, n):
+        '''Vectorized crowding distance computation'''
         
+        if len(front) <= 2:
+            return front[:n]
+        
+        n_individuals = len(front)
+        distances = np.zeros(n_individuals)
+        
+        # Get metrics for this front
+        front_metrics = np.array([[self.m1[k][metric] for metric in self.metrics] 
+                                for k in front])
+        
+        for m_idx in range(len(self.metrics)):
+            # Sort indices by this metric
+            sorted_idx = np.argsort(front_metrics[:, m_idx])
+            
+            # Boundary points get infinite distance
+            distances[sorted_idx[0]] = np.inf
+            distances[sorted_idx[-1]] = np.inf
+            
+            # Compute range
+            metric_range = front_metrics[sorted_idx[-1], m_idx] - front_metrics[sorted_idx[0], m_idx]
+            
+            if metric_range > 0:
+                # Vectorized distance computation for middle points
+                distances[sorted_idx[1:-1]] += (
+                    (front_metrics[sorted_idx[2:], m_idx] - front_metrics[sorted_idx[:-2], m_idx]) 
+                    / metric_range
+                )
+        
+        # Select top n individuals by crowding distance
+        top_n_idx = np.argsort(distances)[-n:][::-1]
+        return [front[i] for i in top_n_idx]
+    
+
+    def select_survivors(self, return_fittest=False):
+
+        '''vectorized version of select survivors'''
+
+
+        m1_keys = list(self.m1.keys())
+        n_pop = len(m1_keys)
+        metrics_array = np.array([[self.m1[k][metric] for metric in self.metrics] 
+                                for k in m1_keys])
+        
+        if self.toprint:
+            print("computing dominance")
+        greater = metrics_array[:, None, :] > metrics_array[None, :, :]
+        dominates = np.all(greater, axis=2)  # shape: (n_pop, n_pop)
+        np.fill_diagonal(dominates, False)  # individual doesn't dominate itself
+        dom_counts = np.sum(dominates, axis=0).astype(int)
+
+        fronts = []
+        remaining = np.ones(n_pop, dtype=bool)
+        
+        if self.toprint:
+            print("sorting non-dominated")
+        while remaining.any():
+            # Find individuals not dominated by any remaining individual
+            current_front_mask = (dom_counts == 0) & remaining
+            if not current_front_mask.any():
+                break
+                
+            current_front = np.where(current_front_mask)[0]
+            fronts.append([m1_keys[i] for i in current_front])
+            
+            # Remove current front and update domination counts
+            remaining[current_front] = False
+            dom_counts -= dominates[current_front, :].sum(axis=0).astype(int)
+            dom_counts[current_front] = -1   # Mark as processed
+        
+        if self.toprint:
+            print("selecting survivors")
+        # === SELECT SURVIVORS ===
+        sorted_individuals = []
+        if return_fittest:
+            return fronts[0]
+        for front in fronts:
+            if len(sorted_individuals) + len(front) <= self.pop_cap:
+                sorted_individuals.extend(front)
+            else:
+                # Need crowding distance for last front
+                k = self.pop_cap - len(sorted_individuals)
+                rem = self._crowding_distance_vectorized(front, k)
+                sorted_individuals.extend(rem)
+                break
+        if self.toprint:
+            print("survivors selected")
+    
+        return sorted_individuals
 
     
-    def select_survivors(self):
+    def select_survivors_v1(self):
 
         '''find fronts, comput crowding distance for last front up to length self.pop_cap'''
 
@@ -603,54 +716,107 @@ class Gen_Optimizer:
                 output_clusters.append(entry)
             clusters = output_clusters
 
-        # if self.toprint:
-        #     print("silhouette")
-        # #compute silhouette (find closest clusters first to reduce computations)
-        # top_clusters = min(len(clusters), 3)
-        # child_dists = {k: {} for k in range(len(clusters))}
-        # for i in range(len(clusters)):
-        #     for j in range(i + 1, len(clusters)):
-        #         d = np.linalg.norm(clusters[i]["mean"] - clusters[j]["mean"])
-        #         child_dists[i][j] = d
-        #         child_dists[j][i] = d
-        # for i in range(len(clusters)):
-        #     child_dists[i] = [item[0] for item in sorted(child_dists[i].items(), key=lambda x: x[1])[:top_clusters]]
-        
         if self.toprint:
             print("scoring")
         # #the score
-        # sils = []
-        # for i in range(len(clusters)):
-        #     if self.toprint:
-        #         print("    ", i)
-        #     clust = clusters[i]["arr"]
-        #     if len(clust) > 1:
-        #         l = len(clust)
-        #         pts = self.cid_matrix[clust, :]
-        #         for j in range(l):
-        #             pt = pts[j, :]
-        #             ds = np.linalg.norm(pts - pt, axis=1)
-        #             a = np.sum(ds) / (l - 1)
-        #             mean_dists = []
-        #             for k in child_dists[i]:
-        #                 pts_k = self.cid_matrix[clusters[k]["arr"], :]
-        #                 pt_dists = np.linalg.norm(pts_k - pt, axis=1)
-        #                 mean_dists.append(np.mean(pt_dists))
-        #             b = np.min(mean_dists) if len(mean_dists) > 0 else 0
-        #             sils.append((b - a) / max(a, b))
-
         # Convert clusters to labels
         labels = np.full(self.items, -1)
         for cluster_idx, cluster in enumerate(clusters):
             for point_id in cluster["arr"]:
                 if point_id != -1:
                     labels[point_id] = cluster_idx
+        if len(labels) > 1:
+            ch_score = calinski_harabasz_score(
+                self.cid_matrix[:self.items], 
+                labels)
+        else:
+            ch_score = 0
 
-        ch_score = calinski_harabasz_score(
-            self.cid_matrix[:self.items], 
-            labels
-        )
+        if self.toprint:
+            print("entropy")
+        
+        def compute_entropy(matrix, clusters):
+            entropies = []
+            for i in range(len(clusters)):
+                cids = clusters[i]["arr"]
+                ids = matrix[cids, :]
+                dist = np.asarray(np.sum(ids, axis=0)).flatten()
+                dist += 0.01
+                dist = dist / dist.sum()
+                entropies.append(-np.sum(dist * np.log2(dist)) / np.log2(len(dist)))
+            return entropies
+        
+        al_ent = compute_entropy(self.aid_matrix, clusters)
+        dp_ent = compute_entropy(self.did_matrix, clusters)
 
+        #between centroid separation
+        bcs = []
+        for i in range(len(clusters)):
+            for j in range(i + 1, len(clusters)):
+                dist = np.linalg.norm(clusters[i]["mean"] - clusters[j]["mean"])
+                bcs.append(dist)
+
+        
+        entry = {"clusters": clusters.copy(),
+                "WCSS": -np.sum([cluster["ssd"] for cluster in clusters]),
+                "CH-I": ch_score,
+                "al_ent": np.var(al_ent),
+                "dp_ent": np.var(dp_ent),
+                "bcs": np.sum(bcs),
+                "b_size": 0,
+                "cycle": self.cycle}
+        if self.toprint:
+            df = pd.DataFrame([entry])
+            df = df.drop("clusters", axis=1)
+            print(df.head())
+
+        self.m1[tuple(tuple(cluster["arr"]) for cluster in clusters)] = entry
+
+
+    def compute_cluster_fitness_old(self, clusters):            
+
+        if "arr" not in clusters[0]:
+            output_clusters = []
+            for cluster in clusters:
+                entry = self.make_cluster_entry(cluster)
+                output_clusters.append(entry)
+            clusters = output_clusters
+
+        if self.toprint:
+            print("silhouette")
+        #compute silhouette (find closest clusters first to reduce computations)
+        top_clusters = min(len(clusters), 3)
+        child_dists = {k: {} for k in range(len(clusters))}
+        for i in range(len(clusters)):
+            for j in range(i + 1, len(clusters)):
+                d = np.linalg.norm(clusters[i]["mean"] - clusters[j]["mean"])
+                child_dists[i][j] = d
+                child_dists[j][i] = d
+        for i in range(len(clusters)):
+            child_dists[i] = [item[0] for item in sorted(child_dists[i].items(), key=lambda x: x[1])[:top_clusters]]
+        
+        if self.toprint:
+            print("scoring")
+        #the score
+        sils = []
+        for i in range(len(clusters)):
+            if self.toprint:
+                print("    ", i)
+            clust = clusters[i]["arr"]
+            if len(clust) > 1:
+                l = len(clust)
+                pts = self.cid_matrix[clust, :]
+                for j in range(l):
+                    pt = pts[j, :]
+                    ds = np.linalg.norm(pts - pt, axis=1)
+                    a = np.sum(ds) / (l - 1)
+                    mean_dists = []
+                    for k in child_dists[i]:
+                        pts_k = self.cid_matrix[clusters[k]["arr"], :]
+                        pt_dists = np.linalg.norm(pts_k - pt, axis=1)
+                        mean_dists.append(np.mean(pt_dists))
+                    b = np.min(mean_dists) if len(mean_dists) > 0 else 0
+                    sils.append((b - a) / max(a, b))
 
 
         if self.toprint:
@@ -667,7 +833,7 @@ class Gen_Optimizer:
         
         entry = {"clusters": clusters.copy(),
                 "WCSS": -np.sum([cluster["ssd"] for cluster in clusters]),
-                "CH-I": ch_score,
+                "sil": np.mean(sils),
                 "al_ent": -np.mean(entropies),
                 "cycle": self.cycle}
         if self.toprint:
@@ -725,7 +891,23 @@ class Gen_Optimizer:
             swap(cluster_i, pt_i, pt_j)
             swap(cluster_j, pt_j, pt_i)
 
-            
+        
+        def cleanup_keys_old(free_keys, clusters):
+                if self.uniform:
+                    n = np.random.choice(range(1, len(free_keys) + 1))
+                elif len(free_keys) > self.k_range:
+                    n = np.min([np.random.choice(range(1, len(free_keys) + 1)), np.random.poisson(lam=(len(free_keys) // self.k_range))])
+                else:
+                    n = len(free_keys)
+                if self.toprint:
+                    print("appending cluster", n)
+                to_cut = min(n, len(free_keys))
+                cluster = random.sample(list(free_keys), to_cut)
+                free_keys -= set(cluster)
+                entry = self.make_cluster_entry(cluster)
+                clusters.append(entry)
+
+
         def cross_parents(p1, p2):
 
             if self.toprint:
@@ -745,13 +927,15 @@ class Gen_Optimizer:
             dists = {k: {} for k in range(len(ref["clusters"]))}
             for i in range(len(ref["clusters"])):
                 for j in range(len(tar["clusters"])):
-                    if i != j:
-                        dists[i][j] = np.linalg.norm(ref["clusters"][i]["mean"] - tar["clusters"][j]["mean"])
+                    dists[i][j] = np.linalg.norm(ref["clusters"][i]["mean"] - tar["clusters"][j]["mean"])
+
+            # for i in range(len(dists)):
+            #     print(i, ref["clusters"][i]["mean"], tar["clusters"][sorted(dists[i].items(), key = lambda x: x[1])[0][0]]["mean"])
             
 
             n_children = np.random.poisson(lam=2)
             for child in range(n_children):
-                dists_k = dists.copy()
+                dists_k = {key: dists[key].copy() for key in dists} #solved linked dicts issue
                 free_keys = set()
                 used_keys = set()
                 dist_keys = list(dists_k.keys())
@@ -762,8 +946,8 @@ class Gen_Optimizer:
                     top = sorted(dists_k[dist_keys[i]].items(), key = lambda x: x[1])
                     closest = top[0]
 
-                    # for j in range(i, len(dists_k)):
-                    #     dists_k[dist_keys[j]].pop(closest[0])
+                    # for j in range(len(dists_k)):
+                    #     dists_k[dist_keys[j]].pop(closest[0]) #eliminating same-parent crosses hurt scores by a lot
 
                     #extremely similar logic to rule mining, except no duplicates and every cid must be accounted for
                     p = set(ref["clusters"][i]["arr"]) - used_keys
@@ -772,7 +956,9 @@ class Gen_Optimizer:
                     unique = p | q
                     r = p & q
                     u = list((p | q) - r)
-                    l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
+                    # l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
+                    l = len(r) + min(len(p - r), len(q - r))
+                    # l = len(p)
 
                     if l > len(r):
                         child = [np.int64(k) for k in r]
@@ -810,8 +996,6 @@ class Gen_Optimizer:
                             overflow_tuples.append((i, j))
 
                 free_keys = list(free_keys)
-
-                
                 if len(free_keys) > 0:
                     i = len(free_keys)
                     while len(overflow_tuples) > 0 and i > 0:
@@ -820,29 +1004,50 @@ class Gen_Optimizer:
                         free_keys.pop(-1)
                         i -= 1
 
-                free_keys = set(free_keys)
-
-                while len(free_keys) > 0:
-                    if len(free_keys) > self.k_range:
-                        if self.uniform:
-                            n = np.random.choice(range(1, len(free_keys) + 1))
-                        else:
-                            n = np.min([np.random.choice(range(1, len(free_keys) + 1)), np.random.poisson(lam=(len(free_keys) // self.k_range))])
-                    else:
-                        n = len(free_keys)
-                    if self.toprint:
-                        print("appending cluster", n)
-                    to_cut = min(n, len(free_keys))
-                    cluster = random.sample(list(free_keys), to_cut)
-                    free_keys -= set(cluster)
-                    entry = self.make_cluster_entry(cluster)
-                    clusters.append(entry)
-                
-                
                 if len(overflow_tuples) > 0:
                     for i in range(len(overflow_tuples) - 1, -1, -1):
                         crd = overflow_tuples[i]
                         clusters[crd[0]]["arr"] = np.delete(clusters[crd[0]]["arr"], crd[1])
+
+                
+                def cleanup_keys(free_keys, clusters):
+                    '''assign remaining keys to the closest centroids by batch updating'''
+                    cluster_dict = {i: {"arr": list(clusters[i]["arr"]),
+                                        "mean": clusters[i]["mean"],
+                                        "ssd": clusters[i]["ssd"]} for i in range(len(clusters))}
+                    for key in free_keys:
+                        min_dist = np.inf
+                        min_cluster = -1
+                        min_pt = 0
+                        min_key = 0
+                        pt = self.cid_matrix[key, :]
+                        for j in range(len(cluster_dict)):
+                            pt_dist = np.linalg.norm(pt - cluster_dict[j]["mean"])
+                            if pt_dist < min_dist:
+                                min_dist = pt_dist
+                                min_cluster = j
+                                min_pt = pt
+                                min_key = key
+                        c = len(cluster_dict[min_cluster]["arr"])
+                        cluster_dict[min_cluster]["arr"].append(min_key)
+                        cluster_dict[min_cluster]["ssd"] = cluster_dict[min_cluster]["ssd"] + np.sum((cluster_dict[min_cluster]["mean"] - min_pt) ** 2) * (c / (c + 1))
+                        cluster_dict[min_cluster]["mean"] = (cluster_dict[min_cluster]["mean"] * c + min_pt) / (c + 1)
+
+                    #update the actual clusters
+                    for i in range(len(cluster_dict)):
+                        clusters[i] = cluster_dict[i]
+                
+                def gen_centroids(n_clusts, clusters):
+                    for i in range(n_clusts):
+                        new_centroid = np.array([np.random.uniform(m, n) for m, n in self.cid_bounds])
+                        clusters.append({"arr": np.array([]), "mean": new_centroid, "ssd": 0})
+                
+
+                k_diff = len(tar["clusters"]) - len(ref["clusters"])
+                n_clusts = np.random.poisson(lam=k_diff)
+                # gen_centroids(n_clusts, clusters)
+
+                cleanup_keys(free_keys, clusters)
 
                 total_length = sum([len(cluster["arr"]) for cluster in clusters])
                 if total_length != self.cid_range:
@@ -865,7 +1070,7 @@ class Gen_Optimizer:
                     index_lengths[i] = (start, end)
                     cumulative = end
 
-                for i in range(muts):
+                for i in range(round(self.cid_range * self.mut_rate)):
                     pt_i_idx = np.random.randint(0, self.cid_range)
                     pt_j_idx = np.random.randint(0, self.cid_range)
                     if self.toprint:
@@ -882,6 +1087,14 @@ class Gen_Optimizer:
 
                     swap_pts(cluster_i, cluster_j, pt_i_idx, pt_j_idx)
                 
+                to_pop = []
+                for i in range(len(clusters)):
+                    if len(clusters[i]["arr"]) == 0:
+                        to_pop.append(i)
+                for i in range(len(to_pop) - 1, -1, -1):
+                    clusters.pop(to_pop[i])
+
+                
                 self.compute_cluster_fitness(clusters)
                 
         indices = [i for i in range(len(survivors))]
@@ -894,13 +1107,40 @@ class Gen_Optimizer:
                 pair.append(p)
             pairs.append(tuple(pair))
 
-        muts = np.random.randint(int(self.pop_cap/2), int(self.pop_cap*2))
-
+        # for pair in pairs:
+        #     cross_parents(pair[0], pair[1])
         with ThreadPoolExecutor(max_workers=n_workers) as executor:
             list(executor.map(lambda pair: cross_parents(pair[0], pair[1]), pairs))
 
+    
+    def soft_cluster(self, survivors):
+        from sklearn.decomposition import NMF
+
+        coocm = np.full((self.cid_range, self.cid_range), 0)
+        lengths = []
+        for i in range(len(survivors)):
+            clusters = survivors[i]
+            lengths.append(len(clusters))
+            for cluster in clusters:
+                coocm[np.ix_(cluster, cluster)] += 1
+        
+        k = round(np.mean(lengths))
+        coocm_norm = coocm / coocm.max()
+        nmf = NMF(n_components=k, init='nndsvda', random_state=42, max_iter=500)
+        W = nmf.fit_transform(coocm_norm)
+        H = nmf.components_
+        fuzzy_memberships = W / W.sum(axis=1, keepdims=True)
+        return fuzzy_memberships
+
+        
+
+
+
 
     def cross_mutate(self, survivors):
+
+        if self.toprint:
+            print("crossing parents")
 
         def choose_nonredundant_random(n, child):
             child_set = set(child)  # Convert once for faster lookup
@@ -913,6 +1153,27 @@ class Gen_Optimizer:
                 # Check if ANY element in mutant is already in child
                 if not any(m in child_set for m in mutant):
                     return mutant
+                
+        def make_child(p, q, r, u):
+            l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
+            # l = len(r) + min(len(p - r), len(q - r))
+            if l > len(r):
+                child = [np.int64(k) for k in r]
+                remainder = l - len(child)
+
+                if remainder < len(u) and remainder > 0:
+                    child.extend(np.random.choice(u, remainder, replace=False))
+                else:
+                    child.extend(u)
+                    mutant = choose_nonredundant_random(remainder, child)
+                    child.extend(mutant)
+            elif l <= len(u):
+                child = list(np.random.choice(u, l, replace=False))
+            else:
+                child = list(u)
+                mutant = choose_nonredundant_random(l - len(u), child)
+                child.extend(mutant)
+            return child
 
 
         def crossover(p, q):
@@ -923,23 +1184,11 @@ class Gen_Optimizer:
             u = list((p | q) - r)
             n_children = np.random.poisson(lam=2)
             for i in range(n_children):
-                l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
-                if l > len(r):
-                    child = [np.int64(k) for k in r]
-                    remainder = l - len(child)
-
-                    if remainder < len(u) and remainder > 0:
-                        child.extend(np.random.choice(u, remainder, replace=False))
-                    else:
-                        child.extend(u)
-                        mutant = choose_nonredundant_random(remainder, child)
-                        child.extend(mutant)
-                elif l <= len(u):
-                    child = list(np.random.choice(u, l, replace=False))
-                else:
-                    child = list(u)
-                    mutant = choose_nonredundant_random(l - len(u), child)
-                    child.extend(mutant)
+                child = make_child(p, q, r, u)
+                pids, tids, count = self.get_itemset_support_basic(child)
+                while np.sum(count) == 0:
+                    child = make_child(p, q, r, u)
+                    pids, tids, count = self.get_itemset_support_basic(child)
                 children.append(child)
             return children
 
@@ -949,21 +1198,39 @@ class Gen_Optimizer:
         while n < 1:
             offspring = []
             for i in range(0, len(survivors) - 1, 2):
+                if self.toprint:
+                    print(i)
                 p = survivors[i]
                 q = survivors[i + 1]
                 children = crossover(p, q)
                 offspring.extend(children)
             n = len(offspring)
+
+        if self.toprint:
+            print("mutating the children")
         
-        muts = np.random.randint(int(n/2), int(n*2))
+        muts = round(n * self.mut_rate)
         to_mutate = np.random.choice(range(len(offspring)), muts, replace=True)
         for i in to_mutate:
+            if self.toprint:
+                print(i)
             x = random.randint(0, 1)
             if x == 0 and len(offspring[i]) > 2:
                 offspring[i].remove(np.random.choice(offspring[i]))
             else:
-                mutant = choose_nonredundant_random(1, offspring[i])            
-                offspring[i].extend(mutant)
+                pids, tids, counts = self.get_itemset_support_basic(offspring[i])
+                if np.sum(counts) > self.minsup:
+                    tries = 0
+                    mutant = choose_nonredundant_random(1, offspring[i])
+                    test_child = list(offspring[i]) + list(mutant)
+                    pids, tids, counts = self.get_itemset_support_basic(test_child)
+                    while np.sum(counts) < self.minsup and tries < 100:
+                        tries += 1
+                        mutant = choose_nonredundant_random(1, offspring[i])
+                        test_child = list(offspring[i]) + list(mutant)
+                        pids, tids, counts = self.get_itemset_support_basic(test_child)
+                    if tries <= 100 and np.sum(counts) > 0:
+                        offspring[i].extend(mutant)
         sorted_children = [tuple(sorted(child)) for child in offspring]
         self.popn = survivors + sorted_children
 
@@ -991,8 +1258,8 @@ class Gen_Optimizer:
             length = len(self.high_item_ids)
             map_type = "highitem"
         else:
-            items = self.tidset_sparse
-            length = self.tidset_sparse.shape[1]
+            items = self.items
+            length = len(items)
             map_type = "dense"
         if not os.path.exists(self.path / f"support_map_{map_type}.parquet"):
             supports = {}
@@ -1084,6 +1351,88 @@ class Gen_Optimizer:
         plt.tight_layout()
         plt.show()
 
+    
+    def iiid_plot_popn(self):
+        import plotly.graph_objects as go
+
+        self.load_memos(u=1)
+        data = self.m1
+
+        pts = []
+        for key in data:
+            pts.append(((np.log(data[key]["sup"])), data[key]["conf"], np.log(data[key]["lift"])))
+
+        support, confidence, lift = zip(*pts)
+
+        fig = plt.figure(figsize=(10, 8))
+        ax = fig.add_subplot(111, projection='3d')
+
+        img = ax.scatter(support, confidence, lift, color="blue", cmap='PuBu', marker='o', alpha=0.9)
+
+        ax.set_xlabel('Log(Support)')
+        ax.set_ylabel('Confidence')
+        ax.set_zlabel('Log(Lift)')
+        ax.set_title('Association Rules: Support vs Confidence vs Lift')
+        # fig.colorbar(img, ax=ax, label='Lift')
+
+        plt.show()
+
+
+
+    
+    def plot_fuzzy_umap(self):
+        matrix = pd.read_pickle(self.memo_path / "fuzzy_memberships.pkl")
+        matrix = matrix.values + 1e-10
+        matrix = matrix / matrix.sum(axis=1, keepdims=True)
+
+        from umap import UMAP
+
+        c_list = [
+            (1.0, 0.0, 0.0),      # 0: Red
+            (0.0, 1.0, 0.0),      # 1: Green
+            (0.0, 0.0, 1.0),      # 2: Blue
+            (1.0, 1.0, 0.0),      # 3: Yellow
+            (1.0, 0.0, 1.0),      # 4: Magenta
+            (0.0, 1.0, 1.0),      # 5: Cyan
+            (1.0, 0.5, 0.0),      # 6: Orange
+            (0.5, 0.0, 0.5),      # 7: Purple
+            (0.0, 0.5, 0.0),      # 8: Dark Green
+            (0.5, 0.5, 0.0),      # 9: Olive
+            (0.0, 0.5, 0.5),      # 10: Teal
+            (0.5, 0.0, 0.0),      # 11: Maroon
+            (1.0, 0.75, 0.8),     # 12: Pink
+            (0.6, 0.4, 0.2),      # 13: Brown
+            (0.5, 0.5, 0.5),      # 14: Gray
+            (1.0, 0.84, 0.0),     # 15: Gold
+            (0.5, 1.0, 0.0),      # 16: Lime
+            (1.0, 0.0, 0.5),      # 17: Hot Pink
+            (0.0, 1.0, 0.5),      # 18: Spring Green
+            (0.5, 0.0, 1.0),      # 19: Blue-Violet
+        ][:matrix.shape[1]]
+
+        umapper = UMAP()
+        pts = self.cid_matrix[:self.cid_range, :]
+        pts_2d = umapper.fit_transform(pts)
+
+        mixed_colors = []
+        for i in range(matrix.shape[0]):
+            responsibility = matrix[i, :]
+            mixed_color = np.sum([responsibility[j] * np.array(c_list[j]) 
+                        for j in range(len(c_list))], axis=0)
+            mixed_colors.append(mixed_color)
+
+        plt.figure(figsize=(10, 8))
+        plt.scatter(pts_2d[:, 0], pts_2d[:, 1], c=mixed_colors, s=50, alpha=0.6)
+        plt.title("Fuzzy Cluster Visualization (UMAP)")
+        plt.xlabel("UMAP 1")
+        plt.ylabel("UMAP 2")
+        
+        # Add legend showing pure cluster colors
+        for i, color in enumerate(c_list):
+            plt.scatter([], [], c=[color], label=f'Cluster {i}', s=100)
+        plt.legend()
+        plt.show()
+
         
 
 
@@ -1105,6 +1454,7 @@ class Gen_Optimizer:
 
             survivors = self.select_survivors()
             self.cross_mutate(survivors)
+            print("SURVIVORS", len(survivors))
 
             with ThreadPoolExecutor(max_workers=n_workers) as executor:
                 list(executor.map(lambda p: self.compute_itemset_fitness(p, self.combi_limit), self.popn))
@@ -1112,56 +1462,83 @@ class Gen_Optimizer:
             self.prune_memos()
             self.cycle += 1
             self.save_popn()
-            self.save_memos()
+        self.save_memos()
+            
         self.dot_plot_popn()
         self.kde_plot_popn()
 
     
     def genetically_cluster(self, n_workers = 1, cycles=10):
-        from umap import UMAP
         # self.load_memos()
-        self.init_clusters()
-        self.cycle = 1
+        # self.init_clusters()
+        # self.cycle = 1
 
 
-        if self.cycle == 1 or len(self.m1) == 0:
-            with ThreadPoolExecutor(max_workers=n_workers) as executor:
-                list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
+        # if self.cycle == 1 or len(self.m1) == 0:
+        #     with ThreadPoolExecutor(max_workers=n_workers) as executor:
+        #         list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
         
-        for i in range(cycles):
+        # for i in range(cycles):
 
-            survivors = self.select_survivors()
-            self.cross_clusters(survivors, n_workers=n_workers)
+        #     survivors = self.select_survivors()
+        #     print("SURVIVORS", len(survivors))
+        #     self.cross_clusters(survivors, n_workers=n_workers)
 
-            with ThreadPoolExecutor(max_workers=n_workers) as executor:
-                list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
+        #     with ThreadPoolExecutor(max_workers=n_workers) as executor:
+        #         list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
 
-            self.prune_memos()
-            keys = list(self.m1.keys())
-            for_df = []
-            for key in keys:
-                entry = {"clusters": key, "WCSS": -self.m1[key]["WCSS"], "CH-I": self.m1[key]["CH-I"], "al_ent": -self.m1[key]["al_ent"]}
-                for_df.append(entry)
-            for_df = sorted(for_df, key = lambda x: x["WCSS"])
-            df = pd.DataFrame(for_df)
-            df.to_csv(self.memo_path / "df.csv")
-            input()
-            self.cycle += 1
-            # self.save_popn()
-            # self.save_memos()
-        # self.dot_plot_popn()
-        # self.kde_plot_popn()
+        #     self.prune_memos()
+        #     self.cycle += 1
+        #     if i % 10 == 0:
+        #         self.save_popn()
+    
+        # survivors = self.select_survivors(return_fittest=True)
+        # fuzzy_clusters = self.soft_cluster(survivors)
+        # fuzzy_df = pd.DataFrame(fuzzy_clusters)
+        # fuzzy_df.to_pickle(self.memo_path / 'fuzzy_memberships.pkl')
+        # self.plot_fuzzy_umap()
 
 
+        keys = list(self.m1.keys())
+        for_df = []
+        for key in keys:
+            entry = {metric: self.m1[key][metric] for metric in self.metrics}
+            if "WCSS" not in entry:
+                entry["WCSS"] = self.m1[key]["WCSS"]
+            if "CH-I" not in entry:
+                entry["CH-I"] = self.m1[key]["CH-I"]
+            entry["k"] = len(self.m1[key]["clusters"])
+            for_df.append(entry)
+        for_df = sorted(for_df, key = lambda x: -x["WCSS"])
+        df = pd.DataFrame(for_df)
+        df.to_csv(self.memo_path / "df.csv")
+
+        from sklearn.cluster import KMeans
+        clu = KMeans(n_clusters=3,algorithm="elkan")
+        clu.fit_predict(self.cid_matrix[:self.cid_range])
+        chi = calinski_harabasz_score(self.cid_matrix[:self.cid_range], clu.labels_)
+        print("KMeans wcss", clu.inertia_)
+        print("CH-Index", chi)
 
 
 
-# geno = Gen_Optimizer("hot_customers_products", smoothing_alpha=.1, pop_cap=10, testmode=True, toprint=True)
-# geno.test(3, 10, 5, toprint=True)
-# geno.dot_plot_popn()
-# geno.kde_plot_popn()
-# geno.genetically_modify(cycles=100)
 
 
-genc = Gen_Optimizer(mode = "testclustomers", k_range=20, pop_cap=20, toprint=True)
-genc.genetically_cluster(n_workers=4, cycles=100)
+geno = Gen_Optimizer(smoothing_alpha=0, uniform=True, mode="rulemine", 
+                     pop_cap=100, mut_rate=0.1, k_range=(2, 3), 
+                     toprint=True, metrics=["sup", "conf"])
+# geno.genetically_modify(cycles=40)
+geno.dot_plot_popn()
+# geno.iiid_plot_popn()
+
+
+# genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=20, toprint=False, mut_rate=1)
+
+# genc.genetically_cluster(n_workers=8, cycles=10)
+# # genc.plot_fuzzy_umap()
+
+
+
+'''notes: init_popn is set to self.pdist by default since complete random sampling takes forever with possible combinations
+added checks to miner mutations and crossover functions to prevent
+Need to regenerate tidset_dense if changing minsup count'''
