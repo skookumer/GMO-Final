@@ -15,6 +15,17 @@ import pandas as pd
 
 # Gap Statistic Implementation for KMeans Clustering Evaluation
 def compute_gap_statistic(X, k, wcss, B=5, random_state=42):
+    '''This function computes the Gap Statistic for a given clustering result.
+    Parameters:
+    - X: The original data array (n_samples x n_features).
+    - k: Number of clusters.
+    - wcss: Within-cluster sum of squares for the original data.
+    - B: Number of reference datasets to generate (default is 5).
+    - random_state: Seed for reproducibility (default is 42).
+    Returns:
+    - gap: The computed Gap Statistic value.
+    - sk: The standard deviation of the log Wk* values.
+    '''
     rng = np.random.default_rng(random_state)
     n_samples, n_features = X.shape
     xmin = X.min(axis=0)
@@ -39,7 +50,18 @@ def compute_gap_statistic(X, k, wcss, B=5, random_state=42):
     return gap, sk
 
 def get_cluster_dists(labels, indices=None):
-
+    '''Computes cluster aisle distributions and inter-cluster distances.
+    Parameters:
+    - labels: Cluster labels for each data point.
+    - indices: Optional indices of data points to consider.
+    Returns:
+    - means: Mean values for each cluster.
+    - cluster_aisles: Raw aisle distributions for each cluster.
+    - normalized_aisles: PCA-reduced normalized aisle distributions.
+    - avg_separation: Average L2 distance between cluster profiles.
+    - min_separation: Minimum L2 distance between cluster profiles.
+    - dist_matrix: Full distance matrix between cluster profiles.
+    '''
     pca = PCA(n_components=4)
 
     if indices is None:
@@ -63,7 +85,7 @@ def get_cluster_dists(labels, indices=None):
 
     return means, cluster_aisles, normalized_aisles, avg_separation, min_separation, dist_matrix
 
-
+# load data and set up PCA and KMeans instances
 l = CSR_Loader()
 pc = PCA(n_components=6) #from sindico
 km = KMeans(n_clusters=4)
@@ -76,7 +98,7 @@ aisle_matrix, indices = l.load_reduced_random(filename="hot_customers_aisles", s
 aisle_matrix = normalize(aisle_matrix, norm="l1", axis=1)
 am_reduced = pc.fit_transform(aisle_matrix)[:, [4, 1]]
 labels = km.fit_predict(am_reduced)
-
+# Plotting the clusters based on the reduced dimensions (dimensions 1 and 4)
 plt.figure(figsize=(10, 8))
 
 scatter = plt.scatter(
@@ -169,6 +191,7 @@ K_VALUES = [4, 6, 8, 10]
 
 results = [] # to store results
 
+# TSVD + KMeans sweep and metrics calculation
 for n_comp in TSVD_COMPONENTS:
     tsvd = TruncatedSVD(n_components=n_comp, random_state=42)
     X_svd = tsvd.fit_transform(aisle_matrix)
@@ -201,7 +224,7 @@ for n_comp in TSVD_COMPONENTS:
             "min_separation": min_sep_z,
         })
 
-# converts metrics to DataFrame and export to Excel-friendly CSV
+# converts metrics to DataFrame and exports to CSV
 metrics_df = pd.DataFrame(results)
 metrics_df.to_csv("tsvd_kmeans_metrics.csv", index=False)
 print("Exported TSVD + KMeans metrics to tsvd_kmeans_metrics.csv")
