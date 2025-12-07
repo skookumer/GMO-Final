@@ -1,0 +1,1232 @@
+antecedent,consequent,ant_name,coq_name,support,confidence,lift,iteration
+[ 9663 24849 26937],[47205],"['Country Morning White Bread', 'Banana', 'Organic Large Green Asparagus']",['Organic Hass Avocado'],1,0.07142857142857142,10.936631829350402,109
+[24486],[24849],['Organic Whole Strawberries'],['Banana'],6757,0.2069018310980464,14.242546591529111,109
+[4797],[45004],['Shredded Parmesan'],['Organic Zucchini'],3010,0.07986415134389345,24.68590465304697,109
+[4797],[26206],['Shredded Parmesan'],['Limes'],3193,0.084719679482077,19.535959502866405,109
+[34240 47622],[47205],"['Organic Baby Broccoli', 'Large Lemon']",['Organic Hass Avocado'],497,0.17826398852223815,27.294506552589702,109
+[34240 45004],[47205],"['Organic Baby Broccoli', 'Organic Zucchini']",['Organic Hass Avocado'],820,0.21687384289870404,33.206171224793074,109
+[33117],[21900],['Organic Egg Whites'],['Organic Baby Spinach'],4670,0.23079964416328952,31.01026054595884,109
+[22932 31714],[21900],"['Organic Yellow Onion', 'Organic Cilantro']",['Organic Baby Spinach'],2000,0.22373867322966776,30.06154786855047,109
+[22932 27101],[21900],"['Organic Yellow Onion', 'Fresh Cauliflower']",['Organic Baby Spinach'],2045,0.24957285818891872,33.53263123821144,109
+[35458],[32652],['Blueberry Beet & Brown Rice Cakes'],['Organic Large Grade AA Brown Eggs'],24,0.0110803324099723,14.100731374904559,109
+[22932 24849 35458],[21134],"['Organic Yellow Onion', 'Banana', 'Blueberry Beet & Brown Rice Cakes']",['Organic Strawberries'],4,0.25,30.680269035514574,109
+[35458],[22932],['Blueberry Beet & Brown Rice Cakes'],['Organic Yellow Onion'],132,0.060941828254847646,17.50822445193931,109
+[30388],[26206],['Organic Cucumber'],['Limes'],7762,0.09131227574848538,21.056181185321535,109
+[19054 22472 26206],[21134],"['Organic Large Extra Fancy Fuji Apple', 'Jicama', 'Limes']",['Organic Strawberries'],3,0.14285714285714285,17.53158230600833,109
+[45004 46663],[30388],"['Organic Zucchini', 'Organic Ginger Root']",['Organic Cucumber'],720,0.14425966740132237,57.39348254067485,109
+[22960 45004],[47205],"['Organic Roasted Turkey Breast', 'Organic Zucchini']",['Organic Hass Avocado'],532,0.2858678130037614,43.77003431757216,109
+[22032 22932],[8274],"['Organic Whole String Cheese', 'Organic Yellow Onion']",['Apple Honeycrisp Organic'],430,0.10401548137397194,40.30743640832549,109
+[46203],[22032],['Red Grapefruit'],['Organic Whole String Cheese'],208,0.0350227310995117,19.206367144981805,109
+[38647 47622],[21900],"['Organic Red Lentils', 'Large Lemon']",['Organic Baby Spinach'],229,0.27490996398559425,36.93692700774714,109
+[27518 38647],[47622],"['Organic Lacinato (Dinosaur) Kale', 'Organic Red Lentils']",['Large Lemon'],64,0.12598425196850394,26.4980519656049,109
+[24486],[47622],['Organic Whole Strawberries'],['Large Lemon'],2449,0.07498928287096576,15.772367445377727,109
+[7945],[39272],['Organic Unsalted Butter'],['Organic Blueberries'],1024,0.0460183354305231,14.81822561906972,109
+[7945],[24486],['Organic Unsalted Butter'],['Organic Whole Strawberries'],427,0.01918928635628258,19.87153252947132,109
+[24486 47622],[39272],"['Organic Whole Strawberries', 'Large Lemon']",['Organic Blueberries'],294,0.12004899959167006,38.65661686044072,109
+[10746 27842 44356],[47762],"['Organic Red Bell Pepper', 'Organic Whole Milk', 'Organic Small Bunch Celery']",['Organic Avocado'],50,0.17421602787456447,31.981882456079827,109
+[10746],[47762],['Organic Red Bell Pepper'],['Organic Avocado'],6753,0.1127793179464912,20.703576668838416,109
+[10746 31714],[22932],"['Organic Red Bell Pepper', 'Organic Cilantro']",['Organic Yellow Onion'],967,0.1957886211783762,56.24890527392495,109
+[17791 46975],[45004],"['Carrots', 'Asparagus']",['Organic Zucchini'],557,0.16173054587688734,49.990700055280186,109
+[17791],[21134],['Carrots'],['Organic Strawberries'],10170,0.13518004067364056,16.58944006439638,109
+[9700],[47205],['Blueberry Scones'],['Organic Hass Avocado'],101,0.08729472774416594,13.36594417173852,109
+[ 9836 21134 26206],[13173],"['Organic Broccoli', 'Organic Strawberries', 'Limes']",['Bag of Organic Bananas'],241,0.28656361474435194,24.5393494107371,109
+[39272],[21134],['Organic Blueberries'],['Organic Strawberries'],25025,0.23827433207015405,29.24128244867946,109
+[34455],[27842],['Vanilla Ice Cream Sandwich'],['Organic Whole Milk'],245,0.08387538514207463,19.86227122818404,109
+[34455],[39272],['Vanilla Ice Cream Sandwich'],['Organic Blueberries'],111,0.038000684697021565,12.236486049560588,109
+[27101 27963],[21900],"['Fresh Cauliflower', 'Organic Raspberries']",['Organic Baby Spinach'],1547,0.2257405515832482,30.330520420700182,109
+[23731],[21900],['Sour Cream'],['Organic Baby Spinach'],1615,0.0715805336406347,9.617566813250395,109
+[16614 46663 47622],[47205],"['Organic Muenster Cheese Slices', 'Organic Ginger Root', 'Large Lemon']",['Organic Hass Avocado'],6,0.2727272727272727,41.75804880297426,109
+[27541],[16614],['Lemon Verbena Hand Soap'],['Organic Muenster Cheese Slices'],24,0.004667444574095682,19.792953329212132,109
+[15869 24827],[21134],"['Celery Hearts', 'Organic Romaine']",['Organic Strawberries'],45,0.21428571428571427,26.297373459012494,109
+[15869],[47205],['Celery Hearts'],['Organic Hass Avocado'],1562,0.11380692167577414,17.425301627995232,109
+[38559],[47205],['Pomegranate Arils'],['Organic Hass Avocado'],344,0.106865486175831,16.36247868597438,109
+[15869 24827],[40703],"['Celery Hearts', 'Organic Romaine']",['Organic Grape Tomatoes'],18,0.08571428571428572,32.91151609125678,109
+[27153],[27963],['Organic Black Beans'],['Organic Raspberries'],3178,0.08029916365565859,19.043399699740295,109
+[21900 27153 27963],[13173],"['Organic Baby Spinach', 'Organic Black Beans', 'Organic Raspberries']",['Bag of Organic Bananas'],301,0.4275568181818182,36.613043716895746,109
+[17945 21134 34966],[24849],"['Frozen Organic Wild Blueberries', 'Organic Strawberries', 'Red Vine Tomato']",['Banana'],35,0.3684210526315789,25.36108056442912,109
+[17945],[21134],['Frozen Organic Wild Blueberries'],['Organic Strawberries'],4886,0.15776557959315465,19.361161705847493,109
+[27518],[47205],['Organic Lacinato (Dinosaur) Kale'],['Organic Hass Avocado'],7873,0.17562684036762738,26.890725294339695,109
+[22032 35137 47762],[21900],"['Organic Whole String Cheese', 'Organic Whole Cashews', 'Organic Avocado']",['Organic Baby Spinach'],12,0.1935483870967742,26.005178360997352,109
+[45004],[47205],['Organic Zucchini'],['Organic Hass Avocado'],17109,0.15637224436076483,23.942599308640588,109
+[22971 47205],[13173],"['Chocolate Peanut Butter Meal Bar', 'Organic Hass Avocado']",['Bag of Organic Bananas'],30,0.5357142857142857,45.87491002022058,109
+[21900 27963],[47205],"['Organic Baby Spinach', 'Organic Raspberries']",['Organic Hass Avocado'],4993,0.26547213951509996,40.6471947115723,109
+[5874],[47205],['Organic Lemon'],['Organic Hass Avocado'],22027,0.24138913546152918,36.9597774300711,109
+[19177],[45004],"['Vegetable Chips, Taro, Sea Salt']",['Organic Zucchini'],126,0.05483028720626632,16.947970012788034,109
+[ 5378 24961],[45004],"['Organic Mint Bunch', 'Organic Garlic']",['Organic Zucchini'],38,0.22093023255813954,68.28924572705345,109
+[34123],[21134],['Organic Italian Parsley Bunch'],['Organic Strawberries'],8594,0.13636724266514336,16.7351347703916,109
+[ 8515 21292 22932],[13173 47622],"['Organic Red Onion', 'Organic Spaghetti Squash', 'Organic Yellow Onion']","['Bag of Organic Bananas', 'Large Lemon']",7,0.04697986577181208,77.6396139758935,109
+[ 8515 21292 47622],[13173],"['Organic Red Onion', 'Organic Spaghetti Squash', 'Large Lemon']",['Bag of Organic Bananas'],26,0.16455696202531644,14.091533542076196,109
+[16756],[31714],['Organic Carrot Bunch'],['Organic Cilantro'],2680,0.07134870347691816,33.03147660299061,109
+[40703],[22932],['Organic Grape Tomatoes'],['Organic Yellow Onion'],7022,0.07972478939122142,22.904457365603594,109
+[ 9836 24181 45004],[13173 47205],"['Organic Broccoli', 'Red Peppers', 'Organic Zucchini']","['Bag of Organic Bananas', 'Organic Hass Avocado']",13,0.08074534161490683,42.16635424222519,109
+[ 9836 40703 45004],[13173 47205],"['Organic Broccoli', 'Organic Grape Tomatoes', 'Organic Zucchini']","['Bag of Organic Bananas', 'Organic Hass Avocado']",62,0.15656565656565657,81.7607902187047,109
+[21134 22932 38380],[13173 21900],"['Organic Strawberries', 'Organic Yellow Onion', 'Organic White Onions']","['Bag of Organic Bananas', 'Organic Baby Spinach']",32,0.10031347962382445,64.48662181848691,109
+[21900 22932 38380],[13173],"['Organic Baby Spinach', 'Organic Yellow Onion', 'Organic White Onions']",['Bag of Organic Bananas'],127,0.3423180592991914,29.313778981474282,109
+[22932 26206],[21134],"['Organic Yellow Onion', 'Limes']",['Organic Strawberries'],2277,0.17128027681660898,21.019699892843896,109
+[ 5874 40703 46975],[21134 21900],"['Organic Lemon', 'Organic Grape Tomatoes', 'Asparagus']","['Organic Strawberries', 'Organic Baby Spinach']",34,0.10149253731343283,86.29942115535515,109
+[40703],[39272],['Organic Grape Tomatoes'],['Organic Blueberries'],6055,0.06874588432979858,22.136655201694794,109
+[39272 40703],[21134],"['Organic Blueberries', 'Organic Grape Tomatoes']",['Organic Strawberries'],2030,0.3352601156069364,41.14348217479411,109
+[16756],[24849],['Organic Carrot Bunch'],['Banana'],5140,0.13684042383259679,9.419714178927594,109
+[17945],[16756],['Frozen Organic Wild Blueberries'],['Organic Carrot Bunch'],823,0.026574103971585404,23.92610721127916,109
+[22032 46663],[22932],"['Organic Whole String Cheese', 'Organic Ginger Root']",['Organic Yellow Onion'],244,0.16245006657789615,46.670937012002845,109
+[46663],[22032],['Organic Ginger Root'],['Organic Whole String Cheese'],1502,0.027766480570858135,15.227059781621103,109
+[ 5874 47622],[24961],"['Organic Lemon', 'Large Lemon']",['Organic Garlic'],43,0.13782051282051283,40.90863758646329,109
+[34966 45004 46663],[21134],"['Red Vine Tomato', 'Organic Zucchini', 'Organic Ginger Root']",['Organic Strawberries'],34,0.1717171717171717,21.07331610520193,109
+[34966 45004 46663],[47205],"['Red Vine Tomato', 'Organic Zucchini', 'Organic Ginger Root']",['Organic Hass Avocado'],42,0.21212121212121213,32.47848240231331,109
+[48741],[21900],['Globe Eggplant'],['Organic Baby Spinach'],3523,0.19659598214285715,26.41465350018233,109
+[48596],[48741],['Organic Cinnamon Apple Chips'],['Globe Eggplant'],22,0.00831758034026465,15.697161338779368,109
+[48596],[27101],['Organic Cinnamon Apple Chips'],['Fresh Cauliflower'],132,0.0499054820415879,22.73535107625187,109
+[40703],[13173],['Organic Grape Tomatoes'],['Bag of Organic Bananas'],17470,0.19834691977565339,16.985074581992553,109
+[12573 45004 47205],[13173],"['Kiwi Sandia Sparkling Water', 'Organic Zucchini', 'Organic Hass Avocado']",['Bag of Organic Bananas'],14,0.2545454545454545,21.797533003547233,109
+[12392 24961],[21900],"['Plain Goat Milk Yogurt', 'Organic Garlic']",['Organic Baby Spinach'],68,0.2085889570552147,28.026030667168925,109
+[12392 47622],[24961],"['Plain Goat Milk Yogurt', 'Large Lemon']",['Organic Garlic'],36,0.11464968152866242,34.03094485047813,109
+[24961 32296],[47622],"['Organic Garlic', 'Dijon Mustard']",['Large Lemon'],80,0.22160664819944598,46.61014680930502,109
+[17791],[13173],['Carrots'],['Bag of Organic Bananas'],12979,0.17251737934151237,14.773209274536796,109
+[27153],[21900],['Organic Black Beans'],['Organic Baby Spinach'],7307,0.18462743512646235,24.80655846745179,109
+[2227],[10746],['Organic Frozen Mango Chunks'],['Organic Red Bell Pepper'],676,0.06180288901078808,34.90628368619655,109
+[ 2227 10746 22932],[21900],"['Organic Frozen Mango Chunks', 'Organic Red Bell Pepper', 'Organic Yellow Onion']",['Organic Baby Spinach'],45,0.3284671532846715,44.1328756856342,109
+[21900 47205],[13173],"['Organic Baby Spinach', 'Organic Hass Avocado']",['Bag of Organic Bananas'],12693,0.3510911957513899,30.06505042610844,109
+[21900 39981],[13173],"['Organic Baby Spinach', 'Organic Dill']",['Bag of Organic Bananas'],664,0.251896813353566,21.570721474353594,109
+[24961 30388 47762],[13173],"['Organic Garlic', 'Organic Cucumber', 'Organic Avocado']",['Bag of Organic Bananas'],279,0.28703703703703703,24.579890060216954,109
+[30388 43765],[21900],"['Organic Cucumber', 'Organic Bell Pepper']",['Organic Baby Spinach'],628,0.22301136363636365,29.963826487446525,109
+[26206 43765 49379],[21900 30388],"['Limes', 'Organic Bell Pepper', 'Organic Bunch Beets']","['Organic Baby Spinach', 'Organic Cucumber']",5,0.09433962264150944,190.52201708546565,109
+[19475 45004],[21900],"['Organic Marinara Pasta Sauce', 'Organic Zucchini']",['Organic Baby Spinach'],176,0.27035330261136714,36.32469358361535,109
+[ 5448 47622],[21900],"['Small Hass Avocado', 'Large Lemon']",['Organic Baby Spinach'],935,0.1782310331681281,23.947137336177033,109
+[ 5448  7945 43119],[24961],"['Small Hass Avocado', 'Organic Unsalted Butter', 'Organic Bartlett Pear']",['Organic Garlic'],5,0.3125,92.75795731814353,109
+[44629],[21134],['Sparkling Water Grapefruit'],['Organic Strawberries'],8445,0.10656823774370623,13.078168818470344,109
+[27101 40703 44629],[21134 47205],"['Fresh Cauliflower', 'Organic Grape Tomatoes', 'Sparkling Water Grapefruit']","['Organic Strawberries', 'Organic Hass Avocado']",9,0.05113636363636364,40.851961880157965,109
+[ 8274 48675],[21134],"['Apple Honeycrisp Organic', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],800,0.20817069997397866,25.54693232205221,109
+[8274],[27963],['Apple Honeycrisp Organic'],['Organic Raspberries'],10855,0.12438124484370704,29.497713959603104,109
+[27101 45004 46663],[13173],"['Fresh Cauliflower', 'Organic Zucchini', 'Organic Ginger Root']",['Bag of Organic Bananas'],207,0.3327974276527331,28.498497157256,109
+[13173 27101 46663],[24961],"['Bag of Organic Bananas', 'Fresh Cauliflower', 'Organic Ginger Root']",['Organic Garlic'],316,0.3067961165048544,91.0648994564143,109
+[26206 34455],[21134],"['Limes', 'Vanilla Ice Cream Sandwich']",['Organic Strawberries'],52,0.2857142857142857,35.06316461201666,109
+[42753],[8274],['Cranberry Walnut Bread'],['Apple Honeycrisp Organic'],30,0.0379746835443038,14.715714640449008,109
+[ 8274 33117],[24849],"['Apple Honeycrisp Organic', 'Organic Egg Whites']",['Banana'],188,0.18181818181818182,12.515857940887098,109
+[43958],[13173],['Organic Peeled Whole Baby Carrots'],['Bag of Organic Bananas'],11626,0.20103404748318376,17.215181833344705,109
+[48675],[47205],['Organic Garnet Sweet Potato (Yam)'],['Organic Hass Avocado'],10692,0.19615829159557488,30.03435421637226,109
+[31714 36721],[47205],"['Organic Cilantro', 'Organic Sea Salt Roasted Seaweed Snacks']",['Organic Hass Avocado'],117,0.30548302872062666,46.77337581325315,109
+[ 9700 47205 47622],[24849],"['Blueberry Scones', 'Organic Hass Avocado', 'Large Lemon']",['Banana'],3,0.3333333333333333,22.945739558293013,109
+[26206 27963],[24849],"['Limes', 'Organic Raspberries']",['Banana'],2104,0.2143002648197189,14.751834191479476,109
+[2449 5874],[47205],"['Taco Seasoning', 'Organic Lemon']",['Organic Hass Avocado'],128,0.3208020050125313,49.11890786515268,109
+[26937],[24961],['Organic Large Green Asparagus'],['Organic Garlic'],2259,0.11285971223021583,33.499636383962624,109
+[26206 45004],[24961],"['Limes', 'Organic Zucchini']",['Organic Garlic'],1951,0.1827463469464219,54.24376912032911,109
+[47622],[13173],['Large Lemon'],['Bag of Organic Bananas'],20464,0.12727001343350416,10.898534107130633,109
+[22932],[21134],['Organic Yellow Onion'],['Organic Strawberries'],17322,0.14715076964898569,18.058500806455655,109
+[28282 40703],[21134],"['Organic Apricot', 'Organic Grape Tomatoes']",['Organic Strawberries'],26,0.5306122448979592,65.11730570803094,109
+[34123 48675],[27963],"['Organic Italian Parsley Bunch', 'Organic Garnet Sweet Potato (Yam)']",['Organic Raspberries'],278,0.08985132514544279,21.308748689257555,109
+[15258 27101 48675],[34123],"['Organic Rosemary', 'Fresh Cauliflower', 'Organic Garnet Sweet Potato (Yam)']",['Organic Italian Parsley Bunch'],16,0.26666666666666666,143.1019543749967,109
+[45205],[39272],['Organic Cinnamon Graham Crackers'],['Organic Blueberries'],145,0.06102693602693603,19.65109990240672,109
+[49379],[34966],['Organic Bunch Beets'],['Red Vine Tomato'],440,0.02918933262571315,17.427698641284028,109
+[45004],[13173],['Organic Zucchini'],['Bag of Organic Bananas'],23673,0.2163656637297554,18.52807666279329,109
+[ 5874 17791],[22932],"['Organic Lemon', 'Carrots']",['Organic Yellow Onion'],1212,0.23497479643272587,67.50686013699733,109
+[ 5874 17791 26206],[22932],"['Organic Lemon', 'Carrots', 'Limes']",['Organic Yellow Onion'],243,0.2565997888067582,73.71959170574407,109
+[15646 17791 47205],[21134],"['Baby Seedless Cucumbers', 'Carrots', 'Organic Hass Avocado']",['Organic Strawberries'],16,0.2962962962962963,36.361800338387646,109
+[12611 38449],[24849],"['Yellow Grape Tomatoes', 'Organic Whole Milk Washington Black Cherry Yogurt']",['Banana'],3,0.14285714285714285,9.833888382125577,109
+[8274],[24849],['Apple Honeycrisp Organic'],['Banana'],17839,0.20440691172426437,14.070803281019883,109
+[38449],[8274],['Organic Whole Milk Washington Black Cherry Yogurt'],['Apple Honeycrisp Organic'],122,0.08100929614873838,31.39222171417608,109
+[ 8274 12611],[21134],"['Apple Honeycrisp Organic', 'Yellow Grape Tomatoes']",['Organic Strawberries'],101,0.23877068557919623,29.302195485456,109
+[17945 31368],[24849],"['Frozen Organic Wild Blueberries', 'Whole Wheat English Muffins']",['Banana'],30,0.2112676056338028,14.543074367932192,109
+[41541 45004],[47205],"['Organic Crushed Fire Roasted Tomatoes', 'Organic Zucchini']",['Organic Hass Avocado'],108,0.14979195561719832,22.935072574171716,109
+[41541],[28286],['Organic Crushed Fire Roasted Tomatoes'],['Organic Shredded Carrots'],122,0.016705463508147337,26.850617421280674,109
+[22932 28286],[47205],"['Organic Yellow Onion', 'Organic Shredded Carrots']",['Organic Hass Avocado'],401,0.23019517795637198,35.24583874280893,109
+[27101],[5874],['Fresh Cauliflower'],['Organic Lemon'],5096,0.06864686468646865,25.441645498672234,109
+[ 5874 21134 45004],[13173],"['Organic Lemon', 'Organic Strawberries', 'Organic Zucchini']",['Bag of Organic Bananas'],659,0.4290364583333333,36.73974998668013,109
+[5874],[21134],['Organic Lemon'],['Organic Strawberries'],15829,0.17346659214693538,21.28800686296743,109
+[ 2449 40703],[21134],"['Taco Seasoning', 'Organic Grape Tomatoes']",['Organic Strawberries'],185,0.24246395806028834,29.755437858821477,109
+[21900 40703 47205],[21134],"['Organic Baby Spinach', 'Organic Grape Tomatoes', 'Organic Hass Avocado']",['Organic Strawberries'],968,0.28800952097590005,35.344838353321165,109
+[4797],[21134],['Shredded Parmesan'],['Organic Strawberries'],6290,0.16689219666215607,20.481189974091823,109
+[13173 15589 21900],[47622],"['Bag of Organic Bananas', 'Organic Baby Romaine Lettuce', 'Organic Baby Spinach']",['Large Lemon'],11,0.13580246913580246,28.563100768479973,109
+[21900 30230],[47205],"['Organic Baby Spinach', 'Organic Large Brown Grade AA Cage Free Eggs']",['Organic Hass Avocado'],1140,0.27968596663395484,42.82351422876163,109
+[21900 30230],[13173],"['Organic Baby Spinach', 'Organic Large Brown Grade AA Cage Free Eggs']",['Bag of Organic Bananas'],1269,0.31133464180569187,26.660570867492275,109
+[34240],[27963],['Organic Baby Broccoli'],['Organic Raspberries'],3360,0.10137887336692514,24.04257178710559,109
+[22846 34240],[27963],"['Bunny-Luv Fresh Organic Carrots', 'Organic Baby Broccoli']",['Organic Raspberries'],35,0.14522821576763487,34.4416907304651,109
+[24486],[27518],['Organic Whole Strawberries'],['Organic Lacinato (Dinosaur) Kale'],1415,0.04332782166697287,32.687342591783086,109
+[24486 27518 45004],[27963],"['Organic Whole Strawberries', 'Organic Lacinato (Dinosaur) Kale', 'Organic Zucchini']",['Organic Raspberries'],58,0.31693989071038253,75.16408322099004,109
+[21706 27842 34123],[47205],"['Sparkling Lemon Water', 'Organic Whole Milk', 'Organic Italian Parsley Bunch']",['Organic Hass Avocado'],11,0.23404255319148937,35.83492131319068,109
+[13173 14989 42582],[21134],"['Bag of Organic Bananas', 'Green Beans', 'Organic Extra Firm Tofu']",['Organic Strawberries'],29,0.26605504587155965,32.65056154238248,109
+[14989 27897],[21134],"['Green Beans', 'Vegan Apple Maple Breakfast Sausage']",['Organic Strawberries'],4,0.19047619047619047,23.375443074677772,109
+[13626],[24961],['Organic Snipped Green Beans'],['Organic Garlic'],1352,0.07430612805715855,22.055950895367744,109
+[27680],[24961],['Black Beans No Salt Added'],['Organic Garlic'],610,0.10276280323450135,30.5026166922197,109
+[13626],[21134],['Organic Snipped Green Beans'],['Organic Strawberries'],4128,0.2268755152514427,27.84240738194101,109
+[27680 48675],[24961],"['Black Beans No Salt Added', 'Organic Garnet Sweet Potato (Yam)']",['Organic Garlic'],75,0.22189349112426035,65.8636383324096,109
+[24849 45004],[21900],"['Banana', 'Organic Zucchini']",['Organic Baby Spinach'],4661,0.23009330108110776,30.915356227138506,109
+[24961],[24849],['Organic Garlic'],['Banana'],19821,0.17396608622384496,11.975341519403678,109
+[21900 22032 34445],[13173],"['Organic Baby Spinach', 'Organic Whole String Cheese', 'Original Veggie Straws']",['Bag of Organic Bananas'],54,0.2151394422310757,18.423071434415277,109
+[21134 26206 45004],[24961],"['Organic Strawberries', 'Limes', 'Organic Zucchini']",['Organic Garlic'],359,0.19574700109051255,58.102694311386735,109
+[ 7945 26206 45004],[21134 24961],"['Organic Unsalted Butter', 'Limes', 'Organic Zucchini']","['Organic Strawberries', 'Organic Garlic']",12,0.08,166.32006393311613,109
+[ 7960 38380],[21134],"['Gluten Free Whole Grain Bread', 'Organic White Onions']",['Organic Strawberries'],20,0.1342281879194631,16.47262767007494,109
+[18231],[21900],['Organic Spinach Bunch'],['Organic Baby Spinach'],378,0.030686799805163176,4.123081128351017,109
+[18231],[26937],['Organic Spinach Bunch'],['Organic Large Green Asparagus'],273,0.022162688748173405,37.446159073715215,109
+[12842],[21134],['Chopped Walnuts'],['Organic Strawberries'],1330,0.1270174768407984,15.587721446751747,109
+[12842 27101 34966],[21134 47762],"['Chopped Walnuts', 'Fresh Cauliflower', 'Red Vine Tomato']","['Organic Strawberries', 'Organic Avocado']",1,0.02857142857142857,38.53941334670435,109
+[19505 24961 47205],[26206],"['Corn Tortillas', 'Organic Garlic', 'Organic Hass Avocado']",['Limes'],98,0.30246913580246915,69.74795967156756,109
+[21134 37062 47205],[13173 24961 26206],"['Organic Strawberries', 'Serrano Chile Peppers', 'Organic Hass Avocado']","['Bag of Organic Bananas', 'Organic Garlic', 'Limes']",5,0.05263157894736842,569.2206419470486,109
+[21134 24961 26206],[47205],"['Organic Strawberries', 'Organic Garlic', 'Limes']",['Organic Hass Avocado'],726,0.275626423690205,42.20194605676442,109
+[34123],[17791],['Organic Italian Parsley Bunch'],['Carrots'],5467,0.08674886149061424,38.99577236226657,109
+[27963 30388 47205],[21134],"['Organic Raspberries', 'Organic Cucumber', 'Organic Hass Avocado']",['Organic Strawberries'],1015,0.348079561042524,42.71669831419382,109
+[46688],[22932],['Multigrain Tortilla Chips'],['Organic Yellow Onion'],299,0.03923884514435696,11.27308660891122,109
+[21900 46688],[21134],"['Organic Baby Spinach', 'Multigrain Tortilla Chips']",['Organic Strawberries'],204,0.2698412698412698,33.11521102246017,109
+[22932 40703],[21900],"['Organic Yellow Onion', 'Organic Grape Tomatoes']",['Organic Baby Spinach'],1772,0.25234975790373115,33.90573572881198,109
+[27518 46203],[21900],"['Organic Lacinato (Dinosaur) Kale', 'Red Grapefruit']",['Organic Baby Spinach'],58,0.20863309352517986,28.03196084716621,109
+[16756],[47205],['Organic Carrot Bunch'],['Organic Hass Avocado'],6459,0.17195569990948298,26.328626532155887,109
+[33117],[47205],['Organic Egg Whites'],['Organic Hass Avocado'],2817,0.1392211129781556,21.316540777202782,109
+[ 8274 17946],[13173],"['Apple Honeycrisp Organic', 'Mild Cheddar Cheese Sticks']",['Bag of Organic Bananas'],249,0.3204633204633205,27.44228851660042,109
+[ 8274  8515 26206],[13173],"['Apple Honeycrisp Organic', 'Organic Red Onion', 'Limes']",['Bag of Organic Bananas'],217,0.31771595900439237,27.207023258453905,109
+[12842],[31037],['Chopped Walnuts'],['Sea Salt Pita Chips'],81,0.007735650845191481,15.093336174494912,109
+[31037 47622],[21134],"['Sea Salt Pita Chips', 'Large Lemon']",['Organic Strawberries'],196,0.13101604278074866,16.078429761927424,109
+[17197 47622],[21134],"['Wild Blueberry Preserves', 'Large Lemon']",['Organic Strawberries'],30,0.17142857142857143,21.037898767209995,109
+[19054 21900],[13173],"['Organic Large Extra Fancy Fuji Apple', 'Organic Baby Spinach']",['Bag of Organic Bananas'],4268,0.36840742339231763,31.547893811287242,109
+[21414],[19054],['Organic Creamy Tomato Soup'],['Organic Large Extra Fancy Fuji Apple'],303,0.04032472717593825,17.471382376551915,109
+[21134 22932 41857],[21900],"['Organic Strawberries', 'Organic Yellow Onion', 'Sea Salt Baked Potato Chips']",['Organic Baby Spinach'],6,0.18181818181818182,24.42910694517933,109
+[12611],[22932],['Yellow Grape Tomatoes'],['Organic Yellow Onion'],384,0.04858914336327977,13.959371621971142,109
+[25135],[22932],['Organic Plain Greek Whole Milk Yogurt'],['Organic Yellow Onion'],999,0.08276719138359569,23.778521345646382,109
+[ 8515 22932 25135],[13173],"['Organic Red Onion', 'Organic Yellow Onion', 'Organic Plain Greek Whole Milk Yogurt']",['Bag of Organic Bananas'],28,0.3146067415730337,26.940771127979726,109
+[10746 24849 24961],[47205],"['Organic Red Bell Pepper', 'Banana', 'Organic Garlic']",['Organic Hass Avocado'],159,0.1762749445676275,26.989958372654094,109
+[21900 27153],[13173],"['Organic Baby Spinach', 'Organic Black Beans']",['Bag of Organic Bananas'],2132,0.2917750102641303,24.98561770509637,109
+[35558],[40703],['Organic Tortilla Chips'],['Organic Grape Tomatoes'],212,0.01470894331506279,5.64775895365585,109
+[35558],[24961],['Organic Tortilla Chips'],['Organic Garlic'],277,0.019218760840907515,5.704617592923223,109
+[21476 21935],[21134],"['Organic Turkish Figs', 'Green Bell Pepper']",['Organic Strawberries'],23,0.41818181818181815,51.319722750315286,109
+[21935],[22932],['Green Bell Pepper'],['Organic Yellow Onion'],8273,0.14262563572105852,40.97549604784282,109
+[21134 34123 45004],[44356 47205],"['Organic Strawberries', 'Organic Italian Parsley Bunch', 'Organic Zucchini']","['Organic Small Bunch Celery', 'Organic Hass Avocado']",77,0.06949458483754513,193.0544382328677,109
+[39272 44356 47205],[21134],"['Organic Blueberries', 'Organic Small Bunch Celery', 'Organic Hass Avocado']",['Organic Strawberries'],310,0.3471444568868981,42.601941325910495,109
+[34123 39272],[47205],"['Organic Italian Parsley Bunch', 'Organic Blueberries']",['Organic Hass Avocado'],585,0.2102803738317757,32.19662641350819,109
+[16756 19054 47622],[13173 22932],"['Organic Carrot Bunch', 'Organic Large Extra Fancy Fuji Apple', 'Large Lemon']","['Bag of Organic Bananas', 'Organic Yellow Onion']",14,0.0875,115.71016559787284,109
+[27842],[47762],['Organic Whole Milk'],['Organic Avocado'],13572,0.09503336530988075,17.445845573603766,109
+[33117],[27842],['Organic Egg Whites'],['Organic Whole Milk'],1081,0.05342492833844025,12.651392481917716,109
+[21134 30388 40703],[13173],"['Organic Strawberries', 'Organic Cucumber', 'Organic Grape Tomatoes']",['Bag of Organic Bananas'],708,0.3518886679920477,30.13334049837153,109
+[13163 30388 47622],[13173 21134],"['Organic Milk Reduced Fat, 2% Milkfat', 'Organic Cucumber', 'Large Lemon']","['Bag of Organic Bananas', 'Organic Strawberries']",7,0.22580645161290322,118.02683568638751,109
+[46663],[21900],['Organic Ginger Root'],['Organic Baby Spinach'],11122,0.20560505786223982,27.625113708425424,109
+[19675],[27101],['Organic Russet Potato'],['Fresh Cauliflower'],2262,0.0671057315770737,30.57123795261807,109
+[48053],[10746],"['Hummus, Hope, Original Recipe']",['Organic Red Bell Pepper'],260,0.0423728813559322,23.932211598612092,109
+[22032 41784],[47762],"['Organic Whole String Cheese', 'Bartlett Pears']",['Organic Avocado'],207,0.1929170549860205,35.41494230816862,109
+[35137 41899],[30388],"['Organic Whole Cashews', 'Pure Mint Clarifying Body Wash']",['Organic Cucumber'],1,1.0,397.8484324451503,109
+[22932 35137],[24849],"['Organic Yellow Onion', 'Organic Whole Cashews']",['Banana'],161,0.12983870967741937,8.93773565052865,109
+[15258],[39558],['Organic Rosemary'],['Crackers Cheddar Bunnies Snack Packs'],46,0.004266765606158984,11.315730733362996,109
+[27963 47205 47622],[21900 26206],"['Organic Raspberries', 'Organic Hass Avocado', 'Large Lemon']","['Organic Baby Spinach', 'Limes']",103,0.06514864010120178,101.46298712127071,109
+[27963 30388 47622],[26206],"['Organic Raspberries', 'Organic Cucumber', 'Large Lemon']",['Limes'],173,0.22793148880105402,52.559928954729706,109
+[47762 48675],[21134],"['Organic Avocado', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],1235,0.16446930350246372,20.183849918157144,109
+[48675],[21134],['Organic Garnet Sweet Potato (Yam)'],['Organic Strawberries'],8482,0.1556130405269048,19.096999795199487,109
+[21134 28598 47762],[13173],"['Organic Strawberries', 'Collard Greens', 'Organic Avocado']",['Bag of Organic Bananas'],26,0.1780821917808219,15.249741778411225,109
+[27101 32300],[13173],"['Fresh Cauliflower', 'Red Seedless Grapes']",['Bag of Organic Bananas'],28,0.1917808219178082,16.42279883828901,109
+[24961],[47622],['Organic Garlic'],['Large Lemon'],16098,0.14128984693161073,29.71725154301158,109
+[26937],[48675],['Organic Large Green Asparagus'],['Organic Garnet Sweet Potato (Yam)'],1146,0.05725419664268585,35.52361614478575,109
+[26937 47205],[13173],"['Organic Large Green Asparagus', 'Organic Hass Avocado']",['Bag of Organic Bananas'],1857,0.37759251728344856,32.33444247541534,109
+[ 8515 12453 21900],[21134],"['Organic Red Onion', 'Organic Sunday Bacon', 'Organic Baby Spinach']",['Organic Strawberries'],35,0.2631578947368421,32.295020037383765,109
+[21900 27518],[13173],"['Organic Baby Spinach', 'Organic Lacinato (Dinosaur) Kale']",['Bag of Organic Bananas'],2449,0.2695058875316386,23.07864223547607,109
+[ 8515 13173 24827],[21900],"['Organic Red Onion', 'Bag of Organic Bananas', 'Organic Romaine']",['Organic Baby Spinach'],91,0.30132450331125826,40.48598684126575,109
+[10746],[21134],['Organic Red Bell Pepper'],['Organic Strawberries'],12471,0.20827348942850463,25.55954675452769,109
+[27101 35936],[21134],"['Fresh Cauliflower', 'Organic Jalapeno Pepper']",['Organic Strawberries'],214,0.15417867435158503,18.920972834582475,109
+[31654],[34240],['Organic Basil Babe Level 1 Baby Food'],['Organic Baby Broccoli'],15,0.02242152466367713,22.878916189919778,109
+[34240],[47205],['Organic Baby Broccoli'],['Organic Hass Avocado'],6113,0.18444317050357542,28.240618689299883,109
+[ 5874 22392],[47205],"['Organic Lemon', 'Tomato Sauce']",['Organic Hass Avocado'],149,0.28489483747609945,43.62105926582206,109
+[21935],[31714],['Green Bell Pepper'],['Organic Cilantro'],4606,0.0794069476769244,36.762107879840656,109
+[45444],[47762],['Gluten Free Covered Pretzels Yogurt'],['Organic Avocado'],212,0.06587942821628341,12.093882263254947,109
+[15258 45004 47762],[21900],"['Organic Rosemary', 'Organic Zucchini', 'Organic Avocado']",['Organic Baby Spinach'],52,0.4297520661157025,57.74152550678751,109
+[21134 40703 47622],[21900],"['Organic Strawberries', 'Organic Grape Tomatoes', 'Large Lemon']",['Organic Baby Spinach'],481,0.2834413671184443,38.08320708513372,109
+[30230 49231],[47205],"['Organic Large Brown Grade AA Cage Free Eggs', 'Organic Half & Half']",['Organic Hass Avocado'],215,0.20673076923076922,31.653136352254528,109
+[21134],[13173],['Organic Strawberries'],['Bag of Organic Bananas'],64702,0.23478737340198927,20.105585973573685,109
+[21134 47622],[21900],"['Organic Strawberries', 'Large Lemon']",['Organic Baby Spinach'],3756,0.2168340838240388,29.13384662703583,109
+[44356],[22932],['Organic Small Bunch Celery'],['Organic Yellow Onion'],11465,0.16213196820997255,46.57954924463703,109
+[44356 49379],[21134],"['Organic Small Bunch Celery', 'Organic Bunch Beets']",['Organic Strawberries'],304,0.17194570135746606,21.10136150858921,109
+[49379],[8274],['Organic Bunch Beets'],['Apple Honeycrisp Organic'],890,0.05904205917473796,22.8796138244653,109
+[20667 47622],[21900],"['Organic Lentil Vegetable Soup', 'Large Lemon']",['Organic Baby Spinach'],36,0.15126050420168066,20.323374685485327,109
+[47622 48675],[22932],"['Large Lemon', 'Organic Garnet Sweet Potato (Yam)']",['Organic Yellow Onion'],1004,0.14654794920449568,42.1023533608809,109
+[24961 47762],[24849],"['Organic Garlic', 'Organic Avocado']",['Banana'],4444,0.3125835267637336,21.517380586000034,109
+[24961 46203 47762],[24849],"['Organic Garlic', 'Red Grapefruit', 'Organic Avocado']",['Banana'],31,0.41333333333333333,28.452717052283337,109
+[39272 39474],[21134],"['Organic Blueberries', 'Broccoli Florets, Organic']",['Organic Strawberries'],27,0.4426229508196721,54.31916484976351,109
+[20667 22932],[21900],"['Organic Lentil Vegetable Soup', 'Organic Yellow Onion']",['Organic Baby Spinach'],53,0.2623762376237624,35.25289442831572,109
+[12569 34966],[21134],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Red Vine Tomato']",['Organic Strawberries'],18,0.15,18.408161421308744,109
+[12569 34966],[17791],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Red Vine Tomato']",['Carrots'],8,0.06666666666666667,29.96832595625147,109
+[42582],[24849],['Organic Extra Firm Tofu'],['Banana'],7597,0.2506433520290333,17.253591233027255,109
+[10746],[21900],['Organic Red Bell Pepper'],['Organic Baby Spinach'],10306,0.17211663716222986,23.125606549544074,109
+[46663 48771],[21900],"['Organic Ginger Root', 'Organic Red Cabbage']",['Organic Baby Spinach'],379,0.2630117973629424,35.33828829092735,109
+[10746 17791 46663],[21900 47205],"['Organic Red Bell Pepper', 'Carrots', 'Organic Ginger Root']","['Organic Baby Spinach', 'Organic Hass Avocado']",23,0.07467532467532467,69.85458249050482,109
+[39272],[47205],['Organic Blueberries'],['Organic Hass Avocado'],12756,0.12145563955591948,18.5964185878993,109
+[27842 48675],[13173],"['Organic Whole Milk', 'Organic Garnet Sweet Potato (Yam)']",['Bag of Organic Bananas'],1146,0.2603362108132667,22.2934137926524,109
+[19054 44629],[21134],"['Organic Large Extra Fancy Fuji Apple', 'Sparkling Water Grapefruit']",['Organic Strawberries'],498,0.20219244823386115,24.813274835056855,109
+[22932 44629],[21134],"['Organic Yellow Onion', 'Sparkling Water Grapefruit']",['Organic Strawberries'],643,0.16819251896416426,20.64076692632579,109
+[31714],[47762],['Organic Cilantro'],['Organic Avocado'],10191,0.13950718685831623,25.610172073797134,109
+[31550 34259],[47205],"['Fresh Ginger Root', 'Hint Of Sea Salt Almond Nut Thins']",['Organic Hass Avocado'],12,0.15,22.966926841635843,109
+[20428],[21134],['Organic Ranch Dressing'],['Organic Strawberries'],444,0.17924909164311667,21.997641423929707,109
+[22932 45004 46663],[47205],"['Organic Yellow Onion', 'Organic Zucchini', 'Organic Ginger Root']",['Organic Hass Avocado'],285,0.29656607700312176,45.408075961610926,109
+[27680 28598],[47205],"['Black Beans No Salt Added', 'Collard Greens']",['Organic Hass Avocado'],17,0.2125,32.53647969231744,109
+[22932 27680 28598],[45004 47205],"['Organic Yellow Onion', 'Black Beans No Salt Added', 'Collard Greens']","['Organic Zucchini', 'Organic Hass Avocado']",2,0.2857142857142857,564.767181850822,109
+[24486],[31714],['Organic Whole Strawberries'],['Organic Cilantro'],1502,0.04599179374119664,21.292284020036494,109
+[26206 48771],[47205],"['Limes', 'Organic Red Cabbage']",['Organic Hass Avocado'],516,0.19830899308224442,30.36365424105584,109
+[ 5874 24961],[26206],"['Organic Lemon', 'Organic Garlic']",['Limes'],2160,0.19529837251356238,45.034885869791715,109
+[24218],[49379],['Organic Red Grapes'],['Organic Bunch Beets'],135,0.014085976627712854,31.602437089435025,109
+[49379],[21134],['Organic Bunch Beets'],['Organic Strawberries'],2248,0.14913095396046172,18.301511156119613,109
+[ 5874 21134 28598],[13173],"['Organic Lemon', 'Organic Strawberries', 'Collard Greens']",['Bag of Organic Bananas'],48,0.3779527559055118,32.36529084891153,109
+[ 8274 21900 47622],[13173],"['Apple Honeycrisp Organic', 'Organic Baby Spinach', 'Large Lemon']",['Bag of Organic Bananas'],405,0.2719946272666219,23.291760896767467,109
+[ 3986 24181],[21134],"['Roasted Salted Peanuts', 'Red Peppers']",['Organic Strawberries'],23,0.14375,17.64115469542088,109
+[46513],[21134],['Sesame Bagels'],['Organic Strawberries'],415,0.13439119170984457,16.49263167064579,109
+[18367 19054 43119],[21134],"['Organic Shredded Mozzarella', 'Organic Large Extra Fancy Fuji Apple', 'Organic Bartlett Pear']",['Organic Strawberries'],23,0.4107142857142857,50.40329912977394,109
+[17791 31368],[26206],"['Carrots', 'Whole Wheat English Muffins']",['Limes'],56,0.19377162629757785,44.68282537535915,109
+[17791],[47205],['Carrots'],['Organic Hass Avocado'],9855,0.13099304826339506,20.056718374855116,109
+[17791 26206],[47205],"['Carrots', 'Limes']",['Organic Hass Avocado'],1389,0.16285613788251846,24.935366696394407,109
+[21900 27963 30388],[21134],"['Organic Baby Spinach', 'Organic Raspberries', 'Organic Cucumber']",['Organic Strawberries'],708,0.3374642516682555,41.413976124202705,109
+[21292],[47205],['Organic Spaghetti Squash'],['Organic Hass Avocado'],2196,0.15661103979460847,23.979161957035284,109
+[12569],[21900],['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS'],['Organic Baby Spinach'],433,0.07711487088156722,10.361160853062257,109
+[ 9836 27842],[47205],"['Organic Broccoli', 'Organic Whole Milk']",['Organic Hass Avocado'],748,0.1881761006289308,28.812178243259723,109
+[13173 24849 41947],[47205],"['Bag of Organic Bananas', 'Banana', 'Organic Tomato Cluster']",['Organic Hass Avocado'],16,0.24242424242424243,37.11826560264379,109
+[34966 47205],[24849],"['Red Vine Tomato', 'Organic Hass Avocado']",['Banana'],1721,0.2902681733850565,19.98125372566484,109
+[34966 43119],[21134],"['Red Vine Tomato', 'Organic Bartlett Pear']",['Organic Strawberries'],205,0.2540272614622057,31.1744988960619,109
+[17791 21900 35137],[47205],"['Carrots', 'Organic Baby Spinach', 'Organic Whole Cashews']",['Organic Hass Avocado'],40,0.2484472049689441,38.04045853687096,109
+[41947 47205],[13173],"['Organic Tomato Cluster', 'Organic Hass Avocado']",['Bag of Organic Bananas'],4879,0.3600206611570248,30.829708813864492,109
+[28943],[13173],['Yogurt Tubes Blueberry'],['Bag of Organic Bananas'],502,0.1855822550831793,15.891995939475551,109
+[31724],[9836],"['Organic Tomato Paste, No Salt Added']",['Organic Broccoli'],164,0.03911280705938469,32.76348470262005,109
+[8274],[47205],['Apple Honeycrisp Organic'],['Organic Hass Avocado'],15920,0.1824181868182235,27.930567674919992,109
+[24961],[47762],['Organic Garlic'],['Organic Avocado'],14217,0.1247805785704255,22.906720152719235,109
+[21285 22932],[24961],"['Blackberries', 'Organic Yellow Onion']",['Organic Garlic'],68,0.17989417989417988,53.397173313301664,109
+[21285],[17791],['Blackberries'],['Carrots'],319,0.013324422538741072,5.989659567297242,109
+[21285 28598],[24961],"['Blackberries', 'Collard Greens']",['Organic Garlic'],1,0.023255813953488372,6.902917753908355,109
+[21900 46688],[13173],"['Organic Baby Spinach', 'Multigrain Tortilla Chips']",['Bag of Organic Bananas'],145,0.1917989417989418,16.424350501066627,109
+[34445],[21900],['Original Veggie Straws'],['Organic Baby Spinach'],2417,0.13784646971598039,18.521063828889098,109
+[ 5874 47622],[25337],"['Organic Lemon', 'Large Lemon']",['Large Yellow Flesh Nectarine'],1,0.003205128205128205,6.9519349995395405,109
+[21935 24961],[47205],"['Green Bell Pepper', 'Organic Garlic']",['Organic Hass Avocado'],1256,0.1964956195244055,30.08600345545955,109
+[9836],[24849],['Organic Broccoli'],['Banana'],6539,0.1619646793649221,11.149198051049812,109
+[ 9836 24961],[24849],"['Organic Broccoli', 'Organic Garlic']",['Banana'],590,0.15567282321899736,10.716084173661908,109
+[9435],[17791],['Honey Graham Sticks'],['Carrots'],106,0.03002832861189802,13.498481096441878,109
+[21900 39465],[47205],"['Organic Baby Spinach', 'Apples, Kale & Avocados Organic Baby Food']",['Organic Hass Avocado'],114,0.26573426573426573,40.687329602898,109
+[21134 39465 48675],[21900],"['Organic Strawberries', 'Apples, Kale & Avocados Organic Baby Food', 'Organic Garnet Sweet Potato (Yam)']",['Organic Baby Spinach'],5,0.25,33.59002204962158,109
+[ 4797 22932],[13173],"['Shredded Parmesan', 'Organic Yellow Onion']",['Bag of Organic Bananas'],839,0.2590305649891942,22.18160720788354,109
+[2596],[40703],['Fresh Pressed Virgin Coconut Oil'],['Organic Grape Tomatoes'],58,0.04008293020041465,15.390550026549471,109
+[ 8274 36253],[21900],"['Apple Honeycrisp Organic', 'Yellow Soft Corn Tortillas 8 Count']",['Organic Baby Spinach'],37,0.19072164948453607,25.62537764610306,109
+[10746 36253],[21900],"['Organic Red Bell Pepper', 'Yellow Soft Corn Tortillas 8 Count']",['Organic Baby Spinach'],37,0.1510204081632653,20.29111536058773,109
+[13173 41784 42447],[47762],"['Bag of Organic Bananas', 'Bartlett Pears', 'Macaroni & Cheese']",['Organic Avocado'],8,0.22857142857142856,41.960229782376736,109
+[45004],[27842],['Organic Zucchini'],['Organic Whole Milk'],7703,0.07040361203524294,16.672062194637437,109
+[21134 21900 27963],[13173],"['Organic Strawberries', 'Organic Baby Spinach', 'Organic Raspberries']",['Bag of Organic Bananas'],2223,0.40075716603569495,34.3181046727794,109
+[10746],[13173],['Organic Red Bell Pepper'],['Bag of Organic Bananas'],13606,0.2272286983533184,19.45831270314461,109
+[24961 27101 47762],[21900],"['Organic Garlic', 'Fresh Cauliflower', 'Organic Avocado']",['Organic Baby Spinach'],372,0.30667765869744434,41.20523727109391,109
+[27101 27518 47762],[24961],"['Fresh Cauliflower', 'Organic Lacinato (Dinosaur) Kale', 'Organic Avocado']",['Organic Garlic'],98,0.20123203285420946,59.73079140650884,109
+[14648 18438],[21134],"['Tommy/Kent/Keitt/Haden Mango', 'Organic Ketchup']",['Organic Strawberries'],25,0.3787878787878788,46.485256114416025,109
+[39177 46663],[47622],"['Organic Lowfat 1% Milk', 'Organic Ginger Root']",['Large Lemon'],36,0.10112359550561797,21.26915266621236,109
+[ 9836 21900],[21134],"['Organic Broccoli', 'Organic Baby Spinach']",['Organic Strawberries'],1792,0.22700785406637952,27.85864814372542,109
+[ 9836 21900 25135],[21134],"['Organic Broccoli', 'Organic Baby Spinach', 'Organic Plain Greek Whole Milk Yogurt']",['Organic Strawberries'],29,0.25892857142857145,31.775992929640097,109
+[46203],[13173],['Red Grapefruit'],['Bag of Organic Bananas'],1373,0.23118370095975754,19.79699209538486,109
+[13173 24849],[40703],"['Bag of Organic Bananas', 'Banana']",['Organic Grape Tomatoes'],71,0.058970099667774084,22.642612814721232,109
+[26206 35137 41947],[22932],"['Limes', 'Organic Whole Cashews', 'Organic Tomato Cluster']",['Organic Yellow Onion'],16,0.1839080459770115,52.835686747336176,109
+[24961 27518 27963],[30388],"['Organic Garlic', 'Organic Lacinato (Dinosaur) Kale', 'Organic Raspberries']",['Organic Cucumber'],83,0.1537037037037037,61.15077757953236,109
+[27518 27963],[13173],"['Organic Lacinato (Dinosaur) Kale', 'Organic Raspberries']",['Bag of Organic Bananas'],1572,0.35841313269493846,30.692051063231936,109
+[21900 27963 30388],[13173],"['Organic Baby Spinach', 'Organic Raspberries', 'Organic Cucumber']",['Bag of Organic Bananas'],944,0.449952335557674,38.53084275991326,109
+[21900 24961 30388],[13173],"['Organic Baby Spinach', 'Organic Garlic', 'Organic Cucumber']",['Bag of Organic Bananas'],734,0.34671705243268774,29.69047868794122,109
+[ 1193 22932],[21134],"['Natural Artisan Water', 'Organic Yellow Onion']",['Organic Strawberries'],76,0.1953727506426735,23.976354207702908,109
+[21292],[21134],['Organic Spaghetti Squash'],['Organic Strawberries'],1904,0.13578662102410496,16.663880257772,109
+[21134 27101 47152],[13173],"['Organic Strawberries', 'Fresh Cauliflower', 'Coconut Almond Unsweetened Creamer Blend']",['Bag of Organic Bananas'],10,0.3225806451612903,27.62360173260594,109
+[18334],[24849],['Classic Mild Cheddar Macaroni & Cheese'],['Banana'],895,0.26933493830875715,18.540268045144973,109
+[21134 24961],[24849],"['Organic Strawberries', 'Organic Garlic']",['Banana'],3412,0.2097498002090121,14.438592863999956,109
+[2596],[47205],['Fresh Pressed Virgin Coconut Oil'],['Organic Hass Avocado'],229,0.15825846579129232,24.231404039320932,109
+[26206 27842],[47622],"['Limes', 'Organic Whole Milk']",['Large Lemon'],2030,0.23207957013833314,48.812898545591345,109
+[ 5371 27842],[26206],"['Organic No Salt Added Diced Tomatoes', 'Organic Whole Milk']",['Limes'],114,0.13555291319857313,31.257864039760968,109
+[8274],[26206],['Apple Honeycrisp Organic'],['Limes'],6709,0.0768745989549913,17.726920842536067,109
+[8274],[47622],['Apple Honeycrisp Organic'],['Large Lemon'],7310,0.08376111467595564,17.61733180695743,109
+[12842 19675],[24849],"['Chopped Walnuts', 'Organic Russet Potato']",['Banana'],53,0.25853658536585367,17.796939462285803,109
+[27842],[21900],['Organic Whole Milk'],['Organic Baby Spinach'],17619,0.12337112167659807,16.576154789613906,109
+[16756 22932 34445],[24849],"['Organic Carrot Bunch', 'Organic Yellow Onion', 'Original Veggie Straws']",['Banana'],4,0.0975609756097561,6.715826212183321,109
+[27153 45004 47622],[21134 47205],"['Organic Black Beans', 'Organic Zucchini', 'Large Lemon']","['Organic Strawberries', 'Organic Hass Avocado']",16,0.03931203931203931,31.405712436397717,109
+[27153],[47622],['Organic Black Beans'],['Large Lemon'],3217,0.08128458448088537,17.09644745214325,109
+[21134 27153],[47205],"['Organic Strawberries', 'Organic Black Beans']",['Organic Hass Avocado'],1401,0.22680913064594463,34.72739140373624,109
+[40703 47205 47622],[21900],"['Organic Grape Tomatoes', 'Organic Hass Avocado', 'Large Lemon']",['Organic Baby Spinach'],435,0.3305471124620061,44.41233918415011,109
+[46975 47205],[47622],"['Asparagus', 'Organic Hass Avocado']",['Large Lemon'],1175,0.13227513227513227,27.821202047220755,109
+[5448],[46975],['Small Hass Avocado'],['Asparagus'],2383,0.04571790346097767,21.73038500153997,109
+[31714],[27842],['Organic Cilantro'],['Organic Whole Milk'],5231,0.07160848733744012,16.957384998316293,109
+[31340],[24849],['Shredded Mild Cheddar Cheese'],['Banana'],6375,0.2292093625283141,15.778135010691184,109
+[ 5118 27963],[47205],"['Organic Vanilla Soymilk', 'Organic Raspberries']",['Organic Hass Avocado'],66,0.24175824175824176,37.01629234549367,109
+[28286 44680],[13173],"['Organic Shredded Carrots', 'Brussels Sprouts']",['Bag of Organic Bananas'],34,0.15384615384615385,13.174333134012064,109
+[28286],[47205],['Organic Shredded Carrots'],['Organic Hass Avocado'],2944,0.13991730431063162,21.423136613207838,109
+[46523],[17791],['French Green Beans'],['Carrots'],129,0.04988399071925754,22.424095408099998,109
+[40703 46523],[21134],"['Organic Grape Tomatoes', 'French Green Beans']",['Organic Strawberries'],41,0.23699421965317918,29.084185675285493,109
+[13173 14989 47622],[21134],"['Bag of Organic Bananas', 'Green Beans', 'Large Lemon']",['Organic Strawberries'],102,0.19615384615384615,24.072211089403744,109
+[13626 47622],[13173],"['Organic Snipped Green Beans', 'Large Lemon']",['Bag of Organic Bananas'],440,0.22,18.83929638163725,109
+[25135],[47205],['Organic Plain Greek Whole Milk Yogurt'],['Organic Hass Avocado'],2086,0.1728251864125932,26.461756084867368,109
+[35129],[48675],['Cheese Square Crackers'],['Organic Garnet Sweet Potato (Yam)'],123,0.03205629397967162,19.889467482445855,109
+[35129 47205],[24849],"['Cheese Square Crackers', 'Organic Hass Avocado']",['Banana'],56,0.1414141414141414,9.73455617624552,109
+[6636],[12842],['Organic Brown Rice Crisps Cereal'],['Chopped Walnuts'],9,0.004044943820224719,13.064309408864933,109
+[32575],[21900],['Organic Fresh Squeezed Orange Juice'],['Organic Baby Spinach'],715,0.12452107279693486,16.730662323566303,109
+[8171],[27963],['Organic Navel Orange'],['Organic Raspberries'],5505,0.1231516073465918,29.20609848968652,109
+[10746],[27963],['Organic Red Bell Pepper'],['Organic Raspberries'],6443,0.10760212431944954,25.51845086137488,109
+[27842 43765],[47622],"['Organic Whole Milk', 'Organic Bell Pepper']",['Large Lemon'],193,0.11136757068667051,23.42375042299992,109
+[22932 23798 24486],[21134 47762],"['Organic Yellow Onion', 'Fusilli No. 34', 'Organic Whole Strawberries']","['Organic Strawberries', 'Organic Avocado']",1,0.06666666666666667,89.92529780897681,109
+[21134 23798],[13173],"['Organic Strawberries', 'Fusilli No. 34']",['Bag of Organic Bananas'],322,0.27521367521367524,23.567418161954915,109
+[23798 24486],[47762],"['Fusilli No. 34', 'Organic Whole Strawberries']",['Organic Avocado'],15,0.1485148514851485,27.26376316305419,109
+[23798 47762],[13173],"['Fusilli No. 34', 'Organic Avocado']",['Bag of Organic Bananas'],115,0.20318021201413428,17.398964695537135,109
+[12611 27963],[47762],"['Yellow Grape Tomatoes', 'Organic Raspberries']",['Organic Avocado'],134,0.23674911660777384,43.46145708466141,109
+[12453 12611 45004],[47762],"['Organic Sunday Bacon', 'Yellow Grape Tomatoes', 'Organic Zucchini']",['Organic Avocado'],2,1.0,183.5760052978982,109
+[28120],[21900],['Organic Cut Green Beans'],['Organic Baby Spinach'],1198,0.1615208305244708,21.70195303516066,109
+[31714],[27101],['Organic Cilantro'],['Fresh Cauliflower'],5467,0.07483915126625598,34.09433811037308,109
+[30230 41585],[13173],"['Organic Large Brown Grade AA Cage Free Eggs', 'Firm Tofu']",['Bag of Organic Bananas'],89,0.2966666666666667,25.404505726753264,109
+[16756 20667],[30388],"['Organic Carrot Bunch', 'Organic Lentil Vegetable Soup']",['Organic Cucumber'],5,0.09090909090909091,36.16803931319548,109
+[21134 22932 26206],[21900],"['Organic Strawberries', 'Organic Yellow Onion', 'Limes']",['Organic Baby Spinach'],558,0.2450592885375494,32.92618762176345,109
+[21134 26206],[24849],"['Organic Strawberries', 'Limes']",['Banana'],5626,0.2839119903108599,19.543711761448805,109
+[22960 31714],[21134],"['Organic Roasted Turkey Breast', 'Organic Cilantro']",['Organic Strawberries'],203,0.22963800904977374,28.181423593707958,109
+[ 8515 31714],[24849],"['Organic Red Onion', 'Organic Cilantro']",['Banana'],1430,0.15768000882125924,10.854253247885879,109
+[17791 18367 47205],[21900],"['Carrots', 'Organic Shredded Mozzarella', 'Organic Hass Avocado']",['Organic Baby Spinach'],48,0.2823529411764706,37.936966079572606,109
+[ 5132 18367],[47205],"['Organic Thompson Seedless Raisins', 'Organic Shredded Mozzarella']",['Organic Hass Avocado'],61,0.23282442748091603,35.648410619332985,109
+[40703],[26206],['Organic Grape Tomatoes'],['Limes'],8236,0.09350802697608937,21.56251108792599,109
+[17791 27101],[21134],"['Carrots', 'Fresh Cauliflower']",['Organic Strawberries'],902,0.16806409539780137,20.62500664805973,109
+[24961 47622],[21900],"['Organic Garlic', 'Large Lemon']",['Organic Baby Spinach'],3831,0.2379798732761834,31.974996762852598,109
+[8515],[45004],['Organic Red Onion'],['Organic Zucchini'],7928,0.11197107508050393,34.61011275802947,109
+[46663],[13173],['Organic Ginger Root'],['Bag of Organic Bananas'],11207,0.2071763966428809,17.741170634703955,109
+[18653 45004 46663],[24961],"['Organic Red Potato', 'Organic Zucchini', 'Organic Ginger Root']",['Organic Garlic'],29,0.2871287128712871,85.22711325865068,109
+[47205 47622],[21900],"['Organic Hass Avocado', 'Large Lemon']",['Organic Baby Spinach'],3558,0.2260770110560427,30.375727145140065,109
+[24181 47205 47622],[21900],"['Red Peppers', 'Organic Hass Avocado', 'Large Lemon']",['Organic Baby Spinach'],187,0.29541864139020535,39.692474712664996,109
+[22932 24849 41947],[21134],"['Organic Yellow Onion', 'Banana', 'Organic Tomato Cluster']",['Organic Strawberries'],217,0.2289029535864979,28.091216796230643,109
+[22932],[47762],['Organic Yellow Onion'],['Organic Avocado'],11423,0.09703863535967923,17.813965038889286,109
+[24961 48675],[13173],"['Organic Garlic', 'Organic Garnet Sweet Potato (Yam)']",['Bag of Organic Bananas'],1865,0.2887890987921957,24.7299246542368,109
+[23762 48675],[13173],"['Organic Smoked Turkey Breast', 'Organic Garnet Sweet Potato (Yam)']",['Bag of Organic Bananas'],96,0.39183673469387753,33.554219900504194,109
+[48771],[47622],['Organic Red Cabbage'],['Large Lemon'],1555,0.09939277724512624,20.905112625549233,109
+[12611],[48771],['Yellow Grape Tomatoes'],['Organic Red Cabbage'],65,0.008224724788055169,17.779024571944092,109
+[40703],[21134],['Organic Grape Tomatoes'],['Organic Strawberries'],16315,0.18523354299598083,22.732059734072994,109
+[21134 21900 27518],[13173],"['Organic Strawberries', 'Organic Baby Spinach', 'Organic Lacinato (Dinosaur) Kale']",['Bag of Organic Bananas'],579,0.37258687258687256,31.905793275324584,109
+[21414 30388],[13173],"['Organic Creamy Tomato Soup', 'Organic Cucumber']",['Bag of Organic Bananas'],102,0.2857142857142857,24.466618677450978,109
+[21414 24961 26206],[13173],"['Organic Creamy Tomato Soup', 'Organic Garlic', 'Limes']",['Bag of Organic Bananas'],16,0.2222222222222222,19.029592304684094,109
+[8274],[22932],['Apple Honeycrisp Organic'],['Organic Yellow Onion'],7800,0.08937574479787332,25.677119398792232,109
+[12453 45004],[47762],"['Organic Sunday Bacon', 'Organic Zucchini']",['Organic Avocado'],125,0.12512512512512514,22.969970632870147,109
+[48741],[31714],['Globe Eggplant'],['Organic Cilantro'],1472,0.08214285714285714,38.02871995697663,109
+[48675],[27963],['Organic Garnet Sweet Potato (Yam)'],['Organic Raspberries'],4362,0.08002641862513071,18.97871667695399,109
+[8135],[48675],['Traditional Hummus'],['Organic Garnet Sweet Potato (Yam)'],318,0.0372408947183511,23.10627563459291,109
+[13173 37062 45004],[21900],"['Bag of Organic Bananas', 'Serrano Chile Peppers', 'Organic Zucchini']",['Organic Baby Spinach'],35,0.3181818181818182,42.75093715406383,109
+[  811 37062],[21900],"['Healthy Grains Oats & Honey Clusters with Toasted Coconut Gluten Free', 'Serrano Chile Peppers']",['Organic Baby Spinach'],1,0.125,16.79501102481079,109
+[44356 47762],[24849],"['Organic Small Bunch Celery', 'Organic Avocado']",['Banana'],1722,0.2744660503665923,18.893479527915478,109
+[27963],[21134],['Organic Raspberries'],['Organic Strawberries'],35533,0.2491742810459808,30.578935916886444,109
+[14989],[27963],['Green Beans'],['Organic Raspberries'],1430,0.04730556750140594,11.218782225620796,109
+[9738],[12453],['Cheese Pizza'],['Organic Sunday Bacon'],66,0.009022556390977444,23.63187662464712,109
+[ 9738 21900 47205],[24849],"['Cheese Pizza', 'Organic Baby Spinach', 'Organic Hass Avocado']",['Banana'],24,0.21238938053097345,14.620294231832718,109
+[25135 34240],[21134],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Baby Broccoli']",['Organic Strawberries'],71,0.23355263157894737,28.66183028317809,109
+[21134 47205],[13173],"['Organic Strawberries', 'Organic Hass Avocado']",['Bag of Organic Bananas'],15776,0.3726643516878086,31.91242805598784,109
+[28598],[21134],['Collard Greens'],['Organic Strawberries'],1163,0.10757561742669504,13.201795537250375,109
+[17791 21134 28598],[22932],"['Carrots', 'Organic Strawberries', 'Collard Greens']",['Organic Yellow Onion'],18,0.20454545454545456,58.764691368131004,109
+[22932 28598],[27518],"['Organic Yellow Onion', 'Collard Greens']",['Organic Lacinato (Dinosaur) Kale'],161,0.150749063670412,113.72799508500071,109
+[26206 28598],[27518],"['Limes', 'Collard Greens']",['Organic Lacinato (Dinosaur) Kale'],123,0.11759082217973231,88.71277951109838,109
+[41841],[24961],['Honey Nut Cheerios'],['Organic Garlic'],845,0.030222826281340535,8.970904416762405,109
+[35936],[21134],['Organic Jalapeno Pepper'],['Organic Strawberries'],2521,0.11941076165214096,14.654217172893567,109
+[26518],[4797],['Organic Grass-Fed Classic Mild Cheddar Macaroni & Cheese'],['Shredded Parmesan'],56,0.03259604190919674,29.24909115411836,109
+[ 4797 26518],[21900],"['Shredded Parmesan', 'Organic Grass-Fed Classic Mild Cheddar Macaroni & Cheese']",['Organic Baby Spinach'],7,0.125,16.79501102481079,109
+[26518],[24849],['Organic Grass-Fed Classic Mild Cheddar Macaroni & Cheese'],['Banana'],186,0.10826542491268917,7.452690729643482,109
+[48675],[34123],['Organic Garnet Sweet Potato (Yam)'],['Organic Italian Parsley Bunch'],3094,0.05676335149613811,30.46104950989596,109
+[30388 45004],[47205],"['Organic Cucumber', 'Organic Zucchini']",['Organic Hass Avocado'],2343,0.27005532503457813,41.3489392884223,109
+[ 5874 31340],[21900],"['Organic Lemon', 'Shredded Mild Cheddar Cheese']",['Organic Baby Spinach'],226,0.22420634920634921,30.124384854025703,109
+[31340],[21900],['Shredded Mild Cheddar Cheese'],['Organic Baby Spinach'],4045,0.1454355876748283,19.54073838718862,109
+[ 5874 31340 46663],[24849],"['Organic Lemon', 'Shredded Mild Cheddar Cheese', 'Organic Ginger Root']",['Banana'],16,0.26229508196721313,18.055663914722373,109
+[ 5874 35210],[13173],"['Organic Lemon', 'Organic Blues Bread with Blue Cornmeal Crust']",['Bag of Organic Bananas'],46,0.34074074074074073,29.178708200515608,109
+[38659],[5874],['Roasted Almond Butter'],['Organic Lemon'],211,0.050843373493975906,18.843381854339803,109
+[28051],[47205],['Roasted Red Pepper Hummus With Chips'],['Organic Hass Avocado'],69,0.0777903043968433,11.910694867139219,109
+[21900 49231],[27842],"['Organic Baby Spinach', 'Organic Half & Half']",['Organic Whole Milk'],776,0.11338398597311514,26.850111966888825,109
+[27963 32997 47622],[21900 24849 27842],"['Organic Raspberries', 'Pure Irish Butter', 'Large Lemon']","['Organic Baby Spinach', 'Banana', 'Organic Whole Milk']",3,0.017045454545454544,113.92530318002156,109
+[19054],[13173],['Organic Large Extra Fancy Fuji Apple'],['Bag of Organic Bananas'],24337,0.31178897202008815,26.69947660187475,109
+[17791],[30388],['Carrots'],['Organic Cucumber'],4631,0.061555434450307714,24.489733104535123,109
+[1890],[13173],['Instant Coffee'],['Bag of Organic Bananas'],326,0.1412478336221837,12.095499094875027,109
+[48703],[26206],['Banana Mango Yogurt'],['Limes'],53,0.054979253112033194,12.67795710348207,109
+[43207],[21900],['Rolled Oats'],['Organic Baby Spinach'],305,0.2150916784203103,28.89973688331335,109
+[26206 27963],[21900],"['Limes', 'Organic Raspberries']",['Organic Baby Spinach'],1963,0.1999388877571807,26.863806593362053,109
+[21900 27963],[13173],"['Organic Baby Spinach', 'Organic Raspberries']",['Bag of Organic Bananas'],6758,0.3593151850276478,30.769296659812206,109
+[12611 28982],[22932],"['Yellow Grape Tomatoes', 'Michigan Organic Kale']",['Organic Yellow Onion'],29,0.08950617283950617,25.714590598674608,109
+[24961],[27842],['Organic Garlic'],['Organic Whole Milk'],8722,0.07655174834995085,18.127983390393823,109
+[6636],[10995],['Organic Brown Rice Crisps Cereal'],['Yellow Corn Organic Tortillas'],4,0.0017977528089887641,20.84992894684114,109
+[25253 27518],[22932],"['Cultured Low Fat Buttermilk', 'Organic Lacinato (Dinosaur) Kale']",['Organic Yellow Onion'],23,0.12994350282485875,37.33199476745045,109
+[25253],[47762],['Cultured Low Fat Buttermilk'],['Organic Avocado'],481,0.08409090909090909,15.437073172777804,109
+[25337],[13173],['Large Yellow Flesh Nectarine'],['Bag of Organic Bananas'],2277,0.14603642893791688,12.505561669442379,109
+[14126 39981],[13173],"['Organic Chicken Bone Broth', 'Organic Dill']",['Bag of Organic Bananas'],23,0.17557251908396945,15.03483056133438,109
+[24961 48771],[13173],"['Organic Garlic', 'Organic Red Cabbage']",['Bag of Organic Bananas'],526,0.246601031411158,21.117226903510197,109
+[40703],[5874],['Organic Grape Tomatoes'],['Organic Lemon'],5527,0.06275119780194827,23.256615380555342,109
+[48771],[13173],['Organic Red Cabbage'],['Bag of Organic Bananas'],3114,0.1990412272291467,17.044530326975917,109
+[19319 25135],[47205],"['Original Flax Milk Dairy Free Protein+', 'Organic Plain Greek Whole Milk Yogurt']",['Organic Hass Avocado'],3,0.375,57.417317104089605,109
+[19319],[25135],['Original Flax Milk Dairy Free Protein+'],['Organic Plain Greek Whole Milk Yogurt'],8,0.005442176870748299,15.248513377181858,109
+[ 9836 22932 45004],[47205],"['Organic Broccoli', 'Organic Yellow Onion', 'Organic Zucchini']",['Organic Hass Avocado'],207,0.2995658465991317,45.86737922063308,109
+[ 9836 41857],[47205],"['Organic Broccoli', 'Sea Salt Baked Potato Chips']",['Organic Hass Avocado'],14,0.1917808219178082,29.364107377433953,109
+[ 9836 41857 47205],[21134],"['Organic Broccoli', 'Sea Salt Baked Potato Chips', 'Organic Hass Avocado']",['Organic Strawberries'],3,0.21428571428571427,26.297373459012494,109
+[ 9836 26206 41857],[47205],"['Organic Broccoli', 'Limes', 'Sea Salt Baked Potato Chips']",['Organic Hass Avocado'],1,0.1,15.311284561090561,109
+[41857],[21134],['Sea Salt Baked Potato Chips'],['Organic Strawberries'],334,0.12070834839176003,14.813458413967282,109
+[27518],[19054],['Organic Lacinato (Dinosaur) Kale'],['Organic Large Extra Fancy Fuji Apple'],2532,0.05648255554564112,24.472039729795593,109
+[ 5874 19054],[47762],"['Organic Lemon', 'Organic Large Extra Fancy Fuji Apple']",['Organic Avocado'],309,0.05504096900605629,10.10420121785724,109
+[13011 30388],[27963],"['Organic Gluten Free Spaghetti', 'Organic Cucumber']",['Organic Raspberries'],22,0.2018348623853211,47.86627634414835,109
+[40703],[27963],['Organic Grape Tomatoes'],['Organic Raspberries'],8466,0.09611934875905448,22.795245852705985,109
+[21900 46663],[24961],"['Organic Baby Spinach', 'Organic Ginger Root']",['Organic Garlic'],2745,0.24680812803452618,73.25893697919193,109
+[13494 24849],[21900],"['Gluten and Dairy Free Sonoma Veggie Burger', 'Banana']",['Organic Baby Spinach'],29,0.18831168831168832,25.301575050364306,109
+[26206 45764],[21134],"['Limes', 'Sunny Days Strawberry Snack Bars']",['Organic Strawberries'],67,0.4161490683229814,51.070261500111215,109
+[25135 27963 45004],[21134],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Raspberries', 'Organic Zucchini']",['Organic Strawberries'],69,0.375,46.02040355327186,109
+[25135 44356 45004],[21134],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Small Bunch Celery', 'Organic Zucchini']",['Organic Strawberries'],19,0.2375,29.146255583738846,109
+[18269 45004],[21134],"['Slices Cheddar Cheese', 'Organic Zucchini']",['Organic Strawberries'],30,0.2127659574468085,26.110867264267725,109
+[44356 45004],[21900],"['Organic Small Bunch Celery', 'Organic Zucchini']",['Organic Baby Spinach'],2018,0.2736642256577163,36.769549496141224,109
+[21900 22932],[13173],"['Organic Baby Spinach', 'Organic Yellow Onion']",['Bag of Organic Bananas'],5741,0.28066487411390856,24.03422157884924,109
+[28051 47205],[21134],"['Roasted Red Pepper Hummus With Chips', 'Organic Hass Avocado']",['Organic Strawberries'],19,0.2753623188405797,33.79276009708852,109
+[ 5874 21900],[21134],"['Organic Lemon', 'Organic Baby Spinach']",['Organic Strawberries'],3291,0.22677783902976847,27.830420450903656,109
+[ 4797 13173 46663],[21900],"['Shredded Parmesan', 'Bag of Organic Bananas', 'Organic Ginger Root']",['Organic Baby Spinach'],76,0.35023041474654376,47.05698941513807,109
+[21134 48853],[13173],"['Organic Strawberries', 'Authentic French Brioche']",['Bag of Organic Bananas'],414,0.3006535947712418,25.74591900045495,109
+[24961 27842],[24849],"['Organic Garlic', 'Organic Whole Milk']",['Banana'],2056,0.23572575097454712,16.226705067134983,109
+[17791 24961],[21134],"['Carrots', 'Organic Garlic']",['Organic Strawberries'],1407,0.1453812771233726,17.841346779487086,109
+[34123],[26206],['Organic Italian Parsley Bunch'],['Limes'],7798,0.12373653226702211,28.533062190173467,109
+[12842],[34123],['Chopped Walnuts'],['Organic Italian Parsley Bunch'],528,0.0504249832871741,27.059676216454346,109
+[4797],[24849],['Shredded Parmesan'],['Banana'],8466,0.22462787550744248,15.462758186779325,109
+[ 4797 12842],[24849],"['Shredded Parmesan', 'Chopped Walnuts']",['Banana'],94,0.3102310231023102,21.35544077702518,109
+[22932 47622],[45004],"['Organic Yellow Onion', 'Large Lemon']",['Organic Zucchini'],1486,0.1282803867403315,39.65129964622039,109
+[ 5874 47622],[22932],"['Organic Lemon', 'Large Lemon']",['Organic Yellow Onion'],38,0.12179487179487179,34.990941583872875,109
+[36721],[47622],['Organic Sea Salt Roasted Seaweed Snacks'],['Large Lemon'],719,0.06725912067352666,14.146495668471003,109
+[22824 44356],[5874],"['Organic Black Mission Figs', 'Organic Small Bunch Celery']",['Organic Lemon'],34,0.18994413407821228,70.39638803376701,109
+[ 9836 29271],[45004],"['Organic Broccoli', 'Mung Bean Sprouts']",['Organic Zucchini'],6,0.14285714285714285,44.156955883658625,109
+[29271],[9836],['Mung Bean Sprouts'],['Organic Broccoli'],42,0.03936269915651359,32.97281091868931,109
+[41947],[27963],['Organic Tomato Cluster'],['Organic Raspberries'],6050,0.09053226989091236,21.470238577458915,109
+[ 2596 31714 47762],[13173 21900],"['Fresh Pressed Virgin Coconut Oil', 'Organic Cilantro', 'Organic Avocado']","['Bag of Organic Bananas', 'Organic Baby Spinach']",1,0.3333333333333333,214.28367041768044,109
+[22032 31714],[24961],"['Organic Whole String Cheese', 'Organic Cilantro']",['Organic Garlic'],315,0.16764236295902077,49.76052207380983,109
+[22032],[19054],['Organic Whole String Cheese'],['Organic Large Extra Fancy Fuji Apple'],4048,0.06564075953882827,28.43998929953039,109
+[15646],[49379],['Baby Seedless Cucumbers'],['Organic Bunch Beets'],111,0.010993364365653164,24.664041049399437,109
+[15646],[16756],['Baby Seedless Cucumbers'],['Organic Carrot Bunch'],212,0.02099633554521145,18.904139753343106,109
+[ 8274 22932 26206],[47205],"['Apple Honeycrisp Organic', 'Organic Yellow Onion', 'Limes']",['Organic Hass Avocado'],309,0.29372623574144485,44.97325978495232,109
+[12611],[21900],['Yellow Grape Tomatoes'],['Organic Baby Spinach'],1315,0.1663925091737315,22.356512208150008,109
+[ 8515 12611 27101],[13173 21900],"['Organic Red Onion', 'Yellow Grape Tomatoes', 'Fresh Cauliflower']","['Bag of Organic Bananas', 'Organic Baby Spinach']",2,0.058823529411764705,37.81476536782596,109
+[21900 27101],[13173],"['Organic Baby Spinach', 'Fresh Cauliflower']",['Bag of Organic Bananas'],3423,0.25653900921831674,21.968247400524728,109
+[23895],[47205],['Organic Gluten Free Fusilli'],['Organic Hass Avocado'],319,0.14272930648769575,21.85369026840219,109
+[21900 23895],[21134],"['Organic Baby Spinach', 'Organic Gluten Free Fusilli']",['Organic Strawberries'],59,0.1873015873015873,22.985852356766475,109
+[28051],[21134],['Roasted Red Pepper Hummus With Chips'],['Organic Strawberries'],145,0.16347237880496054,20.06150624644696,109
+[21134 49231],[13173],"['Organic Strawberries', 'Organic Half & Half']",['Bag of Organic Bananas'],2741,0.2886782517114271,24.720432467838435,109
+[ 8171 22932 34966],[21134],"['Organic Navel Orange', 'Organic Yellow Onion', 'Red Vine Tomato']",['Organic Strawberries'],22,0.16176470588235295,19.851938787685903,109
+[24486],[26206],['Organic Whole Strawberries'],['Limes'],2527,0.0773776716271664,17.84292703390381,109
+[24486],[17791],['Organic Whole Strawberries'],['Carrots'],1439,0.0440627105150346,19.80728506845759,109
+[17791 24486 26206],[13173],"['Carrots', 'Organic Whole Strawberries', 'Limes']",['Bag of Organic Bananas'],52,0.28415300546448086,24.33292130762884,109
+[12569 44356],[47205],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Organic Small Bunch Celery']",['Organic Hass Avocado'],46,0.19491525423728814,29.844029229244317,109
+[13173 24849],[21900],"['Bag of Organic Bananas', 'Banana']",['Organic Baby Spinach'],150,0.12458471760797342,16.73921364599082,109
+[12569 24961 39272],[21900],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Organic Garlic', 'Organic Blueberries']",['Organic Baby Spinach'],1,0.07142857142857142,9.597149157034737,109
+[21935 27518],[40703],"['Green Bell Pepper', 'Organic Lacinato (Dinosaur) Kale']",['Organic Grape Tomatoes'],136,0.08745980707395498,33.58173989161463,109
+[22032],[26206],['Organic Whole String Cheese'],['Limes'],4099,0.06646775527412477,15.327151651422913,109
+[22032 47622],[13173],"['Organic Whole String Cheese', 'Large Lemon']",['Bag of Organic Bananas'],901,0.22197585612219758,19.008495195698856,109
+[ 5874 21292 47762],[30388],"['Organic Lemon', 'Organic Spaghetti Squash', 'Organic Avocado']",['Organic Cucumber'],13,0.16883116883116883,67.16921586736304,109
+[ 5874 30388],[13173],"['Organic Lemon', 'Organic Cucumber']",['Bag of Organic Bananas'],2976,0.34023093632102436,29.13505203433513,109
+[15452 21900 45004],[13173],"['Organic Extra Virgin Oil Olive', 'Organic Baby Spinach', 'Organic Zucchini']",['Bag of Organic Bananas'],16,0.47058823529411764,40.29796017462514,109
+[15452 45004 47762],[21900],"['Organic Extra Virgin Oil Olive', 'Organic Zucchini', 'Organic Avocado']",['Organic Baby Spinach'],6,0.20689655172413793,27.79863893761786,109
+[15452],[13173],['Organic Extra Virgin Oil Olive'],['Bag of Organic Bananas'],524,0.2698249227600412,23.105962231949068,109
+[13173 41784 47762],[21134 21900],"['Bag of Organic Bananas', 'Bartlett Pears', 'Organic Avocado']","['Organic Strawberries', 'Organic Baby Spinach']",14,0.03076923076923077,26.163172929451562,109
+[27842 28120 47205],[22932],"['Organic Whole Milk', 'Organic Cut Green Beans', 'Organic Hass Avocado']",['Organic Yellow Onion'],6,0.1016949152542373,29.21634373104818,109
+[45004 47622],[13173],"['Organic Zucchini', 'Large Lemon']",['Bag of Organic Bananas'],2127,0.17667580363817592,15.129308310016098,109
+[34240 46663],[24849],"['Organic Baby Broccoli', 'Organic Ginger Root']",['Banana'],281,0.16103151862464182,11.084961861112328,109
+[46663],[10746],['Organic Ginger Root'],['Organic Red Bell Pepper'],2678,0.04950641475949274,27.961232646902857,109
+[36721],[47762],['Organic Sea Salt Roasted Seaweed Snacks'],['Organic Avocado'],853,0.07979420018709074,14.64830051628692,109
+[36721],[12453],['Organic Sea Salt Roasted Seaweed Snacks'],['Organic Sunday Bacon'],108,0.01010289990645463,26.46151199223817,109
+[9836],[19054],['Organic Broccoli'],['Organic Large Extra Fancy Fuji Apple'],2910,0.07207787382656726,31.228979901548936,109
+[43765],[47205],['Organic Bell Pepper'],['Organic Hass Avocado'],4709,0.19353910648966338,29.633323331624453,109
+[43765],[30388],['Organic Bell Pepper'],['Organic Cucumber'],2816,0.11573712547778554,46.04583394704464,109
+[17791 31714 45596],[45004],"['Carrots', 'Organic Cilantro', 'Organic Strawberry Lemonade Fruit Juice Drink']",['Organic Zucchini'],1,0.5,154.54934559280517,109
+[25135 37643 45004],[21900],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Gala Apples', 'Organic Zucchini']",['Organic Baby Spinach'],18,0.26865671641791045,36.09674011302618,109
+[47205 49243],[24849],"['Organic Hass Avocado', 'Coconut Yoghurt']",['Banana'],175,0.24717514124293785,17.014849248734226,109
+[19054],[21134],['Organic Large Extra Fancy Fuji Apple'],['Organic Strawberries'],15763,0.2019447576099211,24.782877975136632,109
+[24949],[21900],"['Tortilla Chips, Corn, Red Hot Blues']",['Organic Baby Spinach'],363,0.14015444015444015,18.831162940560052,109
+[24949],[8515],"['Tortilla Chips, Corn, Red Hot Blues']",['Organic Red Onion'],113,0.04362934362934363,20.839294346522752,109
+[21134 24949],[21900],"['Organic Strawberries', 'Tortilla Chips, Corn, Red Hot Blues']",['Organic Baby Spinach'],81,0.23893805309734514,32.1037378881339,109
+[21134 24961],[13173],"['Organic Strawberries', 'Organic Garlic']",['Bag of Organic Bananas'],4906,0.30159218048810477,25.826293066362005,109
+[12611 21134 27153],[24849],"['Yellow Grape Tomatoes', 'Organic Strawberries', 'Organic Black Beans']",['Banana'],12,0.3333333333333333,22.945739558293013,109
+[12611 27153],[17791],"['Yellow Grape Tomatoes', 'Organic Black Beans']",['Carrots'],7,0.03763440860215054,16.917603362400023,109
+[2449],[44356],['Taco Seasoning'],['Organic Small Bunch Celery'],386,0.041076939448760244,19.64512500174229,109
+[27541],[13173],['Lemon Verbena Hand Soap'],['Bag of Organic Bananas'],831,0.161610268378063,13.839198837683035,109
+[24961 32575],[13173],"['Organic Garlic', 'Organic Fresh Squeezed Orange Juice']",['Bag of Organic Bananas'],90,0.32967032967032966,28.23071385859728,109
+[24181],[21134],['Red Peppers'],['Organic Strawberries'],6709,0.11530463177794964,14.150308495953754,109
+[27518],[21134],['Organic Lacinato (Dinosaur) Kale'],['Organic Strawberries'],6260,0.13964486481663246,17.137368088009392,109
+[31654],[21900],['Organic Basil Babe Level 1 Baby Food'],['Organic Baby Spinach'],89,0.13303437967115098,17.87451098604676,109
+[31714 34463],[24961],"['Organic Cilantro', 'Sweet Potatoes']",['Organic Garlic'],36,0.14007782101167315,41.57866413638184,109
+[10758 21900],[21134],"['Organic Yokids Lemonade/Blueberry Variety Pack Yogurt Squeezers Tubes', 'Organic Baby Spinach']",['Organic Strawberries'],318,0.32682425488180883,40.10822426842193,109
+[27153 47762],[21134],"['Organic Black Beans', 'Organic Avocado']",['Organic Strawberries'],946,0.18063776971548595,22.168061491385746,109
+[22932 26206 27963],[21134 24849],"['Organic Yellow Onion', 'Limes', 'Organic Raspberries']","['Organic Strawberries', 'Banana']",60,0.05181347150259067,30.0408929362951,109
+[26206],[24849],['Limes'],['Banana'],33103,0.2257125323878358,15.537422949642172,109
+[22932 27963],[24849],"['Organic Yellow Onion', 'Organic Raspberries']",['Banana'],1325,0.1474351841548904,10.149028012041253,109
+[22932 27153 47762],[24849 26206],"['Organic Yellow Onion', 'Organic Black Beans', 'Organic Avocado']","['Banana', 'Limes']",50,0.07704160246533127,78.70821738769598,109
+[27153 27963 47762],[21134 22932 24849],"['Organic Black Beans', 'Organic Raspberries', 'Organic Avocado']","['Organic Strawberries', 'Organic Yellow Onion', 'Banana']",4,0.012048192771084338,127.17200637757021,109
+[25253],[21134],['Cultured Low Fat Buttermilk'],['Organic Strawberries'],1036,0.1811188811188811,22.227104000554615,109
+[25253],[24849],['Cultured Low Fat Buttermilk'],['Banana'],971,0.16975524475524476,11.685478904424397,109
+[ 1193 21134 21900],[13173],"['Natural Artisan Water', 'Organic Strawberries', 'Organic Baby Spinach']",['Bag of Organic Bananas'],54,0.28272251308900526,24.210423717477667,109
+[7619],[45004],['Organic Chicken & Wild Rice Soup'],['Organic Zucchini'],92,0.04038630377524144,12.483353638751604,109
+[19054 22932 31675],[21134],"['Organic Large Extra Fancy Fuji Apple', 'Organic Yellow Onion', 'Gluten Free Cinnamon Raisin Bread']",['Organic Strawberries'],1,0.14285714285714285,17.53158230600833,109
+[19054 47762],[22932],"['Organic Large Extra Fancy Fuji Apple', 'Organic Avocado']",['Organic Yellow Onion'],542,0.08636073932441045,24.810926275532683,109
+[31675],[27963],['Gluten Free Cinnamon Raisin Bread'],['Organic Raspberries'],193,0.07056672760511883,16.735297581051167,109
+[10758 15258],[13173],"['Organic Yokids Lemonade/Blueberry Variety Pack Yogurt Squeezers Tubes', 'Organic Rosemary']",['Bag of Organic Bananas'],7,0.30434782608695654,26.062267721632562,109
+[19054],[47205],['Organic Large Extra Fancy Fuji Apple'],['Organic Hass Avocado'],13849,0.177423900789177,27.165878329217893,109
+[8171],[44356],['Organic Navel Orange'],['Organic Small Bunch Celery'],2816,0.0629963535491376,30.12812679655741,109
+[ 8171 44356],[21134],"['Organic Navel Orange', 'Organic Small Bunch Celery']",['Organic Strawberries'],577,0.20490056818181818,25.145618229391918,109
+[34445],[27963],['Original Veggie Straws'],['Organic Raspberries'],1573,0.08971141781681305,21.275568876931686,109
+[ 5874 34445],[21134],"['Organic Lemon', 'Original Veggie Straws']",['Organic Strawberries'],202,0.31076923076923074,38.13793443183965,109
+[21935],[27963],['Green Bell Pepper'],['Organic Raspberries'],3811,0.06570123265235756,15.581418002431516,109
+[21935],[17791],['Green Bell Pepper'],['Carrots'],3485,0.060081027497629516,27.00791723753203,109
+[21900 48178],[13173],"['Organic Baby Spinach', 'Gluten Free Spinach Cakes']",['Bag of Organic Bananas'],35,0.23809523809523808,20.388848897875814,109
+[21134 21900 23195],[24961],"['Organic Strawberries', 'Organic Baby Spinach', 'Organic Chicken Drumsticks']",['Organic Garlic'],4,0.23529411764705882,69.84128551013158,109
+[21134 21900 23195],[13173],"['Organic Strawberries', 'Organic Baby Spinach', 'Organic Chicken Drumsticks']",['Bag of Organic Bananas'],6,0.35294117647058826,30.223470130968852,109
+[22932],[27842],['Organic Yellow Onion'],['Organic Whole Milk'],8372,0.07112032349043461,16.841784423527955,109
+[34966],[44356],['Red Vine Tomato'],['Organic Small Bunch Celery'],1981,0.03497343007962149,16.726109950594047,109
+[8515],[21134],['Organic Red Onion'],['Organic Strawberries'],9850,0.13911643409976837,17.07251850176931,109
+[ 8515 21134 25135],[21900],"['Organic Red Onion', 'Organic Strawberries', 'Organic Plain Greek Whole Milk Yogurt']",['Organic Baby Spinach'],43,0.296551724137931,39.8447158105856,109
+[21134 45004],[21900],"['Organic Strawberries', 'Organic Zucchini']",['Organic Baby Spinach'],3802,0.23657519756082385,31.78626440984662,109
+[17945 22932 31714],[13173 21900],"['Frozen Organic Wild Blueberries', 'Organic Yellow Onion', 'Organic Cilantro']","['Bag of Organic Bananas', 'Organic Baby Spinach']",40,0.1593625498007968,102.4463762953054,109
+[13173 47762],[21900],"['Bag of Organic Bananas', 'Organic Avocado']",['Organic Baby Spinach'],5206,0.21726972997788072,29.19238008268936,109
+[ 5874 21900 33117],[47205],"['Organic Lemon', 'Organic Baby Spinach', 'Organic Egg Whites']",['Organic Hass Avocado'],93,0.35361216730038025,54.142565178000844,109
+[21900 30388 37026],[47205],"['Organic Baby Spinach', 'Organic Cucumber', 'Cream Cheese Spread']",['Organic Hass Avocado'],91,0.4212962962962963,64.50587477126116,109
+[ 2449 21134 47622],[26206],"['Taco Seasoning', 'Organic Strawberries', 'Large Lemon']",['Limes'],50,0.27932960893854747,64.41209364265161,109
+[16756 24961 48675],[21134],"['Organic Carrot Bunch', 'Organic Garlic', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],92,0.2222222222222222,27.271350253790732,109
+[16756 33117 48675],[21134],"['Organic Carrot Bunch', 'Organic Egg Whites', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],7,0.35,42.95237664972041,109
+[24849 24961 30230],[21900],"['Banana', 'Organic Garlic', 'Organic Large Brown Grade AA Cage Free Eggs']",['Organic Baby Spinach'],106,0.2872628726287263,38.59666490254621,109
+[30388 47622],[13173],"['Organic Cucumber', 'Large Lemon']",['Bag of Organic Bananas'],1878,0.24345346123930517,20.847690506466847,109
+[ 8274 30388 47622],[21900],"['Apple Honeycrisp Organic', 'Organic Cucumber', 'Large Lemon']",['Organic Baby Spinach'],191,0.29475308641975306,39.60305068813408,109
+[ 8274 45004],[13173],"['Apple Honeycrisp Organic', 'Organic Zucchini']",['Bag of Organic Bananas'],2258,0.3540849929433903,30.321418756138478,109
+[35936],[31550],['Organic Jalapeno Pepper'],['Fresh Ginger Root'],481,0.022783251231527094,30.318296546141706,109
+[31550 35936],[13173],"['Fresh Ginger Root', 'Organic Jalapeno Pepper']",['Bag of Organic Bananas'],79,0.16424116424116425,14.06449077820207,109
+[12842 22932 45004],[24961],"['Chopped Walnuts', 'Organic Yellow Onion', 'Organic Zucchini']",['Organic Garlic'],25,0.24509803921568626,72.75133907305374,109
+[ 9836 22932 24961],[13173],"['Organic Broccoli', 'Organic Yellow Onion', 'Organic Garlic']",['Bag of Organic Bananas'],378,0.35195530726256985,30.13904703004436,109
+[12842],[24961],['Chopped Walnuts'],['Organic Garlic'],856,0.08174959411708528,24.26536115804209,109
+[24961],[22932],['Organic Garlic'],['Organic Yellow Onion'],22923,0.20119189720544867,57.80123430911832,109
+[21134 42614],[21900],"['Organic Strawberries', 'Organic Great Northern Beans']",['Organic Baby Spinach'],105,0.25862068965517243,34.74829867202232,109
+[49379],[30388],['Organic Bunch Beets'],['Organic Cucumber'],1790,0.11874751227278758,47.24351161448978,109
+[49379],[22032],['Organic Bunch Beets'],['Organic Whole String Cheese'],384,0.02547432665516784,13.970049026735419,109
+[35137],[21134],['Organic Whole Cashews'],['Organic Strawberries'],2182,0.16415889256695756,20.145755954105567,109
+[35137],[26937],['Organic Whole Cashews'],['Organic Large Green Asparagus'],245,0.01843213963286187,31.143009794692084,109
+[ 4797 38161 48675],[21134],"['Shredded Parmesan', 'Almonds & Sea Salt in Dark Chocolate', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],1,0.125,15.340134517757287,109
+[ 8274 45004 48675],[21134 24849],"['Apple Honeycrisp Organic', 'Organic Zucchini', 'Organic Garnet Sweet Potato (Yam)']","['Organic Strawberries', 'Banana']",22,0.03464566929133858,20.087186048426613,109
+[21134 38161 48675],[24849],"['Organic Strawberries', 'Almonds & Sea Salt in Dark Chocolate', 'Organic Garnet Sweet Potato (Yam)']",['Banana'],27,0.34177215189873417,23.526644357237142,109
+[47205 47668],[24849],"['Organic Hass Avocado', 'Uncured Hickory Smoked Sunday Bacon']",['Banana'],471,0.1754843517138599,12.079854692946359,109
+[21134 24619 39981],[21900 47622],"['Organic Strawberries', 'Green Cabbage', 'Organic Dill']","['Organic Baby Spinach', 'Large Lemon']",1,0.1,140.64337519753806,109
+[24961 31714 47205],[13173],"['Organic Garlic', 'Organic Cilantro', 'Organic Hass Avocado']",['Bag of Organic Bananas'],903,0.38491048593350385,32.961103295005884,109
+[45004 46303],[47205],"['Organic Zucchini', '100% Pure Avocado Oil']",['Organic Hass Avocado'],37,0.30327868852459017,46.4358630131435,109
+[25143 26206 41784],[47622],"['Original Orange Juice', 'Limes', 'Bartlett Pears']",['Large Lemon'],22,0.5945945945945946,125.06006282415557,109
+[34966],[21900],['Red Vine Tomato'],['Organic Baby Spinach'],7895,0.13938174178627544,18.727343119662617,109
+[ 9836 18653 22032],[21134 47205],"['Organic Broccoli', 'Organic Red Potato', 'Organic Whole String Cheese']","['Organic Strawberries', 'Organic Hass Avocado']",2,0.13333333333333333,106.51770801344892,109
+[26206 48675],[13173],"['Limes', 'Organic Garnet Sweet Potato (Yam)']",['Bag of Organic Bananas'],1307,0.23360142984807863,20.004029873100894,109
+[38659 45004],[47205],"['Roasted Almond Butter', 'Organic Zucchini']",['Organic Hass Avocado'],37,0.1434108527131783,21.958043750401192,109
+[36692],[47205],['Organic Hothouse Cucumbers'],['Organic Hass Avocado'],5000,0.20146667741155613,30.84713627425772,109
+[10746],[31714],['Organic Red Bell Pepper'],['Organic Cilantro'],4939,0.08248438491599586,38.18683308444716,109
+[10746],[39272],['Organic Red Bell Pepper'],['Organic Blueberries'],4518,0.07545342195798123,24.296529195243984,109
+[24486],[24961],['Organic Whole Strawberries'],['Organic Garlic'],2547,0.07799007900055116,23.149441341349654,109
+[27541 27842],[13173],"['Lemon Verbena Hand Soap', 'Organic Whole Milk']",['Bag of Organic Bananas'],58,0.18770226537216828,16.073539131140933,109
+[49379],[27101],['Organic Bunch Beets'],['Fresh Cauliflower'],1531,0.10156560965901552,46.27006289503428,109
+[15869],[26206],['Celery Hearts'],['Limes'],876,0.06382513661202185,14.717776220826728,109
+[22932 45004],[24849],"['Organic Yellow Onion', 'Organic Zucchini']",['Banana'],1971,0.15486760430580657,10.660655143253445,109
+[5762],[22932],['Organic SprouTofu Teriyaki Tofu Cutlets'],['Organic Yellow Onion'],288,0.07457276022786122,21.42431005860395,109
+[24849 47205],[21134],"['Banana', 'Organic Hass Avocado']",['Organic Strawberries'],7094,0.2205228636264727,27.062803138169095,109
+[13173 24849],[47205],"['Bag of Organic Bananas', 'Banana']",['Organic Hass Avocado'],179,0.14867109634551495,22.763454621554907,109
+[24486 48675],[24961],"['Organic Whole Strawberries', 'Organic Garnet Sweet Potato (Yam)']",['Organic Garlic'],196,0.14110871130309574,41.88465862486653,109
+[31637 45004],[13173],"['Original Puffins Cereal', 'Organic Zucchini']",['Bag of Organic Bananas'],86,0.2895622895622896,24.796135427315637,109
+[35129],[21900],['Cheese Square Crackers'],['Organic Baby Spinach'],490,0.1277039353661715,17.158312019092598,109
+[21134 26206 34123],[13173 47205],"['Organic Strawberries', 'Limes', 'Organic Italian Parsley Bunch']","['Bag of Organic Bananas', 'Organic Hass Avocado']",152,0.11847233047544817,61.86791900088343,109
+[21134 34123],[13173],"['Organic Strawberries', 'Organic Italian Parsley Bunch']",['Bag of Organic Bananas'],2399,0.2791482429602048,23.904347652457194,109
+[26206 27101],[47205],"['Limes', 'Fresh Cauliflower']",['Organic Hass Avocado'],1442,0.20108771440524334,30.789112169979905,109
+[25253 27842],[24849],"['Cultured Low Fat Buttermilk', 'Organic Whole Milk']",['Banana'],126,0.18,12.390699361478228,109
+[22960 27842],[21134],"['Organic Roasted Turkey Breast', 'Organic Whole Milk']",['Organic Strawberries'],775,0.2985362095531587,36.63668490373466,109
+[ 8515 21134],[13173],"['Organic Red Onion', 'Organic Strawberries']",['Bag of Organic Bananas'],3017,0.30629441624365483,26.22896039843082,109
+[26937],[16756],['Organic Large Green Asparagus'],['Organic Carrot Bunch'],682,0.03407274180655476,30.677537587628635,109
+[26937],[47622],['Organic Large Green Asparagus'],['Large Lemon'],1259,0.06289968025579537,13.22958203105161,109
+[16756],[8515],['Organic Carrot Bunch'],['Organic Red Onion'],2435,0.06482615409190139,30.963823750160255,109
+[19351 24961 47205],[13173],"['Yo Baby Organic Vanilla Yogurt', 'Organic Garlic', 'Organic Hass Avocado']",['Bag of Organic Bananas'],21,0.525,44.95741181981617,109
+[28587],[21134],['Chicken Breast Cutlets'],['Organic Strawberries'],462,0.1608075182735816,19.73447169426764,109
+[24849 30388],[21134],"['Banana', 'Organic Cucumber']",['Organic Strawberries'],3285,0.24568095131254206,30.150230732679795,109
+[32575],[47622],['Organic Fresh Squeezed Orange Juice'],['Large Lemon'],603,0.10501567398119123,22.08776686670573,109
+[46203],[10758],['Red Grapefruit'],['Organic Yokids Lemonade/Blueberry Variety Pack Yogurt Squeezers Tubes'],23,0.003872705842734467,19.934771598516935,109
+[29114],[46203],['Organic Gluten Free Sea Salt by the Seashore Multigrain Tortilla Chips'],['Red Grapefruit'],4,0.0019656019656019656,11.19294514707884,109
+[39272],[21900],['Organic Blueberries'],['Organic Baby Spinach'],14259,0.1357663816578752,18.241583013941465,109
+[2596],[34240],['Fresh Pressed Virgin Coconut Oil'],['Organic Baby Broccoli'],36,0.0248790601243953,25.38658454356268,109
+[34240 45004],[24849],"['Organic Baby Broccoli', 'Organic Zucchini']",['Banana'],600,0.15868817773075905,10.923652791570332,109
+[25253],[13173],['Cultured Low Fat Buttermilk'],['Bag of Organic Bananas'],1002,0.1751748251748252,15.000774773045555,109
+[27541],[24961],['Lemon Verbena Hand Soap'],['Organic Garlic'],237,0.046091015169194866,13.680986937005065,109
+[ 5874 42614],[27963],"['Organic Lemon', 'Organic Great Northern Beans']",['Organic Raspberries'],27,0.1323529411764706,31.388246720327228,109
+[ 4147 45004],[27963],"['Frozen Organic Blueberries', 'Organic Zucchini']",['Organic Raspberries'],24,0.18461538461538463,43.782580040661564,109
+[45004],[27963],['Organic Zucchini'],['Organic Raspberries'],9806,0.08962453844185281,21.254964942996256,109
+[10746 24961],[21900],"['Organic Red Bell Pepper', 'Organic Garlic']",['Organic Baby Spinach'],1575,0.2531340405014465,34.01111200781356,109
+[10746 44356 46688],[21900 24961],"['Organic Red Bell Pepper', 'Organic Small Bunch Celery', 'Multigrain Tortilla Chips']","['Organic Baby Spinach', 'Organic Garlic']",1,0.06666666666666667,103.33701836404192,109
+[46688],[21900],['Multigrain Tortilla Chips'],['Organic Baby Spinach'],756,0.09921259842519685,13.330213474810455,109
+[22932 27963],[21900],"['Organic Yellow Onion', 'Organic Raspberries']",['Organic Baby Spinach'],2027,0.2255480137977078,30.30465102685343,109
+[ 8171 21134 46663],[ 5874 47205],"['Organic Navel Orange', 'Organic Strawberries', 'Organic Ginger Root']","['Organic Lemon', 'Organic Hass Avocado']",48,0.13793103448275862,211.7721104036895,109
+[ 5874 21134],[47205],"['Organic Lemon', 'Organic Strawberries']",['Organic Hass Avocado'],5236,0.33078526754690757,50.647473600271766,109
+[ 5874 21134 46663],[24961],"['Organic Lemon', 'Organic Strawberries', 'Organic Ginger Root']",['Organic Garlic'],290,0.2810077519379845,83.41025619305928,109
+[15646 30388],[47205],"['Baby Seedless Cucumbers', 'Organic Cucumber']",['Organic Hass Avocado'],29,0.19205298013245034,29.40577829613419,109
+[4797],[22932],['Shredded Parmesan'],['Organic Yellow Onion'],3239,0.08594019475178434,24.690106323449985,109
+[ 6315 21900],[21134],"['Vanilla Sandwich Creme Cookies', 'Organic Baby Spinach']",['Organic Strawberries'],61,0.2687224669603524,32.97791032892316,109
+[34123 40703],[21134],"['Organic Italian Parsley Bunch', 'Organic Grape Tomatoes']",['Organic Strawberries'],910,0.20088300220750552,24.65257820955255,109
+[15258 27518],[26206],"['Organic Rosemary', 'Organic Lacinato (Dinosaur) Kale']",['Limes'],63,0.14685314685314685,33.86364475562621,109
+[17791 47205],[13173],"['Carrots', 'Organic Hass Avocado']",['Bag of Organic Bananas'],3142,0.3188229325215627,27.30181690471115,109
+[ 2596 34240],[13173],"['Fresh Pressed Virgin Coconut Oil', 'Organic Baby Broccoli']",['Bag of Organic Bananas'],7,0.19444444444444445,16.650893266598583,109
+[31714 39272],[26206],"['Organic Cilantro', 'Organic Blueberries']",['Limes'],909,0.2532033426183844,58.38749954701663,109
+[26206 39272],[21900],"['Limes', 'Organic Blueberries']",['Organic Baby Spinach'],1267,0.2135513231080398,28.692774607699675,109
+[31714],[26206],['Organic Cilantro'],['Limes'],18572,0.2542368240930869,58.62581551280145,109
+[ 8274 34123],[45004],"['Apple Honeycrisp Organic', 'Organic Italian Parsley Bunch']",['Organic Zucchini'],447,0.14078740157480316,43.51720156219459,109
+[ 8515 45004],[21134],"['Organic Red Onion', 'Organic Zucchini']",['Organic Strawberries'],1244,0.156912209889001,19.256435257406725,109
+[26601 31714],[47762],"['Organic Blackberries', 'Organic Cilantro']",['Organic Avocado'],431,0.18529664660361134,34.01601817858733,109
+[3950],[45004],['Organic Broccoli Crowns'],['Organic Zucchini'],2152,0.1124053277618177,34.7443396934674,109
+[5874],[45004],['Organic Lemon'],['Organic Zucchini'],7615,0.08345114026147658,25.794638232769206,109
+[8983],[13173],['Vanilla Coconut Milk Yogurt'],['Bag of Organic Bananas'],339,0.2677725118483412,22.93020778893806,109
+[ 8983 43958],[47205],"['Vanilla Coconut Milk Yogurt', 'Organic Peeled Whole Baby Carrots']",['Organic Hass Avocado'],3,0.10714285714285714,16.404947744025602,109
+[43958],[44356],['Organic Peeled Whole Baby Carrots'],['Organic Small Bunch Celery'],3204,0.05540281164081548,26.49650082839003,109
+[34455],[22932],['Vanilla Ice Cream Sandwich'],['Organic Yellow Onion'],147,0.05032523108524478,14.458139289020934,109
+[24181],[13173],['Red Peppers'],['Bag of Organic Bananas'],7580,0.1302741256337544,11.155785743967938,109
+[15869 17791],[21134],"['Celery Hearts', 'Carrots']",['Organic Strawberries'],72,0.17391304347826086,21.342795850792747,109
+[49379],[18367],['Organic Bunch Beets'],['Organic Shredded Mozzarella'],154,0.010216266418999602,18.145317837738983,109
+[47205],[24849],['Organic Hass Avocado'],['Banana'],32169,0.14564214472308118,10.02560016458112,110
+[47205 48675],[24849],"['Organic Hass Avocado', 'Organic Garnet Sweet Potato (Yam)']",['Banana'],1632,0.1526374859708193,10.50713999975707,110
+[34966 45004],[47205],"['Red Vine Tomato', 'Organic Zucchini']",['Organic Hass Avocado'],626,0.15316858331294347,23.45207764923585,110
+[ 5920 21900],[47205],"['Honest Face, Hand, & Baby Wipes', 'Organic Baby Spinach']",['Organic Hass Avocado'],87,0.29692832764505117,45.46354118822112,110
+[10995],[45004],['Yellow Corn Organic Tortillas'],['Organic Zucchini'],260,0.08916323731138547,27.560239954821224,110
+[34966],[45004],['Red Vine Tomato'],['Organic Zucchini'],4087,0.07215366417739173,22.302603161477844,110
+[23513 24961],[21134],"['Organic Unbleached All-Purpose Flour', 'Organic Garlic']",['Organic Strawberries'],183,0.18011811023622049,22.104288320862864,110
+[17791 27963],[21134],"['Carrots', 'Organic Raspberries']",['Organic Strawberries'],1530,0.29795520934761444,36.56538393327151,110
+[22932 48411],[27101],"['Organic Yellow Onion', 'Big California Sourdough Bread']",['Fresh Cauliflower'],10,0.11235955056179775,51.18743922087692,110
+[12611 22932],[27101],"['Yellow Grape Tomatoes', 'Organic Yellow Onion']",['Fresh Cauliflower'],30,0.078125,35.59126633326598,110
+[27101],[22932],['Fresh Cauliflower'],['Organic Yellow Onion'],8194,0.11037920118542467,31.71128737882023,110
+[41857 43765 47205],[21134],"['Sea Salt Baked Potato Chips', 'Organic Bell Pepper', 'Organic Hass Avocado']",['Organic Strawberries'],1,0.2,24.54421522841166,110
+[10746 12453 47762],[21134 21900],"['Organic Red Bell Pepper', 'Organic Sunday Bacon', 'Organic Avocado']","['Organic Strawberries', 'Organic Baby Spinach']",11,0.15714285714285714,133.6190617468419,110
+[ 8515 12453],[10746],"['Organic Red Onion', 'Organic Sunday Bacon']",['Organic Red Bell Pepper'],90,0.13846153846153847,78.20310374684937,110
+[45004],[21134],['Organic Zucchini'],['Organic Strawberries'],16071,0.14688516798888604,18.025905884903107,110
+[ 5874 17791 47622],[47205],"['Organic Lemon', 'Carrots', 'Large Lemon']",['Organic Hass Avocado'],3,0.14285714285714285,21.873263658700804,110
+[16614 17791 22932],[47205],"['Organic Muenster Cheese Slices', 'Carrots', 'Organic Yellow Onion']",['Organic Hass Avocado'],6,0.13953488372093023,21.364583108498458,110
+[29271],[47205],['Mung Bean Sprouts'],['Organic Hass Avocado'],99,0.09278350515463918,14.206346499980933,110
+[24807 43765],[47205],"['Organic Lightly Salted Brown Rice Cakes', 'Organic Bell Pepper']",['Organic Hass Avocado'],22,0.23655913978494625,36.220243047741114,110
+[27518 40542],[47205],"['Organic Lacinato (Dinosaur) Kale', 'Berry Medley']",['Organic Hass Avocado'],68,0.14345991561181434,21.965555910425277,110
+[4797],[47762],['Shredded Parmesan'],['Organic Avocado'],4452,0.11812465175515402,21.684851696416537,110
+[ 4797 41784],[47762],"['Shredded Parmesan', 'Bartlett Pears']",['Organic Avocado'],148,0.22945736434108527,42.12286633192083,110
+[12842],[4797],['Chopped Walnuts'],['Shredded Parmesan'],303,0.02893706427275332,25.965816125900325,110
+[ 4797 42447],[47762],"['Shredded Parmesan', 'Macaroni & Cheese']",['Organic Avocado'],56,0.12307692307692308,22.593969882818243,110
+[13173 21134 47622],[21900],"['Bag of Organic Bananas', 'Organic Strawberries', 'Large Lemon']",['Organic Baby Spinach'],943,0.2534264982531578,34.050406657127816,110
+[13173 47622 47762],[21900],"['Bag of Organic Bananas', 'Large Lemon', 'Organic Avocado']",['Organic Baby Spinach'],962,0.2920461445051609,39.2393457337413,110
+[13173 24961 27518],[22932],"['Bag of Organic Bananas', 'Organic Garlic', 'Organic Lacinato (Dinosaur) Kale']",['Organic Yellow Onion'],424,0.3122238586156112,89.70005581442088,110
+[27518 33728],[21900],"['Organic Lacinato (Dinosaur) Kale', 'Grated Parmesan']",['Organic Baby Spinach'],313,0.23533834586466165,31.62008090686182,110
+[ 9836 24961 27518],[13173],"['Organic Broccoli', 'Organic Garlic', 'Organic Lacinato (Dinosaur) Kale']",['Bag of Organic Bananas'],101,0.396078431372549,33.917449813642826,110
+[ 9836 21900],[13173],"['Organic Broccoli', 'Organic Baby Spinach']",['Bag of Organic Bananas'],2377,0.3011147707119331,25.78541095604933,110
+[21900],[21134],['Organic Baby Spinach'],['Organic Strawberries'],39773,0.1580143421862895,19.39169011898089,110
+[17791 25135 45004],[21134],"['Carrots', 'Organic Plain Greek Whole Milk Yogurt', 'Organic Zucchini']",['Organic Strawberries'],24,0.2727272727272727,33.46938440237954,110
+[17791 25135],[27963],"['Carrots', 'Organic Plain Greek Whole Milk Yogurt']",['Organic Raspberries'],75,0.12953367875647667,30.71964273146591,110
+[27963 45004],[47205],"['Organic Raspberries', 'Organic Zucchini']",['Organic Hass Avocado'],2694,0.2747297572914542,42.064654912888,110
+[39981],[47762],['Organic Dill'],['Organic Avocado'],1688,0.10177871570696412,18.68413005383492,110
+[10746 45004],[13173],"['Organic Red Bell Pepper', 'Organic Zucchini']",['Bag of Organic Bananas'],1976,0.2937416381745206,25.154026278170203,110
+[24961],[21134],['Organic Garlic'],['Organic Strawberries'],16267,0.14277313579553433,17.5212728690042,110
+[7945],[24961],['Organic Unsalted Butter'],['Organic Garlic'],2264,0.10174366349092216,30.20011006554405,110
+[41947],[24849],['Organic Tomato Cluster'],['Banana'],11691,0.174944259056968,12.042676216619194,110
+[47668],[47622],['Uncured Hickory Smoked Sunday Bacon'],['Large Lemon'],1243,0.05751966682091624,12.098013018690292,110
+[22932],[47622],['Organic Yellow Onion'],['Large Lemon'],11584,0.09840633388834143,20.69763568362363,110
+[47622],[24849],['Large Lemon'],['Banana'],43038,0.2676625702771282,18.425146881246853,110
+[40703],[45004],['Organic Grape Tomatoes'],['Organic Zucchini'],8249,0.09365562342469175,28.94883062274461,110
+[21134 48675],[47205],"['Organic Strawberries', 'Organic Garnet Sweet Potato (Yam)']",['Organic Hass Avocado'],2363,0.27858995519924545,42.655700799171186,110
+[22932 45004],[21134],"['Organic Yellow Onion', 'Organic Zucchini']",['Organic Strawberries'],2141,0.16822503339357273,20.644757132092938,110
+[12569],[45004],['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS'],['Organic Zucchini'],209,0.03722172751558326,11.505187258734205,110
+[44356],[21900],['Organic Small Bunch Celery'],['Organic Baby Spinach'],13805,0.19522301100206466,26.23018097661147,110
+[20577 45004],[47205],"['Original Real Vegetable Chips', 'Organic Zucchini']",['Organic Hass Avocado'],84,0.23268698060941828,35.62736573771765,110
+[26206 26937 34123],[13173 47205],"['Limes', 'Organic Large Green Asparagus', 'Organic Italian Parsley Bunch']","['Bag of Organic Bananas', 'Organic Hass Avocado']",32,0.16243654822335024,84.82665250134485,110
+[47205],[13173],['Organic Hass Avocado'],['Bag of Organic Bananas'],64761,0.2931993824617321,25.107591205043573,110
+[17791 21134 40703],[13173 21900],"['Carrots', 'Organic Strawberries', 'Organic Grape Tomatoes']","['Bag of Organic Bananas', 'Organic Baby Spinach']",46,0.058673469387755105,37.71829912964273,110
+[32575],[40703],['Organic Fresh Squeezed Orange Juice'],['Organic Grape Tomatoes'],247,0.0430163706025775,16.5168963548656,110
+[ 8274 21900],[13173],"['Apple Honeycrisp Organic', 'Organic Baby Spinach']",['Bag of Organic Bananas'],3952,0.32012960712839206,27.413711587403963,110
+[ 8274 30388],[24849],"['Apple Honeycrisp Organic', 'Organic Cucumber']",['Banana'],1009,0.16733001658374794,11.518532942446592,110
+[22932],[26206],['Organic Yellow Onion'],['Limes'],13294,0.11293282136667912,26.04177728541379,110
+[23576 30388 43769],[21134],"['Peanut Butter Chocolate Chip Fruit & Nut Food Bar', 'Organic Cucumber', 'Cherubs Heavenly Salad Tomatoes']",['Organic Strawberries'],1,1.0,122.7210761420583,110
+[23576],[30388],['Peanut Butter Chocolate Chip Fruit & Nut Food Bar'],['Organic Cucumber'],365,0.04610332196539093,18.342134374444846,110
+[16756],[21134],['Organic Carrot Bunch'],['Organic Strawberries'],5408,0.1439752941802886,17.66880303967444,110
+[2449 8274],[24849],"['Taco Seasoning', 'Apple Honeycrisp Organic']",['Banana'],118,0.2209737827715356,15.211220606059413,110
+[48771],[46663],['Organic Red Cabbage'],['Organic Ginger Root'],1441,0.0921061041866411,57.58394832578584,110
+[46203],[21900],['Red Grapefruit'],['Organic Baby Spinach'],984,0.1656844586630746,22.261378479089164,110
+[48675],[45004],['Organic Garnet Sweet Potato (Yam)'],['Organic Zucchini'],7181,0.13174454657199994,40.72206691624687,110
+[27541],[27842],['Lemon Verbena Hand Soap'],['Organic Whole Milk'],309,0.060093348891481914,14.230520583252291,110
+[27842 27963],[13173],"['Organic Whole Milk', 'Organic Raspberries']",['Bag of Organic Bananas'],3602,0.3346028797027404,28.653103731223823,110
+[36721],[25135],['Organic Sea Salt Roasted Seaweed Snacks'],['Organic Plain Greek Whole Milk Yogurt'],81,0.007577174929840973,21.230595040002854,110
+[25135 36721],[13173],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Sea Salt Roasted Seaweed Snacks']",['Bag of Organic Bananas'],37,0.4567901234567901,39.116384181850634,110
+[36721],[22932],['Organic Sea Salt Roasted Seaweed Snacks'],['Organic Yellow Onion'],655,0.06127221702525725,17.603143178770768,110
+[49231],[47205],['Organic Half & Half'],['Organic Hass Avocado'],7135,0.09030959673948814,13.827559342756393,110
+[34445],[21134],['Original Veggie Straws'],['Organic Strawberries'],3768,0.21489677198585605,26.37236311755878,110
+[15452 30388 45004],[21900],"['Organic Extra Virgin Oil Olive', 'Organic Cucumber', 'Organic Zucchini']",['Organic Baby Spinach'],4,0.13793103448275862,18.532425958411906,110
+[30388],[5874],['Organic Cucumber'],['Organic Lemon'],8747,0.10289982942179872,38.136351805434785,110
+[13626 22824],[5874],"['Organic Snipped Green Beans', 'Organic Black Mission Figs']",['Organic Lemon'],1,0.05555555555555555,20.589793232098522,110
+[43207],[45004],['Rolled Oats'],['Organic Zucchini'],93,0.06558533145275035,20.272340113019578,110
+[35129 44356],[21900],"['Cheese Square Crackers', 'Organic Small Bunch Celery']",['Organic Baby Spinach'],13,0.11926605504587157,16.024597675048827,110
+[34123],[21900],['Organic Italian Parsley Bunch'],['Organic Baby Spinach'],10978,0.17419590295298393,23.404976884577884,110
+[30388],[21900],['Organic Cucumber'],['Organic Baby Spinach'],16746,0.19700017646020823,26.468961084310948,110
+[21900 34123 34445],[13173],"['Organic Baby Spinach', 'Organic Italian Parsley Bunch', 'Original Veggie Straws']",['Bag of Organic Bananas'],32,0.3106796116504854,26.604478561888442,110
+[17791 34123],[47762],"['Carrots', 'Organic Italian Parsley Bunch']",['Organic Avocado'],548,0.10023779037863545,18.40125313759799,110
+[22846],[17791],['Bunny-Luv Fresh Organic Carrots'],['Carrots'],68,0.00633855331841909,2.8493374790619406,110
+[ 9836 44356 45004],[21134 47205],"['Organic Broccoli', 'Organic Small Bunch Celery', 'Organic Zucchini']","['Organic Strawberries', 'Organic Hass Avocado']",36,0.07964601769911504,63.62783443281241,110
+[25135 46975],[44356],"['Organic Plain Greek Whole Milk Yogurt', 'Asparagus']",['Organic Small Bunch Celery'],27,0.06994818652849741,33.45285423982558,110
+[ 9836 44356 45004],[47205],"['Organic Broccoli', 'Organic Small Bunch Celery', 'Organic Zucchini']",['Organic Hass Avocado'],145,0.32079646017699115,49.118058879604675,110
+[35936],[27101],['Organic Jalapeno Pepper'],['Fresh Cauliflower'],1388,0.06574460022735885,29.951149781325157,110
+[46303],[27101],['100% Pure Avocado Oil'],['Fresh Cauliflower'],80,0.07017543859649122,31.969698881810846,110
+[46303],[35936],['100% Pure Avocado Oil'],['Organic Jalapeno Pepper'],24,0.021052631578947368,33.72400430785186,110
+[27101 45004],[47205],"['Fresh Cauliflower', 'Organic Zucchini']",['Organic Hass Avocado'],1694,0.18988902589395806,29.07444910490686,110
+[22956 45004],[24849],"['Reduced Fat Milk 100% Lactose Free', 'Organic Zucchini']",['Banana'],100,0.32051282051282054,22.063211113743282,110
+[17791],[24849],['Carrots'],['Banana'],15948,0.21198144431300095,14.59221303719074,110
+[39465 47205 47762],[21900],"['Apples, Kale & Avocados Organic Baby Food', 'Organic Hass Avocado', 'Organic Avocado']",['Organic Baby Spinach'],1,0.14285714285714285,19.194298314069474,110
+[21134 21900 27153],[13173],"['Organic Strawberries', 'Organic Baby Spinach', 'Organic Black Beans']",['Bag of Organic Bananas'],509,0.3646131805157593,31.222980783580883,110
+[ 4797 22032 46663],[26206],"['Shredded Parmesan', 'Organic Whole String Cheese', 'Organic Ginger Root']",['Limes'],6,0.0967741935483871,22.315673732970268,110
+[47622],[21134],['Large Lemon'],['Organic Strawberries'],17322,0.10772924026070949,13.220648296760622,110
+[35458],[24849],['Blueberry Beet & Brown Rice Cakes'],['Banana'],301,0.13896583564173592,9.566021616407475,110
+[21900 34240],[47205],"['Organic Baby Spinach', 'Organic Baby Broccoli']",['Organic Hass Avocado'],1344,0.23288858083521052,35.6582333219645,110
+[31714],[21900],['Organic Cilantro'],['Organic Baby Spinach'],12479,0.17082819986310746,22.952492000395768,110
+[22032],[47205],['Organic Whole String Cheese'],['Organic Hass Avocado'],10425,0.16904765765619678,25.883367907598487,110
+[2449],[22932],['Taco Seasoning'],['Organic Yellow Onion'],934,0.09939342343301054,28.55513883230714,110
+[ 2449 27153],[22932],"['Taco Seasoning', 'Organic Black Beans']",['Organic Yellow Onion'],95,0.13929618768328444,40.01896544783115,110
+[12569 16756 26206],[24961],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Organic Carrot Bunch', 'Limes']",['Organic Garlic'],2,0.16666666666666666,49.47091056967654,110
+[31037],[21134],['Sea Salt Pita Chips'],['Organic Strawberries'],2556,0.14746437431489068,18.096986708538683,110
+[ 5874 31714],[13173],"['Organic Lemon', 'Organic Cilantro']",['Bag of Organic Bananas'],1796,0.31332868108862527,26.83132676316414,110
+[ 5874 30388 45004],[13173],"['Organic Lemon', 'Organic Cucumber', 'Organic Zucchini']",['Bag of Organic Bananas'],421,0.3916279069767442,33.53633732206885,110
+[ 3950  5874 31714],[13173 45004],"['Organic Broccoli Crowns', 'Organic Lemon', 'Organic Cilantro']","['Bag of Organic Bananas', 'Organic Zucchini']",8,0.07017543859649122,100.25221123183492,110
+[3950],[5874],['Organic Broccoli Crowns'],['Organic Lemon'],1670,0.0872290415252024,32.32850271908496,110
+[21900 27541 48853],[47622],"['Organic Baby Spinach', 'Lemon Verbena Hand Soap', 'Authentic French Brioche']",['Large Lemon'],1,0.5,105.16414373849446,110
+[34455 43958],[21134],"['Vanilla Ice Cream Sandwich', 'Organic Peeled Whole Baby Carrots']",['Organic Strawberries'],13,0.22413793103448276,27.50644810080617,110
+[43958],[21134],['Organic Peeled Whole Baby Carrots'],['Organic Strawberries'],10167,0.17580536390517196,21.575023449988876,110
+[ 5874 21134 27897],[13173],"['Organic Lemon', 'Organic Strawberries', 'Vegan Apple Maple Breakfast Sausage']",['Bag of Organic Bananas'],19,0.7037037037037037,60.26037563149963,110
+[28598],[27101],['Collard Greens'],['Fresh Cauliflower'],848,0.07843862732402183,35.734144971584705,110
+[40703 47622],[21134],"['Organic Grape Tomatoes', 'Large Lemon']",['Organic Strawberries'],1697,0.1762201453790239,21.62592587882377,110
+[40703],[47622],['Organic Grape Tomatoes'],['Large Lemon'],9630,0.10933490769545176,22.996223897039023,110
+[12611],[45004],['Yellow Grape Tomatoes'],['Organic Zucchini'],509,0.0644059218018474,19.9077861335538,110
+[27963],[47762],['Organic Raspberries'],['Organic Avocado'],9689,0.06794387214855227,12.47286463350235,110
+[12611],[47762],['Yellow Grape Tomatoes'],['Organic Avocado'],1779,0.22510439073769456,41.32376482664316,110
+[31550],[24849],['Fresh Ginger Root'],['Banana'],5295,0.2083497284961045,14.342215821338023,110
+[35936 40703],[24849],"['Organic Jalapeno Pepper', 'Organic Grape Tomatoes']",['Banana'],230,0.16630513376717282,11.447982859885885,110
+[48853],[21134],['Authentic French Brioche'],['Organic Strawberries'],1377,0.17557057248501848,21.546209594238718,110
+[21900 46663],[13173],"['Organic Baby Spinach', 'Organic Ginger Root']",['Bag of Organic Bananas'],2977,0.26766768566804533,22.921231191305562,110
+[38380],[21134],['Organic White Onions'],['Organic Strawberries'],3400,0.1388265076967049,17.036938421583365,110
+[17791 17945],[21134],"['Carrots', 'Frozen Organic Wild Blueberries']",['Organic Strawberries'],288,0.1802252816020025,22.11744050620325,110
+[22121 27842],[21900],"['Total 0% Raspberry Yogurt', 'Organic Whole Milk']",['Organic Baby Spinach'],71,0.09428950863213811,12.668746696006014,110
+[22121 27842],[47762],"['Total 0% Raspberry Yogurt', 'Organic Whole Milk']",['Organic Avocado'],73,0.09694555112881806,17.796877007631565,110
+[31368],[21134],['Whole Wheat English Muffins'],['Organic Strawberries'],1065,0.15673289183222958,19.234429152508035,110
+[ 5874 46663],[21134],"['Organic Lemon', 'Organic Ginger Root']",['Organic Strawberries'],1032,0.1751230273205498,21.49128637003295,110
+[10746 31714 40703],[21900],"['Organic Red Bell Pepper', 'Organic Cilantro', 'Organic Grape Tomatoes']",['Organic Baby Spinach'],148,0.27715355805243447,37.23837650444939,110
+[40703],[24849],['Organic Grape Tomatoes'],['Banana'],19589,0.22240514089784055,15.309751318401934,110
+[10746],[24849],['Organic Red Bell Pepper'],['Banana'],10895,0.18195330505360902,12.525159448592257,110
+[2596],[31714],['Fresh Pressed Virgin Coconut Oil'],['Organic Cilantro'],81,0.05597788527988943,25.91542828112827,110
+[26206],[47205],['Limes'],['Organic Hass Avocado'],20816,0.14193372426019366,21.73187640963188,110
+[9836],[26206],['Organic Broccoli'],['Limes'],3217,0.07968196567012607,18.374286399061468,110
+[33117],[8274],['Organic Egg Whites'],['Apple Honeycrisp Organic'],1034,0.051102105367203714,19.80277200289476,110
+[22121],[24961],['Total 0% Raspberry Yogurt'],['Organic Garlic'],356,0.028267428934413214,8.39049269309426,110
+[22121],[21134],['Total 0% Raspberry Yogurt'],['Organic Strawberries'],1222,0.09703033190408131,11.907666749689952,110
+[35458],[31714],['Blueberry Beet & Brown Rice Cakes'],['Organic Cilantro'],56,0.02585410895660203,11.969375103886016,110
+[32652 48741],[31714],"['Organic Large Grade AA Brown Eggs', 'Globe Eggplant']",['Organic Cilantro'],19,0.07335907335907337,33.96219408613659,110
+[19351],[24961],['Yo Baby Organic Vanilla Yogurt'],['Organic Garlic'],188,0.0539454806312769,16.012392287688705,110
+[46663 47762],[44356],"['Organic Ginger Root', 'Organic Avocado']",['Organic Small Bunch Celery'],508,0.10273003033367037,49.130833855214156,110
+[10746 34240 47762],[44356],"['Organic Red Bell Pepper', 'Organic Baby Broccoli', 'Organic Avocado']",['Organic Small Bunch Celery'],7,0.05511811023622047,26.36034183610636,110
+[25090 30388],[45004],"['Colby Jack Cheese', 'Organic Cucumber']",['Organic Zucchini'],31,0.13656387665198239,42.211715536360884,110
+[21900 31654],[21134],"['Organic Baby Spinach', 'Organic Basil Babe Level 1 Baby Food']",['Organic Strawberries'],24,0.2696629213483146,33.093323903476396,110
+[26937 30388],[47205],"['Organic Large Green Asparagus', 'Organic Cucumber']",['Organic Hass Avocado'],704,0.365334717176959,55.93743814741959,110
+[26937],[30388],['Organic Large Green Asparagus'],['Organic Cucumber'],1927,0.09627298161470824,38.30205482223244,110
+[26937],[33117],['Organic Large Green Asparagus'],['Organic Egg Whites'],363,0.018135491606714627,30.31165923740201,110
+[42582],[21134],['Organic Extra Firm Tofu'],['Organic Strawberries'],3776,0.12457934675024744,15.288511498264999,110
+[12453 24181],[22932],"['Organic Sunday Bacon', 'Red Peppers']",['Organic Yellow Onion'],48,0.1811320754716981,52.03816694737638,110
+[24181 42582],[13173],"['Red Peppers', 'Organic Extra Firm Tofu']",['Bag of Organic Bananas'],211,0.15781600598354525,13.514284138592032,110
+[13173 46975],[21900],"['Bag of Organic Bananas', 'Asparagus']",['Organic Baby Spinach'],2448,0.21604447974583002,29.027755353445816,110
+[31714 40703],[21900],"['Organic Cilantro', 'Organic Grape Tomatoes']",['Organic Baby Spinach'],1195,0.25350021213406876,34.060310860668466,110
+[22932 31714 45004],[24961],"['Organic Yellow Onion', 'Organic Cilantro', 'Organic Zucchini']",['Organic Garlic'],379,0.31322314049586775,92.97260383094583,110
+[ 9089 13173 45004],[22932],"['Organic Vegetable Broth', 'Bag of Organic Bananas', 'Organic Zucchini']",['Organic Yellow Onion'],94,0.31333333333333335,90.01880129577401,110
+[ 8515 45004],[13173],"['Organic Red Onion', 'Organic Zucchini']",['Bag of Organic Bananas'],1896,0.2391523713420787,20.479374564021782,110
+[ 4797 26206 27101],[47205],"['Shredded Parmesan', 'Limes', 'Fresh Cauliflower']",['Organic Hass Avocado'],44,0.18723404255319148,28.667937050552542,110
+[ 4797 26206],[27842],"['Shredded Parmesan', 'Limes']",['Organic Whole Milk'],319,0.09990604447228311,23.65844221498643,110
+[26937],[34240],['Organic Large Green Asparagus'],['Organic Baby Broccoli'],1084,0.054156674660271784,55.26145252219912,110
+[24961 30388],[47205],"['Organic Garlic', 'Organic Cucumber']",['Organic Hass Avocado'],2223,0.28669074026309,43.89603505197874,110
+[ 5874 47205],[13173],"['Organic Lemon', 'Organic Hass Avocado']",['Bag of Organic Bananas'],8319,0.37767285604031414,32.341322137467714,110
+[22392],[5874],['Tomato Sauce'],['Organic Lemon'],523,0.03889054134443783,14.41346768939437,110
+[15869],[8515],['Celery Hearts'],['Organic Red Onion'],491,0.03577413479052823,17.087300951064375,110
+[ 8515 15869],[47205],"['Organic Red Onion', 'Celery Hearts']",['Organic Hass Avocado'],121,0.24643584521384929,37.73249352122114,110
+[ 5448 24961],[8274],"['Small Hass Avocado', 'Organic Garlic']",['Apple Honeycrisp Organic'],185,0.07187257187257187,27.85161479800081,110
+[18231],[27842],['Organic Spinach Bunch'],['Organic Whole Milk'],824,0.06689397629485307,15.84095618099979,110
+[18231],[34966],['Organic Spinach Bunch'],['Red Vine Tomato'],469,0.03807436272122098,22.73256905092281,110
+[37643],[45004],['Organic Gala Apples'],['Organic Zucchini'],5328,0.07042495538959752,21.768261537729586,110
+[34240 37643],[45004],"['Organic Baby Broccoli', 'Organic Gala Apples']",['Organic Zucchini'],178,0.12741589119541877,39.38408520475207,110
+[25135 37643 45004],[21134],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Gala Apples', 'Organic Zucchini']",['Organic Strawberries'],22,0.3283582089552239,40.29647276306392,110
+[27541],[13626],['Lemon Verbena Hand Soap'],['Organic Snipped Green Beans'],52,0.010112796577207312,18.79668806820617,110
+[30388],[8274],['Organic Cucumber'],['Apple Honeycrisp Organic'],6030,0.07093700370566437,27.48906920483381,110
+[35936],[47205],['Organic Jalapeno Pepper'],['Organic Hass Avocado'],3914,0.18539219401288368,28.385926379361717,110
+[12611 21900 46688],[27963 47762],"['Yellow Grape Tomatoes', 'Organic Baby Spinach', 'Multigrain Tortilla Chips']","['Organic Raspberries', 'Organic Avocado']",1,0.16666666666666666,581.7440052292978,110
+[31714],[17791],['Organic Cilantro'],['Carrots'],4548,0.062258726899383984,27.98684732012971,110
+[17945 46663 47762],[21134 27963],"['Frozen Organic Wild Blueberries', 'Organic Ginger Root', 'Organic Avocado']","['Organic Strawberries', 'Organic Raspberries']",7,0.038461538461538464,36.60638972655971,110
+[12842 27153],[27842],"['Chopped Walnuts', 'Organic Black Beans']",['Organic Whole Milk'],33,0.12222222222222222,28.94306743005811,110
+[ 8009 27153],[27842],"['Pizza 4 Cheese', 'Organic Black Beans']",['Organic Whole Milk'],25,0.18115942028985507,42.899803503050556,110
+[26206 34455],[27842],"['Limes', 'Vanilla Ice Cream Sandwich']",['Organic Whole Milk'],17,0.09340659340659341,22.119327256737716,110
+[ 8515 24827 48675],[13173 21900],"['Organic Red Onion', 'Organic Romaine', 'Organic Garnet Sweet Potato (Yam)']","['Bag of Organic Bananas', 'Organic Baby Spinach']",10,0.10752688172043011,69.12376465086466,110
+[12611 25135],[13173],"['Yellow Grape Tomatoes', 'Organic Plain Greek Whole Milk Yogurt']",['Bag of Organic Bananas'],20,0.37037037037037035,31.71598717447349,110
+[12611],[13173],['Yellow Grape Tomatoes'],['Bag of Organic Bananas'],1056,0.13362014424901936,11.442315909383629,110
+[34240],[21134],['Organic Baby Broccoli'],['Organic Strawberries'],5425,0.16368463929034788,20.08755508163613,110
+[21900 25253 27842],[21134],"['Organic Baby Spinach', 'Cultured Low Fat Buttermilk', 'Organic Whole Milk']",['Organic Strawberries'],28,0.2857142857142857,35.06316461201666,110
+[10892],[47205],['Mexican Finely Shredded Cheese'],['Organic Hass Avocado'],655,0.11930783242258652,18.26756172589129,110
+[27963 45004],[21900],"['Organic Raspberries', 'Organic Zucchini']",['Organic Baby Spinach'],2409,0.24566591882520905,33.00769452071727,110
+[ 8135 45004],[21900],"['Traditional Hummus', 'Organic Zucchini']",['Organic Baby Spinach'],177,0.3575757575757576,48.04391032551935,110
+[15889 21134],[13173],"['Veggie Dogs', 'Organic Strawberries']",['Bag of Organic Bananas'],71,0.3302325581395349,28.27885926207706,110
+[18367],[31714],['Organic Shredded Mozzarella'],['Organic Cilantro'],909,0.04773908933354341,22.10120906933024,110
+[18438],[30230],['Organic Ketchup'],['Organic Large Brown Grade AA Cage Free Eggs'],184,0.011562146537639813,11.762874055230547,110
+[44275],[40703],['Double Chocolate Chip Cookies'],['Organic Grape Tomatoes'],116,0.04995693367786391,19.181848310436767,110
+[ 8515  9836 21134],[47205],"['Organic Red Onion', 'Organic Broccoli', 'Organic Strawberries']",['Organic Hass Avocado'],177,0.33459357277882795,51.230574051286,110
+[21264 28120],[21900],"['Sourdough Bread', 'Organic Cut Green Beans']",['Organic Baby Spinach'],34,0.35051546391752575,47.095288646892115,110
+[19675],[8515],['Organic Russet Potato'],['Organic Red Onion'],2028,0.06016375934496262,28.73685885890319,110
+[21935 26206],[47205],"['Green Bell Pepper', 'Limes']",['Organic Hass Avocado'],1243,0.18719879518072288,28.662540225053565,110
+[21935],[26206],['Green Bell Pepper'],['Limes'],6640,0.11447289026808034,26.396909928423412,110
+[21285],[24961],['Blackberries'],['Organic Garlic'],427,0.017835512301073473,5.29403420406463,110
+[45004 48771],[21900],"['Organic Zucchini', 'Organic Red Cabbage']",['Organic Baby Spinach'],470,0.27614571092831963,37.102962075962736,110
+[21935],[21900],['Green Bell Pepper'],['Organic Baby Spinach'],9688,0.16702008447547625,22.440833281043627,110
+[21900 22932 30388],[13173],"['Organic Baby Spinach', 'Organic Yellow Onion', 'Organic Cucumber']",['Bag of Organic Bananas'],804,0.37640449438202245,32.23270831383289,110
+[21134 22932 30388],[13173],"['Organic Strawberries', 'Organic Yellow Onion', 'Organic Cucumber']",['Bag of Organic Bananas'],754,0.3927083333333333,33.628857650933924,110
+[23731 47205],[21900],"['Sour Cream', 'Organic Hass Avocado']",['Organic Baby Spinach'],202,0.17235494880546076,23.157626122947303,110
+[13626 25928],[13173],"['Organic Snipped Green Beans', 'Organic Baby Spinach Salad']",['Bag of Organic Bananas'],189,0.31871838111298484,27.292863836650625,110
+[27680 45004],[26206],"['Black Beans No Salt Added', 'Organic Zucchini']",['Limes'],69,0.13745019920318724,31.695369266150998,110
+[31714 45004],[47205],"['Organic Cilantro', 'Organic Zucchini']",['Organic Hass Avocado'],1522,0.22212492702860478,34.01017965846444,110
+[31714],[47205],['Organic Cilantro'],['Organic Hass Avocado'],12497,0.17107460643394934,26.193719802867726,110
+[46663 47205],[13173],"['Organic Ginger Root', 'Organic Hass Avocado']",['Bag of Organic Bananas'],2940,0.3418207185211022,29.271190116378392,110
+[ 9836 12453],[24961],"['Organic Broccoli', 'Organic Sunday Bacon']",['Organic Garlic'],45,0.0989010989010989,29.35636451387399,110
+[24961 31714],[24849],"['Organic Garlic', 'Organic Cilantro']",['Banana'],1659,0.16142843242191302,11.11228430297016,110
+[15452],[45004],['Organic Extra Virgin Oil Olive'],['Organic Zucchini'],175,0.09011328527291453,27.853898536293414,110
+[15452],[47762],['Organic Extra Virgin Oil Olive'],['Organic Avocado'],178,0.09165808444902163,16.826224996408797,110
+[12842 15452],[21900],"['Chopped Walnuts', 'Organic Extra Virgin Oil Olive']",['Organic Baby Spinach'],4,0.4444444444444444,59.71559475488281,110
+[17945 34966],[40703],"['Frozen Organic Wild Blueberries', 'Red Vine Tomato']",['Organic Grape Tomatoes'],37,0.06445993031358885,24.750530393831315,110
+[25253],[28598],['Cultured Low Fat Buttermilk'],['Collard Greens'],40,0.006993006993006993,21.8756123166446,110
+[31714 47762],[26206],"['Organic Cilantro', 'Organic Avocado']",['Limes'],3700,0.36306544990678047,83.72118461294899,110
+[31714],[39272],['Organic Cilantro'],['Organic Blueberries'],3590,0.04914442162902122,15.824847222407415,110
+[30388 31724],[21134],"['Organic Cucumber', 'Organic Tomato Paste, No Salt Added']",['Organic Strawberries'],91,0.30033003300330036,36.8568248479449,110
+[26206 30388 33117],[21900],"['Limes', 'Organic Cucumber', 'Organic Egg Whites']",['Organic Baby Spinach'],50,0.423728813559322,56.93224076207048,110
+[34123 34455],[26206],"['Organic Italian Parsley Bunch', 'Vanilla Ice Cream Sandwich']",['Limes'],16,0.24615384615384617,56.761918828478215,110
+[26206],[21134],['Limes'],['Organic Strawberries'],19816,0.13511523251056867,16.58148673688141,110
+[43119 47762],[19054],"['Organic Bartlett Pear', 'Organic Avocado']",['Organic Large Extra Fancy Fuji Apple'],252,0.07706422018348624,33.38940031762658,110
+[ 3955 43119 47762],[19054 24849],"['100% Raw Coconut Water', 'Organic Bartlett Pear', 'Organic Avocado']","['Organic Large Extra Fancy Fuji Apple', 'Banana']",1,0.0136986301369863,34.238077352563316,110
+[22932 28598 34123],[47205],"['Organic Yellow Onion', 'Collard Greens', 'Organic Italian Parsley Bunch']",['Organic Hass Avocado'],39,0.325,49.761674823544325,110
+[27680 39272 45004],[21134],"['Black Beans No Salt Added', 'Organic Blueberries', 'Organic Zucchini']",['Organic Strawberries'],10,0.30303030303030304,37.18820489153282,110
+[22932 47517],[47205],"['Organic Yellow Onion', 'Crispy Cheddar Crackers']",['Organic Hass Avocado'],59,0.28095238095238095,43.017418528778244,110
+[21134 27680 45004],[22932],"['Organic Strawberries', 'Black Beans No Salt Added', 'Organic Zucchini']",['Organic Yellow Onion'],12,0.1348314606741573,38.736275958018936,110
+[27680 39272 47205],[21134],"['Black Beans No Salt Added', 'Organic Blueberries', 'Organic Hass Avocado']",['Organic Strawberries'],28,0.3684210526315789,45.213028052337265,110
+[27153],[47205],['Organic Black Beans'],['Organic Hass Avocado'],6736,0.1701998635571165,26.059785431817982,110
+[10758 35137],[21134],"['Organic Yokids Lemonade/Blueberry Variety Pack Yogurt Squeezers Tubes', 'Organic Whole Cashews']",['Organic Strawberries'],9,0.375,46.02040355327186,110
+[17203 27101],[24849],"['Organic Tomato Sauce No Salt Added', 'Fresh Cauliflower']",['Banana'],35,0.3017241379310345,20.769850462247987,110
+[23513],[12453],['Organic Unbleached All-Purpose Flour'],['Organic Sunday Bacon'],127,0.013252634874256496,34.71129674657505,110
+[18653],[24961],['Organic Red Potato'],['Organic Garlic'],1446,0.14767156862745098,43.83268179151488,110
+[ 8274 26206 34123],[24849],"['Apple Honeycrisp Organic', 'Limes', 'Organic Italian Parsley Bunch']",['Banana'],102,0.22466960352422907,15.465630627395733,110
+[21935],[13173],['Green Bell Pepper'],['Bag of Organic Bananas'],10540,0.18170847340746488,15.560271752627644,110
+[9663],[48675],['Country Morning White Bread'],['Organic Garnet Sweet Potato (Yam)'],121,0.02706329680161038,16.791540595577125,110
+[ 5874 24961],[21134],"['Organic Lemon', 'Organic Garlic']",['Organic Strawberries'],2065,0.18670886075949367,22.913112317662783,110
+[13626 36692],[47622],"['Organic Snipped Green Beans', 'Organic Hothouse Cucumbers']",['Large Lemon'],51,0.0905861456483126,19.05282888335068,110
+[24486],[22932],['Organic Whole Strawberries'],['Organic Yellow Onion'],2488,0.07618347724906607,21.88705946969617,110
+[26206 44629],[21134],"['Limes', 'Sparkling Water Grapefruit']",['Organic Strawberries'],870,0.16096207215541167,19.753438712967757,110
+[34259],[13173],['Hint Of Sea Salt Almond Nut Thins'],['Bag of Organic Bananas'],1942,0.156121874748774,13.369210318404557,110
+[12842 34123],[13173],"['Chopped Walnuts', 'Organic Italian Parsley Bunch']",['Bag of Organic Bananas'],102,0.19318181818181818,16.54277058304924,110
+[ 8515 22932],[21900],"['Organic Red Onion', 'Organic Yellow Onion']",['Organic Baby Spinach'],1713,0.2117952522255193,28.45682876904143,110
+[21134],[24849],['Organic Strawberries'],['Banana'],58330,0.21166497929798206,14.570428465748936,110
+[12569],[21134],['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS'],['Organic Strawberries'],814,0.14496883348174533,17.790731251938638,110
+[21134 47622],[24849],"['Organic Strawberries', 'Large Lemon']",['Banana'],5821,0.33604664588384714,23.132516447666028,110
+[5762],[12611],['Organic SprouTofu Teriyaki Tofu Cutlets'],['Yellow Grape Tomatoes'],20,0.005178663904712584,22.16092414676057,110
+[21900 27518 27963],[21134],"['Organic Baby Spinach', 'Organic Lacinato (Dinosaur) Kale', 'Organic Raspberries']",['Organic Strawberries'],303,0.2907869481765835,35.68568720829526,110
+[12453],[27963],['Organic Sunday Bacon'],['Organic Raspberries'],1445,0.11191140024783147,26.540419960238136,110
+[ 5874 26206],[21900],"['Organic Lemon', 'Limes']",['Organic Baby Spinach'],2349,0.1950186799501868,26.202727038459475,110
+[48675],[21900],['Organic Garnet Sweet Potato (Yam)'],['Organic Baby Spinach'],12271,0.2251270479021043,30.248090011991593,110
+[46663],[17791],['Organic Ginger Root'],['Carrots'],4600,0.08503715754057752,38.226318833537015,110
+[17791 34966],[26206],"['Carrots', 'Red Vine Tomato']",['Limes'],601,0.18356750152718387,42.32980221125728,110
+[18915 45004],[21134],"['Organic Chopped Spinach', 'Organic Zucchini']",['Organic Strawberries'],192,0.16768558951965065,20.57855599936698,110
+[34966],[26206],['Red Vine Tomato'],['Limes'],6886,0.12156841975177868,28.03310564460587,110
+[24961 28201 45004],[47622],"['Organic Garlic', 'Organic Fuji Apple', 'Organic Zucchini']",['Large Lemon'],109,0.2529002320185615,53.192072702997194,110
+[28051 49231],[47205],"['Roasted Red Pepper Hummus With Chips', 'Organic Half & Half']",['Organic Hass Avocado'],10,0.20408163265306123,31.24751951242972,110
+[46663],[49231],['Organic Ginger Root'],['Organic Half & Half'],1381,0.02552963360076903,10.928149569470287,110
+[ 8515 35137 41947],[47205],"['Organic Red Onion', 'Organic Whole Cashews', 'Organic Tomato Cluster']",['Organic Hass Avocado'],32,0.4050632911392405,62.020393158847845,110
+[26206 35137],[22932],"['Limes', 'Organic Whole Cashews']",['Organic Yellow Onion'],180,0.16304347826086957,46.84142065575659,110
+[22932],[24849],['Organic Yellow Onion'],['Banana'],17374,0.14759251078867783,10.15985793993466,110
+[45004 47622],[47205],"['Organic Zucchini', 'Large Lemon']",['Organic Hass Avocado'],1670,0.13871584018606198,21.239177022195562,110
+[28286],[27963],['Organic Shredded Carrots'],['Organic Raspberries'],1644,0.07813316857563804,18.52972174621412,110
+[27963 28286 41947],[47205],"['Organic Raspberries', 'Organic Shredded Carrots', 'Organic Tomato Cluster']",['Organic Hass Avocado'],46,0.3770491803278688,57.7310729352595,110
+[47205],[21900],['Organic Hass Avocado'],['Organic Baby Spinach'],36153,0.16367933284135514,21.991969596833876,110
+[31714 47622],[47762],"['Organic Cilantro', 'Large Lemon']",['Organic Avocado'],2036,0.24094674556213017,44.23204103982494,110
+[24486 31714],[47622],"['Organic Whole Strawberries', 'Organic Cilantro']",['Large Lemon'],193,0.1284953395472703,27.02620471575157,110
+[31714],[47622],['Organic Cilantro'],['Large Lemon'],8450,0.11567419575633128,24.329555498707137,110
+[24486],[47762],['Organic Whole Strawberries'],['Organic Avocado'],3299,0.10101659623981872,18.544223206496607,110
+[10746 31714],[24849],"['Organic Red Bell Pepper', 'Organic Cilantro']",['Banana'],796,0.16116622798137276,11.094234878559165,110
+[24961 47205],[24849],"['Organic Garlic', 'Organic Hass Avocado']",['Banana'],2454,0.13370382477933965,9.203799424003115,110
+[21134 35936],[13173],"['Organic Strawberries', 'Organic Jalapeno Pepper']",['Bag of Organic Bananas'],716,0.28401428004760015,24.32104181106392,110
+[14329 27842],[13173],"['Organic Yellow Mustard', 'Organic Whole Milk']",['Bag of Organic Bananas'],105,0.22340425531914893,19.130813540347308,110
+[41969],[24961],['California White Jasmine Rice'],['Organic Garlic'],116,0.08044382801664356,23.87777653016288,110
+[3986],[21900],['Roasted Salted Peanuts'],['Organic Baby Spinach'],473,0.1309161361749239,17.589903603067818,110
+[16756],[5874],['Organic Carrot Bunch'],['Organic Lemon'],3490,0.09291305042330014,34.43508894202729,110
+[47622 48741],[45004],"['Large Lemon', 'Globe Eggplant']",['Organic Zucchini'],531,0.26093366093366094,80.65425308086442,110
+[ 8274 21900],[21134],"['Apple Honeycrisp Organic', 'Organic Baby Spinach']",['Organic Strawberries'],2886,0.23377885783718105,28.689593013040117,110
+[ 5874 21134 30388],[21900],"['Organic Lemon', 'Organic Strawberries', 'Organic Cucumber']",['Organic Baby Spinach'],549,0.2679355783308931,35.99984793605124,110
+[ 5874  8274 30388],[21134],"['Organic Lemon', 'Apple Honeycrisp Organic', 'Organic Cucumber']",['Organic Strawberries'],175,0.2596439169139466,31.8637808974187,110
+[ 5874  8274 21900],[21134],"['Organic Lemon', 'Apple Honeycrisp Organic', 'Organic Baby Spinach']",['Organic Strawberries'],323,0.2716568544995795,33.33802152555494,110
+[21935 24961],[21134],"['Green Bell Pepper', 'Organic Garlic']",['Organic Strawberries'],1157,0.1810075093867334,22.213436341733644,110
+[2596],[13173],['Fresh Pressed Virgin Coconut Oil'],['Bag of Organic Bananas'],367,0.253628196268141,21.71898527379805,110
+[ 2596 34240],[47205],"['Fresh Pressed Virgin Coconut Oil', 'Organic Baby Broccoli']",['Organic Hass Avocado'],12,0.3333333333333333,51.037615203635205,110
+[35129],[12453],['Cheese Square Crackers'],['Organic Sunday Bacon'],30,0.007818608287724784,20.47849616287508,110
+[ 5874 34966 42825],[21134],"['Organic Lemon', 'Red Vine Tomato', 'Whipped Cream Cheese']",['Organic Strawberries'],13,0.37142857142857144,45.582113995621654,110
+[1882 6315],[21900],"['Gelatin Free Snacks Natural Orange Gels', 'Vanilla Sandwich Creme Cookies']",['Organic Baby Spinach'],2,0.5,67.18004409924316,110
+[ 8515 36008 45004],[21134],"['Organic Red Onion', 'Organic Fat Free Milk', 'Organic Zucchini']",['Organic Strawberries'],17,0.19101123595505617,23.441104431629114,110
+[21292 46663 47762],[30388],"['Organic Spaghetti Squash', 'Organic Ginger Root', 'Organic Avocado']",['Organic Cucumber'],15,0.16853932584269662,67.05310659187926,110
+[5874],[47622],['Organic Lemon'],['Large Lemon'],312,0.003419140612157675,0.7191419895981472,110
+[45004 47205],[13173],"['Organic Zucchini', 'Organic Hass Avocado']",['Bag of Organic Bananas'],6365,0.3720264188438833,31.857799847268346,110
+[28587 45004 47205],[13173],"['Chicken Breast Cutlets', 'Organic Zucchini', 'Organic Hass Avocado']",['Bag of Organic Bananas'],21,0.5121951219512195,43.86088958030846,110
+[ 3986 30388],[47205],"['Roasted Salted Peanuts', 'Organic Cucumber']",['Organic Hass Avocado'],39,0.21428571428571427,32.809895488051204,110
+[ 3986 30388],[21134],"['Roasted Salted Peanuts', 'Organic Cucumber']",['Organic Strawberries'],50,0.27472527472527475,33.714581357708326,110
+[27963],[26206],['Organic Raspberries'],['Limes'],9818,0.06884848144849688,15.876135906489495,110
+[46663],[24961],['Organic Ginger Root'],['Organic Garlic'],11236,0.20771250046215847,61.654359207404035,110
+[2449],[49379],['Taco Seasoning'],['Organic Bunch Beets'],42,0.004469511546238161,10.027523202232471,110
+[ 2449 24849 49379],[21900],"['Taco Seasoning', 'Banana', 'Organic Bunch Beets']",['Organic Baby Spinach'],7,0.5384615384615384,72.34773979918495,110
+[39718],[21900],['Organic Grapefruit Juice'],['Organic Baby Spinach'],212,0.1311069882498454,17.61554650468714,110
+[15258],[13173],['Organic Rosemary'],['Bag of Organic Bananas'],1431,0.13273351266116315,11.366390839997516,110
+[15258 19054],[17791],"['Organic Rosemary', 'Organic Large Extra Fancy Fuji Apple']",['Carrots'],22,0.05612244897959184,25.22843766725251,110
+[17791],[21900],['Carrots'],['Organic Baby Spinach'],12885,0.17126792763813753,23.01157386303213,110
+[23798 27101 47622],[13173 21134],"['Fusilli No. 34', 'Fresh Cauliflower', 'Large Lemon']","['Bag of Organic Bananas', 'Organic Strawberries']",1,0.02631578947368421,13.755007166458695,110
+[23798],[47622],['Fusilli No. 34'],['Large Lemon'],620,0.08829393335232127,18.570711796601127,110
+[22960],[47622],['Organic Roasted Turkey Breast'],['Large Lemon'],1806,0.06120581556918697,12.873314372299522,110
+[24486 24961 40703],[13173 30388],"['Organic Whole Strawberries', 'Organic Garlic', 'Organic Grape Tomatoes']","['Bag of Organic Bananas', 'Organic Cucumber']",17,0.08018867924528301,118.93296392405168,110
+[24961 26206],[13173],"['Organic Garlic', 'Limes']",['Bag of Organic Bananas'],3127,0.1883734939759036,16.1310185611664,110
+[ 2227 31480],[22932],"['Organic Frozen Mango Chunks', 'Organic Gluten Free All Purpose Baking Mix']",['Organic Yellow Onion'],1,1.0,287.29404668864044,110
+[21935 47762],[21134],"['Green Bell Pepper', 'Organic Avocado']",['Organic Strawberries'],1080,0.16684690251815232,20.47563142799675,110
+[31714],[13173],['Organic Cilantro'],['Bag of Organic Bananas'],14570,0.19945242984257358,17.07974290837252,110
+[24961],[27963],['Organic Garlic'],['Organic Raspberries'],7750,0.06802064316809436,16.131479292090344,110
+[21935 25253 47205],[24961],"['Green Bell Pepper', 'Cultured Low Fat Buttermilk', 'Organic Hass Avocado']",['Organic Garlic'],5,0.23809523809523808,70.67272938525221,110
+[ 8171 22932],[21134],"['Organic Navel Orange', 'Organic Yellow Onion']",['Organic Strawberries'],779,0.19617224880382775,24.07446948241335,110
+[23195],[24961],['Organic Chicken Drumsticks'],['Organic Garlic'],130,0.09097270818754374,27.003016266163545,110
+[27101 34123],[31714],"['Fresh Cauliflower', 'Organic Italian Parsley Bunch']",['Organic Cilantro'],811,0.17310565635005337,80.14070556197163,110
+[15258 27101],[31714],"['Organic Rosemary', 'Fresh Cauliflower']",['Organic Cilantro'],95,0.13380281690140844,61.94512865006604,110
+[ 5874 45764],[21134],"['Organic Lemon', 'Sunny Days Strawberry Snack Bars']",['Organic Strawberries'],35,0.3888888888888889,47.72486294413378,110
+[24827 47205],[21900],"['Organic Romaine', 'Organic Hass Avocado']",['Organic Baby Spinach'],719,0.2299328429804925,30.893797062587677,110
+[16614 22932 47622],[13173],"['Organic Muenster Cheese Slices', 'Organic Yellow Onion', 'Large Lemon']",['Bag of Organic Bananas'],17,0.2537313432835821,21.727818079228854,110
+[16614 21900],[13173],"['Organic Muenster Cheese Slices', 'Organic Baby Spinach']",['Bag of Organic Bananas'],352,0.2807017543859649,24.03737975328517,110
+[ 5874 44629],[47205],"['Organic Lemon', 'Sparkling Water Grapefruit']",['Organic Hass Avocado'],896,0.266984505363528,40.87875735022987,110
+[21373],[21134],['Pretzel Crisps Original Deli Style Pretzel Crackers'],['Organic Strawberries'],2355,0.14200434153400868,17.426925609897932,110
+[ 5874 27963 44629],[21134 47205],"['Organic Lemon', 'Organic Raspberries', 'Sparkling Water Grapefruit']","['Organic Strawberries', 'Organic Hass Avocado']",78,0.14857142857142858,118.69116035784309,110
+[38380],[21900],['Organic White Onions'],['Organic Baby Spinach'],4432,0.18096443591523417,24.31439757036019,110
+[41857 47205],[21134],"['Sea Salt Baked Potato Chips', 'Organic Hass Avocado']",['Organic Strawberries'],48,0.16326530612244897,20.036094064009518,110
+[24181 41857],[47205],"['Red Peppers', 'Sea Salt Baked Potato Chips']",['Organic Hass Avocado'],12,0.15,22.966926841635843,110
+[9836],[24181],['Organic Broccoli'],['Red Peppers'],1057,0.02618086344834419,15.217210554800682,110
+[26206],[47622],['Limes'],['Large Lemon'],28998,0.19772262375562524,41.58666084997766,110
+[25143 26206],[47622],"['Original Orange Juice', 'Limes']",['Large Lemon'],426,0.26492537313432835,55.72130004054557,110
+[26206 41784],[47622],"['Limes', 'Bartlett Pears']",['Large Lemon'],857,0.32037383177570095,67.38367938982411,110
+[19054 21292],[22932],"['Organic Large Extra Fancy Fuji Apple', 'Organic Spaghetti Squash']",['Organic Yellow Onion'],93,0.16548042704626334,47.54154153388534,110
+[41541],[47205],['Organic Crushed Fire Roasted Tomatoes'],['Organic Hass Avocado'],780,0.10680542242913871,16.353282154800272,110
+[13173 28943],[21134],"['Bag of Organic Bananas', 'Yogurt Tubes Blueberry']",['Organic Strawberries'],139,0.27689243027888444,33.98053701941455,110
+[31724],[21134],"['Organic Tomato Paste, No Salt Added']",['Organic Strawberries'],664,0.1583591700453136,19.43400776492409,110
+[28943],[21134],['Yogurt Tubes Blueberry'],['Organic Strawberries'],567,0.20961182994454713,25.723789342900943,110
+[21935 40703 45004],[22932],"['Green Bell Pepper', 'Organic Grape Tomatoes', 'Organic Zucchini']",['Organic Yellow Onion'],120,0.21505376344086022,61.783665954546336,110
+[22932 40703 46663],[47205],"['Organic Yellow Onion', 'Organic Grape Tomatoes', 'Organic Ginger Root']",['Organic Hass Avocado'],164,0.3481953290870488,53.31317766494378,110
+[18269 27518 45004],[13173],"['Slices Cheddar Cheese', 'Organic Lacinato (Dinosaur) Kale', 'Organic Zucchini']",['Bag of Organic Bananas'],2,0.5,42.81658268553921,110
+[21900 27963 30230],[13173],"['Organic Baby Spinach', 'Organic Raspberries', 'Organic Large Brown Grade AA Cage Free Eggs']",['Bag of Organic Bananas'],368,0.41818181818181815,35.810232791541885,110
+[21900 27963 30230],[24849],"['Organic Baby Spinach', 'Organic Raspberries', 'Organic Large Brown Grade AA Cage Free Eggs']",['Banana'],213,0.24204545454545454,16.66173588380595,110
+[17791 34240 45004],[21900],"['Carrots', 'Organic Baby Broccoli', 'Organic Zucchini']",['Organic Baby Spinach'],87,0.26443768996960487,35.52987134732009,110
+[42582],[21900],['Organic Extra Firm Tofu'],['Organic Baby Spinach'],6091,0.20095677994061367,27.00057067690466,110
+[ 5448 21900],[13173],"['Small Hass Avocado', 'Organic Baby Spinach']",['Bag of Organic Bananas'],1386,0.2065881651512893,17.690798510108017,110
+[ 5448 21900 30388],[13173],"['Small Hass Avocado', 'Organic Baby Spinach', 'Organic Cucumber']",['Bag of Organic Bananas'],128,0.25396825396825395,21.748105491067534,110
+[13173 21134 47762],[21900],"['Bag of Organic Bananas', 'Organic Strawberries', 'Organic Avocado']",['Organic Baby Spinach'],1228,0.25642096471079556,34.452743434483445,110
+[21134 47762],[21900],"['Organic Strawberries', 'Organic Avocado']",['Organic Baby Spinach'],5449,0.21733407785577535,29.20102586923867,110
+[ 6613 12611],[21134],"['Mozzarella Cheese', 'Yellow Grape Tomatoes']",['Organic Strawberries'],20,0.39215686274509803,48.12591221257188,110
+[21134 27518 47762],[13173 21900],"['Organic Strawberries', 'Organic Lacinato (Dinosaur) Kale', 'Organic Avocado']","['Bag of Organic Bananas', 'Organic Baby Spinach']",64,0.0881542699724518,56.67006159806425,110
+[15869],[10746],['Celery Hearts'],['Organic Red Bell Pepper'],542,0.03948998178506375,22.303949362489398,110
+[15869],[21900],['Celery Hearts'],['Organic Baby Spinach'],1586,0.11555555555555555,15.526054636269532,110
+[15869 35137],[13173],"['Celery Hearts', 'Organic Whole Cashews']",['Bag of Organic Bananas'],45,0.5625,48.168655521231614,110
+[17791 19054],[22932],"['Carrots', 'Organic Large Extra Fancy Fuji Apple']",['Organic Yellow Onion'],618,0.18112543962485345,52.036260508083174,110
+[26206 34123 48675],[47622],"['Limes', 'Organic Italian Parsley Bunch', 'Organic Garnet Sweet Potato (Yam)']",['Large Lemon'],181,0.3474088291746641,73.06990409469289,110
+[26206 34123],[47622],"['Limes', 'Organic Italian Parsley Bunch']",['Large Lemon'],2074,0.26596563221338804,55.94009595117658,110
+[24961 27842],[47762],"['Organic Garlic', 'Organic Whole Milk']",['Organic Avocado'],1452,0.1664755789956432,30.560921771674867,110
+[27842 47762],[21900],"['Organic Whole Milk', 'Organic Avocado']",['Organic Baby Spinach'],2928,0.21573828470380194,28.98661496059298,110
+[12392],[27842],['Plain Goat Milk Yogurt'],['Organic Whole Milk'],234,0.047282279248332997,11.196770698892776,110
+[27518 27842 31952],[47205],"['Organic Lacinato (Dinosaur) Kale', 'Organic Whole Milk', 'Organic Banana Puffs']",['Organic Hass Avocado'],1,0.3333333333333333,51.037615203635205,110
+[22932 24961 27963],[21900],"['Organic Yellow Onion', 'Organic Garlic', 'Organic Raspberries']",['Organic Baby Spinach'],513,0.2727272727272727,36.643660417769,110
+[24218],[21134],['Organic Red Grapes'],['Organic Strawberries'],2662,0.27775459098497496,34.08634230907337,110
+[27101],[21134],['Fresh Cauliflower'],['Organic Strawberries'],11473,0.15454974068835456,18.966510494750924,110
+[24218 27101 49379],[21134],"['Organic Red Grapes', 'Fresh Cauliflower', 'Organic Bunch Beets']",['Organic Strawberries'],10,0.35714285714285715,43.82895576502082,110
+[27101 49379],[21134],"['Fresh Cauliflower', 'Organic Bunch Beets']",['Organic Strawberries'],326,0.21293272370999347,26.131332999549972,110
+[41784],[48675],['Bartlett Pears'],['Organic Garnet Sweet Potato (Yam)'],860,0.023484434735117424,14.57102000948535,110
+[41784 43765],[13173],"['Bartlett Pears', 'Organic Bell Pepper']",['Bag of Organic Bananas'],55,0.1724137931034483,14.764338857082485,110
+[13173 22032 41784],[47762],"['Bag of Organic Bananas', 'Organic Whole String Cheese', 'Bartlett Pears']",['Organic Avocado'],32,0.1839080459770115,33.76110442260197,110
+[ 8667 27518],[26206],"['Diced Tomatoes', 'Organic Lacinato (Dinosaur) Kale']",['Limes'],76,0.17194570135746606,39.649869769892874,110
+[19054 32997],[26206],"['Organic Large Extra Fancy Fuji Apple', 'Pure Irish Butter']",['Limes'],105,0.09316770186335403,21.484033718076965,110
+[17197 47622],[21900],"['Wild Blueberry Preserves', 'Large Lemon']",['Organic Baby Spinach'],29,0.1657142857142857,22.26538604432059,110
+[24961 36637],[45004],"['Organic Garlic', 'Sprouted Grain Low Sodium Bread']",['Organic Zucchini'],23,0.1270718232044199,39.27773423905546,110
+[24181],[47205],['Red Peppers'],['Organic Hass Avocado'],6637,0.11406719945003008,17.465153498660833,110
+[ 8515 19054],[47622],"['Organic Red Onion', 'Organic Large Extra Fancy Fuji Apple']",['Large Lemon'],375,0.12698950220115138,26.709484525523482,110
+[5448],[47762],['Small Hass Avocado'],['Organic Avocado'],157,0.0030120481927710845,0.5529397749936693,110
+[17945 21134],[21900],"['Frozen Organic Wild Blueberries', 'Organic Strawberries']",['Organic Baby Spinach'],1294,0.2648383135489153,35.58369916677063,110
+[23895],[21900],['Organic Gluten Free Fusilli'],['Organic Baby Spinach'],315,0.14093959731543623,18.93665672596116,110
+[19054 40703],[21134],"['Organic Large Extra Fancy Fuji Apple', 'Organic Grape Tomatoes']",['Organic Strawberries'],1321,0.2871114975005434,35.234631946024564,110
+[15869 21900],[21134],"['Celery Hearts', 'Organic Baby Spinach']",['Organic Strawberries'],359,0.22635561160151324,27.778604246531483,110
+[22932 24827],[21134],"['Organic Yellow Onion', 'Organic Romaine']",['Organic Strawberries'],387,0.1967463141840366,24.14491940364848,110
+[22932 41857],[21134],"['Organic Yellow Onion', 'Sea Salt Baked Potato Chips']",['Organic Strawberries'],33,0.24444444444444444,29.998485279169806,110
+[21134 21900],[13173],"['Organic Strawberries', 'Organic Baby Spinach']",['Bag of Organic Bananas'],11554,0.2904985794383124,24.87631289310437,110
+[39981],[44629],['Organic Dill'],['Sparkling Water Grapefruit'],378,0.02279167922821827,9.726723651171833,110
+[24619],[21900],['Green Cabbage'],['Organic Baby Spinach'],495,0.09387445476958088,12.612980022425702,110
+[16756 26206],[24849],"['Organic Carrot Bunch', 'Limes']",['Banana'],687,0.18915198237885464,13.020696373800083,110
+[21900 45004],[13173],"['Organic Baby Spinach', 'Organic Zucchini']",['Bag of Organic Bananas'],5638,0.2638895389655979,22.59769652993869,110
+[21134 37062 40703],[13173 21900],"['Organic Strawberries', 'Serrano Chile Peppers', 'Organic Grape Tomatoes']","['Bag of Organic Bananas', 'Organic Baby Spinach']",1,0.017857142857142856,11.47948234380431,110
+[10746 17791],[24849],"['Organic Red Bell Pepper', 'Carrots']",['Banana'],767,0.2043153969099627,14.064503655735809,110
+[24961 25253],[21900],"['Organic Garlic', 'Cultured Low Fat Buttermilk']",['Organic Baby Spinach'],99,0.15714285714285714,21.113728145476422,110
+[21134 47762 49231],[24849],"['Organic Strawberries', 'Organic Avocado', 'Organic Half & Half']",['Banana'],351,0.33847637415621984,23.299772184071884,110
+[12611],[21134],['Yellow Grape Tomatoes'],['Organic Strawberries'],1485,0.1879033278501835,23.05969860444851,110
+[21134 47622],[47762],"['Organic Strawberries', 'Large Lemon']",['Organic Avocado'],3575,0.20638494400184737,37.88732357348956,110
+[12842],[47205],['Chopped Walnuts'],['Organic Hass Avocado'],1130,0.10791710438353548,16.523494942252253,110
+[47668],[24961],['Uncured Hickory Smoked Sunday Bacon'],['Organic Garlic'],1337,0.06186950485886164,18.364444451177476,110
+[24961 47762 48675],[21900],"['Organic Garlic', 'Organic Avocado', 'Organic Garnet Sweet Potato (Yam)']",['Organic Baby Spinach'],359,0.33964049195837276,45.63412645530425,110
+[44356],[26206],['Organic Small Bunch Celery'],['Limes'],7077,0.10007919223916056,23.077790881839277,110
+[39300],[21134],['Organic Sea Salt Potato Chips'],['Organic Strawberries'],565,0.14498332050295099,17.79250911477109,110
+[21900 26494],[47762],"['Organic Baby Spinach', 'Romaine Lettuce']",['Organic Avocado'],269,0.26926926926926925,49.43137680193656,110
+[21900 24961 27101],[13173],"['Organic Baby Spinach', 'Organic Garlic', 'Fresh Cauliflower']",['Bag of Organic Bananas'],615,0.2958152958152958,25.33160014584571,110
+[27518 47762],[21900],"['Organic Lacinato (Dinosaur) Kale', 'Organic Avocado']",['Organic Baby Spinach'],1332,0.26102292768959434,35.071063586201014,110
+[32575 33117 47622],[21900],"['Organic Fresh Squeezed Orange Juice', 'Organic Egg Whites', 'Large Lemon']",['Organic Baby Spinach'],4,0.5714285714285714,76.7771932562779,110
+[32575],[33117],['Organic Fresh Squeezed Orange Juice'],['Organic Egg Whites'],68,0.011842563566701497,19.793659808936248,110
+[17792 35137],[13173],"['Organic Green Leaf Lettuce', 'Organic Whole Cashews']",['Bag of Organic Bananas'],31,0.2743362831858407,23.492284305340096,110
+[14849 21134],[13173],"['All Natural Marinara Sauce', 'Organic Strawberries']",['Bag of Organic Bananas'],376,0.3066884176182708,26.262699983299743,110
+[22932 23731],[31714],"['Organic Yellow Onion', 'Sour Cream']",['Organic Cilantro'],119,0.12357217030114226,57.20876558609695,110
+[21134 48675],[21900],"['Organic Strawberries', 'Organic Garnet Sweet Potato (Yam)']",['Organic Baby Spinach'],2213,0.2609054468285782,35.05527884735324,110
+[47205 47762],[17791],"['Organic Hass Avocado', 'Organic Avocado']",['Carrots'],46,0.048884165781083955,21.97464921340437,110
+[24888 36721],[21900],"['Organic Chocolate 1% Milk with DHA Omega-3', 'Organic Sea Salt Roasted Seaweed Snacks']",['Organic Baby Spinach'],5,0.14285714285714285,19.194298314069474,110
+[36721],[45004],['Organic Sea Salt Roasted Seaweed Snacks'],['Organic Zucchini'],591,0.05528531337698784,17.088618006613256,110
+[27842 45004],[24961],"['Organic Whole Milk', 'Organic Zucchini']",['Organic Garlic'],865,0.11229391146306633,33.331692309051185,110
+[13626 43765],[45004],"['Organic Snipped Green Beans', 'Organic Bell Pepper']",['Organic Zucchini'],118,0.1673758865248227,51.73566746085393,110
+[27842],[47622],['Organic Whole Milk'],['Large Lemon'],10199,0.07141506725578203,15.020608795962621,110
+[43765],[27842],['Organic Bell Pepper'],['Organic Whole Milk'],1733,0.07122600797336731,16.866811239930218,110
+[12338],[13173],['Hass Avocados'],['Bag of Organic Bananas'],11732,0.22347943692020497,19.1372515788234,110
+[ 2227  5874 10746],[22932],"['Organic Frozen Mango Chunks', 'Organic Lemon', 'Organic Red Bell Pepper']",['Organic Yellow Onion'],21,0.23595505617977527,67.78848292653313,110
+[2227 2449 5874],[21900 22932 47205],"['Organic Frozen Mango Chunks', 'Taco Seasoning', 'Organic Lemon']","['Organic Baby Spinach', 'Organic Yellow Onion', 'Organic Hass Avocado']",1,0.2,1430.2857263692113,110
+[2449],[47205],['Taco Seasoning'],['Organic Hass Avocado'],1337,0.14227945088858146,21.7848115975078,110
+[2449],[2227],['Taco Seasoning'],['Organic Frozen Mango Chunks'],73,0.007768436735128233,24.01916121773593,110
+[47668],[22932],['Uncured Hickory Smoked Sunday Bacon'],['Organic Yellow Onion'],1362,0.06302637667746414,18.10710280379122,110
+[21935],[45004],['Green Bell Pepper'],['Organic Zucchini'],5859,0.10100853374709076,31.22160557980331,110
+[8274],[40703],['Apple Honeycrisp Organic'],['Organic Grape Tomatoes'],5072,0.058117150976258136,22.31510807788639,110
+[12453 34123 47762],[45004],"['Organic Sunday Bacon', 'Organic Italian Parsley Bunch', 'Organic Avocado']",['Organic Zucchini'],9,0.15,46.36480367784155,110
+[34123 47762 48675],[45004],"['Organic Italian Parsley Bunch', 'Organic Avocado', 'Organic Garnet Sweet Potato (Yam)']",['Organic Zucchini'],90,0.215311004784689,66.55234977680605,110
+[12453 34123],[47762],"['Organic Sunday Bacon', 'Organic Italian Parsley Bunch']",['Organic Avocado'],60,0.09900990099009901,18.175842108702792,110
+[27692 28286],[47205],"['Natural Chicken & Sage Breakfast Sausage', 'Organic Shredded Carrots']",['Organic Hass Avocado'],27,0.15254237288135594,23.356196788104246,110
+[22960 36721 47762],[40703],"['Organic Roasted Turkey Breast', 'Organic Sea Salt Roasted Seaweed Snacks', 'Organic Avocado']",['Organic Grape Tomatoes'],3,0.16666666666666666,63.994614621888175,110
+[17221 42753],[8274],"['Oats & Honey Gluten Free Granola', 'Cranberry Walnut Bread']",['Apple Honeycrisp Organic'],1,1.0,387.5138188651572,110
+[17221 41784 45004],[47762],"['Oats & Honey Gluten Free Granola', 'Bartlett Pears', 'Organic Zucchini']",['Organic Avocado'],1,0.25,45.89400132447455,110
+[22932 25135],[13173],"['Organic Yellow Onion', 'Organic Plain Greek Whole Milk Yogurt']",['Bag of Organic Bananas'],387,0.38738738738738737,33.17320820681416,110
+[25135],[13173],['Organic Plain Greek Whole Milk Yogurt'],['Bag of Organic Bananas'],3486,0.2888152444076222,24.732163586046344,110
+[17791 27101 47205],[21900 24849],"['Carrots', 'Fresh Cauliflower', 'Organic Hass Avocado']","['Organic Baby Spinach', 'Banana']",56,0.05779153766769866,36.60376698730019,110
+[21134 21900 33211],[47205],"['Organic Strawberries', 'Organic Baby Spinach', 'Dark Chocolate Chip Chococonut Chewy Granola Bars']",['Organic Hass Avocado'],27,0.47368421052631576,72.5271373946395,110
+[16756 27518],[21134],"['Organic Carrot Bunch', 'Organic Lacinato (Dinosaur) Kale']",['Organic Strawberries'],341,0.15577889447236182,19.117353569868378,110
+[ 2227 10746 27153],[21134],"['Organic Frozen Mango Chunks', 'Organic Red Bell Pepper', 'Organic Black Beans']",['Organic Strawberries'],18,0.2857142857142857,35.06316461201666,110
+[10746 38541],[24849],"['Organic Red Bell Pepper', 'Organic Whole Milk Strawberry Beet Berry Yogurt Pouch']",['Banana'],50,0.28735632183908044,19.7808099640457,110
+[2227],[27153],['Organic Frozen Mango Chunks'],['Organic Black Beans'],524,0.04790638142256354,40.9366801780354,110
+[ 2227 24849 27153],[21134],"['Organic Frozen Mango Chunks', 'Banana', 'Organic Black Beans']",['Organic Strawberries'],17,0.21794871794871795,26.746901210448605,110
+[10746 12611],[21134],"['Organic Red Bell Pepper', 'Yellow Grape Tomatoes']",['Organic Strawberries'],107,0.2565947242206235,31.48958068872959,110
+[21134 48675],[13173],"['Organic Strawberries', 'Organic Garnet Sweet Potato (Yam)']",['Bag of Organic Bananas'],2804,0.3305824098090073,28.308818167944338,110
+[1193 5874],[21134],"['Natural Artisan Water', 'Organic Lemon']",['Organic Strawberries'],124,0.22103386809269163,27.12551415617688,110
+[28286],[45004],['Organic Shredded Carrots'],['Organic Zucchini'],2060,0.09790409201083598,30.262026702264976,110
+[17791 34966 45004],[21900],"['Carrots', 'Red Vine Tomato', 'Organic Zucchini']",['Organic Baby Spinach'],151,0.2849056603773585,38.279949656549874,110
+[13173 47762 48596],[21900],"['Bag of Organic Bananas', 'Organic Avocado', 'Organic Cinnamon Apple Chips']",['Organic Baby Spinach'],9,0.2903225806451613,39.00776754149603,110
+[48596],[23798],['Organic Cinnamon Apple Chips'],['Fusilli No. 34'],8,0.0030245746691871457,14.56684866735332,110
+[16756 21292],[24849],"['Organic Carrot Bunch', 'Organic Spaghetti Squash']",['Banana'],66,0.176,12.115350486778711,110
+[21134 46663 47205],[24961],"['Organic Strawberries', 'Organic Ginger Root', 'Organic Hass Avocado']",['Organic Garlic'],492,0.28637951105937137,85.00473108363514,110
+[10746 21134 24961],[47205],"['Organic Red Bell Pepper', 'Organic Strawberries', 'Organic Garlic']",['Organic Hass Avocado'],458,0.340014847809948,52.06064089814014,110
+[21134 47205 47622],[26206],"['Organic Strawberries', 'Organic Hass Avocado', 'Large Lemon']",['Limes'],676,0.2303236797274276,53.11155692766893,110
+[42582],[21935],['Organic Extra Firm Tofu'],['Green Bell Pepper'],1472,0.04856483008907951,28.31513036211653,110
+[21134 25135 34240],[13173],"['Organic Strawberries', 'Organic Plain Greek Whole Milk Yogurt', 'Organic Baby Broccoli']",['Bag of Organic Bananas'],27,0.38028169014084506,32.56472485942419,110
+[ 9836 21134 34240],[13173],"['Organic Broccoli', 'Organic Strawberries', 'Organic Baby Broccoli']",['Bag of Organic Bananas'],28,0.34146341463414637,29.240593053538973,110
+[13173 15258 46688],[24961],"['Bag of Organic Bananas', 'Organic Rosemary', 'Multigrain Tortilla Chips']",['Organic Garlic'],1,0.3333333333333333,98.94182113935308,110
+[38647 47762],[24961],"['Organic Red Lentils', 'Organic Avocado']",['Organic Garlic'],177,0.19471947194719472,57.79769749724586,110
+[10746 39272 47762],[27963],"['Organic Red Bell Pepper', 'Organic Blueberries', 'Organic Avocado']",['Organic Raspberries'],105,0.17826825127334464,42.27732155878823,110
+[21134 44356 45004],[13173],"['Organic Strawberries', 'Organic Small Bunch Celery', 'Organic Zucchini']",['Bag of Organic Bananas'],483,0.3684210526315789,31.549060926186787,110
+[ 8274 21134],[13173],"['Apple Honeycrisp Organic', 'Organic Strawberries']",['Bag of Organic Bananas'],5711,0.34923255671742187,29.905889282347513,110
+[27963 46663 47622],[47205],"['Organic Raspberries', 'Organic Ginger Root', 'Large Lemon']",['Organic Hass Avocado'],76,0.20052770448548812,30.70336745759585,110
+[21292],[45004],['Organic Spaghetti Squash'],['Organic Zucchini'],2292,0.16345742404792468,50.524475837784834,110
+[27680],[45004],['Black Beans No Salt Added'],['Organic Zucchini'],502,0.08456873315363882,26.14008473301489,110
+[21134 27680 45004],[24961],"['Organic Strawberries', 'Black Beans No Salt Added', 'Organic Zucchini']",['Organic Garlic'],14,0.15730337078651685,46.69164593093067,110
+[35129],[24849],['Cheese Square Crackers'],['Banana'],851,0.2217878550951264,15.267259080615602,110
+[5762],[23233],['Organic SprouTofu Teriyaki Tofu Cutlets'],['Chopped Spinach'],23,0.005955463490419472,22.57183134165932,110
+[25253 32296],[24961],"['Cultured Low Fat Buttermilk', 'Dijon Mustard']",['Organic Garlic'],5,0.23809523809523808,70.67272938525221,110
+[34123 39272],[27963],"['Organic Italian Parsley Bunch', 'Organic Blueberries']",['Organic Raspberries'],530,0.19051042415528396,45.18062192669515,110
+[34123],[39272],['Organic Italian Parsley Bunch'],['Organic Blueberries'],2782,0.044144015486901195,14.214681498078123,110
+[31714 48675],[24961],"['Organic Cilantro', 'Organic Garnet Sweet Potato (Yam)']",['Organic Garlic'],789,0.22517123287671234,66.83655554704588,110
+[ 9836 25135 30388],[21134],"['Organic Broccoli', 'Organic Plain Greek Whole Milk Yogurt', 'Organic Cucumber']",['Organic Strawberries'],26,0.36619718309859156,44.94011239004952,110
+[ 9836 25135 49379],[21900],"['Organic Broccoli', 'Organic Plain Greek Whole Milk Yogurt', 'Organic Bunch Beets']",['Organic Baby Spinach'],8,0.5,67.18004409924316,110
+[34123],[45004],['Organic Italian Parsley Bunch'],['Organic Zucchini'],6722,0.10666285841227527,32.96934993335036,110
+[46650],[47205],['Organic Grade A Large Brown Eggs'],['Organic Hass Avocado'],1743,0.10514568377872957,16.099154847065723,110
+[20428],[46663],['Organic Ranch Dressing'],['Organic Ginger Root'],51,0.020589422688736373,12.872330912655386,110
+[38380 46663],[45004],"['Organic White Onions', 'Organic Ginger Root']",['Organic Zucchini'],200,0.1375515818431912,42.517013918240764,110
+[19054 22032 31714],[47762],"['Organic Large Extra Fancy Fuji Apple', 'Organic Whole String Cheese', 'Organic Cilantro']",['Organic Avocado'],26,0.174496644295302,32.033396897619824,110
+[3950],[26206],['Organic Broccoli Crowns'],['Limes'],1392,0.07270827892400104,16.76618704492266,110
+[13173 24849],[21134],"['Bag of Organic Bananas', 'Banana']",['Organic Strawberries'],215,0.17857142857142858,21.91447788251041,110
+[35936],[27963],['Organic Jalapeno Pepper'],['Organic Raspberries'],1674,0.0792913982569155,18.804402449729952,110
+[27101 27963 35936],[24961],"['Fresh Cauliflower', 'Organic Raspberries', 'Organic Jalapeno Pepper']",['Organic Garlic'],53,0.29775280898876405,88.38061551211877,110
+[24961 27963],[30388],"['Organic Garlic', 'Organic Raspberries']",['Organic Cucumber'],849,0.1095483870967742,43.58365408334614,110
+[ 5874 20667],[13173],"['Organic Lemon', 'Organic Lentil Vegetable Soup']",['Bag of Organic Bananas'],62,0.38509316770186336,32.976746913086096,110
+[20667],[22932],['Organic Lentil Vegetable Soup'],['Organic Yellow Onion'],202,0.05027376804380289,14.443354263590187,110
+[20667],[13173],['Organic Lentil Vegetable Soup'],['Bag of Organic Bananas'],778,0.19362867098058736,16.58103600266277,110
+[27101 27963],[24961],"['Fresh Cauliflower', 'Organic Raspberries']",['Organic Garlic'],881,0.12855683642200497,38.15894254652126,110
+[46663],[5874],['Organic Ginger Root'],['Organic Lemon'],5893,0.1089399933449181,40.374934878204954,110
+[13867 27963],[24849],"['Lightly Salted Baked Snap Pea Crisps', 'Organic Raspberries']",['Banana'],528,0.2220353238015139,15.284294138072386,110
+[13173 47622],[21900],"['Bag of Organic Bananas', 'Large Lemon']",['Organic Baby Spinach'],4252,0.20777951524628616,27.917273994329744,110
+[22032 22932 31340],[21900],"['Organic Whole String Cheese', 'Organic Yellow Onion', 'Shredded Mild Cheddar Cheese']",['Organic Baby Spinach'],45,0.2542372881355932,34.159344457242284,110
+[47622 48771],[45004],"['Large Lemon', 'Organic Red Cabbage']",['Organic Zucchini'],225,0.14469453376205788,44.724891007564196,110
+[26206 45004 48771],[24961],"['Limes', 'Organic Zucchini', 'Organic Red Cabbage']",['Organic Garlic'],76,0.247557003257329,73.48122221424268,110
+[24961 45004],[47205],"['Organic Garlic', 'Organic Zucchini']",['Organic Hass Avocado'],2378,0.21411849450747344,32.78429199196232,110
+[22971],[45004],['Chocolate Peanut Butter Meal Bar'],['Organic Zucchini'],20,0.04405286343612335,13.616682431084156,110
+[17791 27842 45004],[21134],"['Carrots', 'Organic Whole Milk', 'Organic Zucchini']",['Organic Strawberries'],136,0.2390158172231986,29.332278304604444,110
+[12611 13173],[21900],"['Yellow Grape Tomatoes', 'Bag of Organic Bananas']",['Organic Baby Spinach'],221,0.20928030303030304,28.11891997335746,110
+[15452 21900 24961],[21134],"['Organic Extra Virgin Oil Olive', 'Organic Baby Spinach', 'Organic Garlic']",['Organic Strawberries'],13,0.37142857142857144,45.582113995621654,110
+[15452],[21900],['Organic Extra Virgin Oil Olive'],['Organic Baby Spinach'],299,0.15396498455200824,20.68674890388641,110
+[48771],[21134],['Organic Red Cabbage'],['Organic Strawberries'],2259,0.14439117929050815,17.719840907952044,110
+[27842 31714 48675],[47762],"['Organic Whole Milk', 'Organic Cilantro', 'Organic Garnet Sweet Potato (Yam)']",['Organic Avocado'],75,0.2516778523489933,46.202014756182436,110
+[31714 48675],[21134],"['Organic Cilantro', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],569,0.16238584474885845,19.928165617817115,110
+[34240],[46663],['Organic Baby Broccoli'],['Organic Ginger Root'],1745,0.05265063512657273,32.91672662980897,110
+[24961 47205],[13173],"['Organic Garlic', 'Organic Hass Avocado']",['Bag of Organic Bananas'],6115,0.3331698812248011,28.53039153558595,110
+[17791 47205 47622],[24849],"['Carrots', 'Organic Hass Avocado', 'Large Lemon']",['Banana'],246,0.2586750788643533,17.80647296952707,110
+[17791 47205],[24849],"['Carrots', 'Organic Hass Avocado']",['Banana'],1682,0.17067478437341452,11.748777454200564,110
+[14126],[39981],['Organic Chicken Bone Broth'],['Organic Dill'],131,0.014874531622572953,30.33122469967722,110
+[14126],[22932],['Organic Chicken Bone Broth'],['Organic Yellow Onion'],1135,0.12887475871465878,37.024950947156455,110
+[21900 27842 39272],[13173 21134],"['Organic Baby Spinach', 'Organic Whole Milk', 'Organic Blueberries']","['Bag of Organic Bananas', 'Organic Strawberries']",136,0.11065907241659886,57.84042069671158,110
+[29591 45004],[13173],"['YoKids Strawberry Banana/Strawberry Yogurt', 'Organic Zucchini']",['Bag of Organic Bananas'],155,0.34598214285714285,29.62754605472579,110
+[26206 27842 27963],[13173],"['Limes', 'Organic Whole Milk', 'Organic Raspberries']",['Bag of Organic Bananas'],302,0.3378076062639821,28.927534610811726,110
+[26206 27842 30388],[27963 47622],"['Limes', 'Organic Whole Milk', 'Organic Cucumber']","['Organic Raspberries', 'Large Lemon']",26,0.04180064308681672,170.1155691240941,110
+[31714 34966],[24849],"['Organic Cilantro', 'Red Vine Tomato']",['Banana'],807,0.2598197037990985,17.885265766460847,110
+[ 8515 14989 21134],[13173 26206],"['Organic Red Onion', 'Green Beans', 'Organic Strawberries']","['Bag of Organic Bananas', 'Limes']",18,0.07929515418502203,122.94004605829568,110
+[ 8274  8515 14989],[13173 26206],"['Apple Honeycrisp Organic', 'Organic Red Onion', 'Green Beans']","['Bag of Organic Bananas', 'Limes']",6,0.06666666666666667,103.36070538975228,110
+[ 8274  8515 21134],[13173],"['Apple Honeycrisp Organic', 'Organic Red Onion', 'Organic Strawberries']",['Bag of Organic Bananas'],358,0.43132530120481927,36.9357508468025,110
+[41899],[35137],['Pure Mint Clarifying Body Wash'],['Organic Whole Cashews'],1,0.029411764705882353,74.83295126657343,110
+[27518 29503],[13173],"['Organic Lacinato (Dinosaur) Kale', 'Pita Bread']",['Bag of Organic Bananas'],21,0.3888888888888889,33.301786533197166,110
+[ 7945 12453],[27842],"['Organic Unsalted Butter', 'Organic Sunday Bacon']",['Organic Whole Milk'],47,0.146875,34.78101569009824,110
+[27518],[27842],['Organic Lacinato (Dinosaur) Kale'],['Organic Whole Milk'],2701,0.060252520745962344,14.268213579120246,110
+[27518],[41947],['Organic Lacinato (Dinosaur) Kale'],['Organic Tomato Cluster'],2025,0.04517265994467743,22.860505109775993,110
+[12453],[27842],['Organic Sunday Bacon'],['Organic Whole Milk'],1058,0.08193928128872367,19.40378844690023,110
+[24849 27842 30388],[21900],"['Banana', 'Organic Whole Milk', 'Organic Cucumber']",['Organic Baby Spinach'],326,0.24696969696969698,33.18287026720193,110
+[22932 24486 41947],[24849],"['Organic Yellow Onion', 'Organic Whole Strawberries', 'Organic Tomato Cluster']",['Banana'],28,0.14213197969543148,9.783970166987885,110
+[28201 31714],[21134],"['Organic Fuji Apple', 'Organic Cilantro']",['Organic Strawberries'],304,0.1450381679389313,17.799240051138227,110
+[40703],[47205],['Organic Grape Tomatoes'],['Organic Hass Avocado'],13844,0.15717886418856014,24.06610316580051,110
+[21900 27963],[21134],"['Organic Baby Spinach', 'Organic Raspberries']",['Organic Strawberries'],5547,0.29492769034453425,36.19384354317298,110
+[27963],[21900],['Organic Raspberries'],['Organic Baby Spinach'],18808,0.13189063343688423,17.72083714113399,110
+[21134 31637],[13173],"['Organic Strawberries', 'Original Puffins Cereal']",['Bag of Organic Bananas'],317,0.27493495229835213,23.543550236454344,110
+[ 8274 19475 19505],[47205],"['Apple Honeycrisp Organic', 'Organic Marinara Pasta Sauce', 'Corn Tortillas']",['Organic Hass Avocado'],2,0.2857142857142857,43.74652731740161,110
+[22032 27842 47762],[21900],"['Organic Whole String Cheese', 'Organic Whole Milk', 'Organic Avocado']",['Organic Baby Spinach'],272,0.23734729493891799,31.890003481665165,110
+[35137],[47762],['Organic Whole Cashews'],['Organic Avocado'],1278,0.09614805898284683,17.650476585217717,110
+[27897 47762],[13173],"['Vegan Apple Maple Breakfast Sausage', 'Organic Avocado']",['Bag of Organic Bananas'],56,0.208955223880597,17.893497241717878,110
+[12569 32652 39272],[24849],"['6 OZ LA PANZANELLA CROSTINI ORIGINAL CRACKERS', 'Organic Large Grade AA Brown Eggs', 'Organic Blueberries']",['Banana'],1,0.14285714285714285,9.833888382125577,110
+[46688],[34123],['Multigrain Tortilla Chips'],['Organic Italian Parsley Bunch'],159,0.020866141732283464,11.19744623308291,110
+[8983],[21134],['Vanilla Coconut Milk Yogurt'],['Organic Strawberries'],201,0.15876777251184834,19.484151899331533,110
+[21134 26937 27518],[47205],"['Organic Strawberries', 'Organic Large Green Asparagus', 'Organic Lacinato (Dinosaur) Kale']",['Organic Hass Avocado'],89,0.40454545454545454,61.94110572441182,110
+[26937 27101],[21134],"['Organic Large Green Asparagus', 'Fresh Cauliflower']",['Organic Strawberries'],458,0.27116637063351096,33.2778288176807,110
+[9700],[47622],['Blueberry Scones'],['Large Lemon'],54,0.046672428694900604,9.816531999790321,110
+[ 9700 47622],[47205],"['Blueberry Scones', 'Large Lemon']",['Organic Hass Avocado'],9,0.16666666666666666,25.518807601817603,110
+[ 4797 47622],[47205],"['Shredded Parmesan', 'Large Lemon']",['Organic Hass Avocado'],516,0.1360400738201951,20.829482819727733,110
+[ 4797  9700 47205],[47622],"['Shredded Parmesan', 'Blueberry Scones', 'Organic Hass Avocado']",['Large Lemon'],1,0.25,52.58207186924723,110
+[   94 30388],[21900],"['Organic Rice Vinegar', 'Organic Cucumber']",['Organic Baby Spinach'],44,0.21782178217821782,29.266553865016824,110
+[ 4797 10746],[13173],"['Shredded Parmesan', 'Organic Red Bell Pepper']",['Bag of Organic Bananas'],391,0.2620643431635389,22.441399235986367,110
+[31235 47205],[24849],"['Blue Corn Tortilla Chips', 'Organic Hass Avocado']",['Banana'],22,0.15172413793103448,10.44426766101613,110
+[ 5118 27518],[21134],"['Organic Vanilla Soymilk', 'Organic Lacinato (Dinosaur) Kale']",['Organic Strawberries'],13,0.1368421052631579,16.793410419439557,110
+[18367 48675],[22932],"['Organic Shredded Mozzarella', 'Organic Garnet Sweet Potato (Yam)']",['Organic Yellow Onion'],175,0.2184769038701623,62.76711382086402,110
+[ 5132 18367],[48675],"['Organic Thompson Seedless Raisins', 'Organic Shredded Mozzarella']",['Organic Garnet Sweet Potato (Yam)'],19,0.07251908396946564,44.99478209746013,110
+[40758],[41947],['Pomegranate Seeds'],['Organic Tomato Cluster'],109,0.03740562800274537,18.92984719382007,110
+[21134 28598 34123],[47205],"['Organic Strawberries', 'Collard Greens', 'Organic Italian Parsley Bunch']",['Organic Hass Avocado'],37,0.3333333333333333,51.037615203635205,110
+[27680],[47205],['Black Beans No Salt Added'],['Organic Hass Avocado'],1260,0.21226415094339623,32.500368172126194,110
+[28598],[34123],['Collard Greens'],['Organic Italian Parsley Bunch'],799,0.07390620664138378,39.66045979059142,110
+[12611 13173],[47762],"['Yellow Grape Tomatoes', 'Bag of Organic Bananas']",['Organic Avocado'],213,0.20170454545454544,37.02811470497379,110
+[39981 40703 47762],[21900],"['Organic Dill', 'Organic Grape Tomatoes', 'Organic Avocado']",['Organic Baby Spinach'],71,0.3397129186602871,45.643857713361385,110
+[27101 45004 47152],[13173],"['Fresh Cauliflower', 'Organic Zucchini', 'Coconut Almond Unsweetened Creamer Blend']",['Bag of Organic Bananas'],15,0.3409090909090909,29.19312455832219,110
+[27518 40703],[21134],"['Organic Lacinato (Dinosaur) Kale', 'Organic Grape Tomatoes']",['Organic Strawberries'],517,0.18146718146718147,22.269847794118686,110
+[10746],[40703],['Organic Red Bell Pepper'],['Organic Grape Tomatoes'],5484,0.09158622532482714,35.16615116601437,110
+[27963 31675 45004],[47205],"['Organic Raspberries', 'Gluten Free Cinnamon Raisin Bread', 'Organic Zucchini']",['Organic Hass Avocado'],9,0.6,91.86770736654337,110
+[34966 47205],[21134],"['Red Vine Tomato', 'Organic Hass Avocado']",['Organic Strawberries'],1157,0.1951425198178445,23.948100033118816,110
+[34966 45004 47205],[13173 21900],"['Red Vine Tomato', 'Organic Zucchini', 'Organic Hass Avocado']","['Bag of Organic Bananas', 'Organic Baby Spinach']",44,0.07028753993610223,45.184416126411854,110
+[13011],[27963],['Organic Gluten Free Spaghetti'],['Organic Raspberries'],147,0.0941101152368758,22.318744787052992,110
+[27963 36692],[13173],"['Organic Raspberries', 'Organic Hothouse Cucumbers']",['Bag of Organic Bananas'],1148,0.37528604118993136,32.13693162667474,110
+[15646 30388],[24486],"['Baby Seedless Cucumbers', 'Organic Cucumber']",['Organic Whole Strawberries'],2,0.013245033112582781,13.715940315020731,110
+[24486 26206 30388],[13173 47205],"['Organic Whole Strawberries', 'Limes', 'Organic Cucumber']","['Bag of Organic Bananas', 'Organic Hass Avocado']",38,0.14285714285714285,74.60201135162917,110
+[17946],[21134],['Mild Cheddar Cheese Sticks'],['Organic Strawberries'],2726,0.23277260695073007,28.566104821385956,110
+[12611 34445],[22032],"['Yellow Grape Tomatoes', 'Original Veggie Straws']",['Organic Whole String Cheese'],15,0.09090909090909091,49.854289542852676,110
+[12611],[22032],['Yellow Grape Tomatoes'],['Organic Whole String Cheese'],298,0.037707199797545235,20.678522222127178,110
+[27963 47762],[26206],"['Organic Raspberries', 'Organic Avocado']",['Limes'],1273,0.13138610795747754,30.297018354980068,110
+[26206],[47762],['Limes'],['Organic Avocado'],23047,0.157145779353607,28.8481944231601,110
+[21134 47205 47622],[13173],"['Organic Strawberries', 'Organic Hass Avocado', 'Large Lemon']",['Bag of Organic Bananas'],971,0.33083475298126064,28.33042711254417,110
+[47762],[13173],['Organic Avocado'],['Bag of Organic Bananas'],23961,0.13006448671182907,11.137833699498492,110
+[27963],[27842],['Organic Raspberries'],['Organic Whole Milk'],10765,0.07548929545661733,17.87638719803281,110
+[27842 30388],[24849],"['Organic Whole Milk', 'Organic Cucumber']",['Banana'],1320,0.2096902303415409,14.434492240006408,110
+[21134 21900],[24849],"['Organic Strawberries', 'Organic Baby Spinach']",['Banana'],9828,0.24710230558419027,17.00983544456569,110
+[27518 49231],[27963],"['Organic Lacinato (Dinosaur) Kale', 'Organic Half & Half']",['Organic Raspberries'],176,0.12553495007132667,29.771321663407534,110
+[49231],[27963],['Organic Half & Half'],['Organic Raspberries'],4755,0.060185302382097565,14.273284018584532,110
+[37643],[30388],['Organic Gala Apples'],['Organic Cucumber'],5346,0.070662877536184,28.113115059834424,110
+[10758 19269],[27963],"['Organic Yokids Lemonade/Blueberry Variety Pack Yogurt Squeezers Tubes', 'Veganic Sprouted Brown Rice Cacao Crisps']",['Organic Raspberries'],2,0.1111111111111111,26.350626876324093,110
+[22032 24961 48675],[21134],"['Organic Whole String Cheese', 'Organic Garlic', 'Organic Garnet Sweet Potato (Yam)']",['Organic Strawberries'],77,0.28102189781021897,34.48730971875361,110
+[27680],[17791],['Black Beans No Salt Added'],['Carrots'],290,0.0488544474393531,21.96129007912633,110
+[5767 5874],[21134],"['Organic Chicken Stock', 'Organic Lemon']",['Organic Strawberries'],61,0.15288220551378445,18.761868783622948,110
+[17791 22932],[24849],"['Carrots', 'Organic Yellow Onion']",['Banana'],1738,0.16568160152526215,11.405060634598644,110
+[22932 24486 26206],[13173],"['Organic Yellow Onion', 'Organic Whole Strawberries', 'Limes']",['Bag of Organic Bananas'],130,0.38011695906432746,32.550618415907,110
+[ 5874 41585],[26206],"['Organic Lemon', 'Firm Tofu']",['Limes'],96,0.1711229946524064,39.46015747434315,110
+[ 5874 26206],[13173],"['Organic Lemon', 'Limes']",['Bag of Organic Bananas'],3262,0.27081776670817764,23.190982601947514,110
+[12453 21900 30230],[47205],"['Organic Sunday Bacon', 'Organic Baby Spinach', 'Organic Large Brown Grade AA Cage Free Eggs']",['Organic Hass Avocado'],14,0.4117647058823529,63.046465839784666,110
+[12453 21900],[47205],"['Organic Sunday Bacon', 'Organic Baby Spinach']",['Organic Hass Avocado'],440,0.2412280701754386,36.935116265788636,110
+[34123 39272],[26206],"['Organic Italian Parsley Bunch', 'Organic Blueberries']",['Limes'],395,0.1419841840402588,32.740884838272336,110
+[25135 47205],[21134],"['Organic Plain Greek Whole Milk Yogurt', 'Organic Hass Avocado']",['Organic Strawberries'],631,0.3024928092042186,37.12224307077602,110
+[10995],[32575],['Yellow Corn Organic Tortillas'],['Organic Fresh Squeezed Orange Juice'],2,0.0006858710562414266,4.03962834436795,110
+[10160 21900],[24849],"['Roasted Red Pepper Hommus', 'Organic Baby Spinach']",['Banana'],112,0.3835616438356164,26.4033167520084,110
+[10995],[49231],['Yellow Corn Organic Tortillas'],['Organic Half & Half'],81,0.027777777777777776,11.89048440765399,110
