@@ -1,12 +1,17 @@
 from instacart_loader import CSR_Loader
 import numpy as np
-from sklearn.decomposition import PCA
+from sklearn.decomposition import PCA, TruncatedSVD
+from sklearn.metrics import (                       
+    silhouette_score,
+    calinski_harabasz_score,
+    davies_bouldin_score,
+)
 import seaborn as sns
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.preprocessing import normalize
 from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
-
+import pandas as pd
 
 def get_cluster_dists(labels, indices=None):
 
@@ -34,20 +39,9 @@ def get_cluster_dists(labels, indices=None):
     return means, cluster_aisles, normalized_aisles, avg_separation, min_separation, dist_matrix
 
 
-        
-
-
 l = CSR_Loader()
 pc = PCA(n_components=6) #from sindico
 km = KMeans(n_clusters=4)
-
-
-
-
-
-
-
-
 
 '''REPLICATING SINDICO ON REDUCED DATA. DISCREPANCIES DUE TO TRANSACTION COUNT'''
 
@@ -82,11 +76,6 @@ plt.grid(True, linestyle='--', alpha=0.5)
 plt.colorbar(scatter, label='Cluster ID')
 plt.show()
 
-
-
-
-
-
 means, cluster_aisles, norm_aisles, avg_separation, min_separation, dist_matrix = get_cluster_dists(labels)
 
 plt.figure(figsize=(8, 6))
@@ -103,17 +92,6 @@ plt.show()
 
 print(f"Average Distance between Cluster Centers: {avg_separation:.4f}")
 print(f"Minimum Distance (The 'Weakest Link'):    {min_separation:.4f}")
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -158,4 +136,95 @@ plt.xticks(np.arange(0, len(data), 3))
 plt.xlim(0, len(data))             # Ensure the shading starts/ends cleanly
 plt.ylim(bottom=0)           # Start Y-axis at 0
 
+plt.show()
+
+# TSVD + KMeans sweep
+TSVD_COMPONENTS = [4, 8, 16]
+K_VALUES = [4, 6, 8, 10]
+
+results = [] # to store results
+
+for n_comp in TSVD_COMPONENTS:
+    tsvd = TruncatedSVD(n_components=n_comp, random_state=42)
+    X_svd = tsvd.fit_transform(aisle_matrix)
+    for k in K_VALUES:
+        km_z = KMeans(n_clusters=k, n_init=20, max_iter=300, random_state=42)
+        labels_z = km_z.fit_predict(X_svd)
+        wcss_z = km_z.inertia_
+        sil_z = silhouette_score(X_svd, labels_z)
+        ch_z = calinski_harabasz_score(X_svd, labels_z)
+        db_z = davies_bouldin_score(X_svd, labels_z)
+        _, _, _, avg_sep_z, min_sep_z, _ = get_cluster_dists(labels_z, indices)
+
+        print(
+            f"UPDATED-TSVD: d={n_comp:2d}, k={k:2d} | "
+            f"WCSS={wcss_z:12.1f} | Sil={sil_z:6.3f} | "
+            f"CH={ch_z:10.1f} | DB={db_z:6.3f} | "
+            f"avg_sep={avg_sep_z:6.3f} | min_sep={min_sep_z:6.3f}"
+        )
+
+        results.append({
+            "svd_dim": n_comp,
+            "k": k,
+            "wcss": wcss_z,
+            "silhouette": sil_z,
+            "ch_index": ch_z,
+            "db_index": db_z,
+            "avg_separation": avg_sep_z,
+            "min_separation": min_sep_z,
+        })
+
+# converts metrics to DataFrame and export to Excel-friendly CSV
+metrics_df = pd.DataFrame(results)
+metrics_df.to_csv("tsvd_kmeans_metrics.csv", index=False)
+print("Exported TSVD + KMeans metrics to tsvd_kmeans_metrics.csv")
+
+# line plots for WCSS, Silhouette, CH, DB vs k (one line per TSVD dim)
+metric_info = [
+    ("wcss", "WCSS (Within-Cluster Sum of Squares)"),
+    ("silhouette", "Silhouette Score"),
+    ("ch_index", "Calinski–Harabasz Index"),
+    ("db_index", "Davies–Bouldin Index"),
+]
+
+for metric, ylabel in metric_info:
+    plt.figure(figsize=(8, 6))
+    for n_comp in TSVD_COMPONENTS:
+        subset = metrics_df[metrics_df["svd_dim"] == n_comp].sort_values("k")
+        plt.plot(subset["k"], subset[metric], marker="o", label=f"d={n_comp}")
+    plt.xlabel("Number of clusters k")
+    plt.ylabel(ylabel)
+    plt.title(f"{ylabel} vs k for different TSVD dimensions")
+    plt.legend()
+    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.tight_layout()
+    plt.show()
+
+# line plots for average and minimum aisle separation vs k
+sep_info = [
+    ("avg_separation", "Average L2 Separation Between Clusters"),
+    ("min_separation", "Minimum L2 Separation Between Clusters"),
+]
+
+for metric, ylabel in sep_info:
+    plt.figure(figsize=(8, 6))
+    for n_comp in TSVD_COMPONENTS:
+        subset = metrics_df[metrics_df["svd_dim"] == n_comp].sort_values("k")
+        plt.plot(subset["k"], subset[metric], marker="o", label=f"d={n_comp}")
+    plt.xlabel("Number of clusters k")
+    plt.ylabel(ylabel)
+    plt.title(f"{ylabel} vs k for different TSVD dimensions")
+    plt.legend()
+    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.tight_layout()
+    plt.show()
+
+# heatmap for Silhouette scores across (svd_dim, k)
+pivot_sil = metrics_df.pivot(index="svd_dim", columns="k", values="silhouette")
+plt.figure(figsize=(8, 6))
+sns.heatmap(pivot_sil, annot=True, fmt=".3f", cmap="viridis")
+plt.title("Silhouette Score Heatmap (TSVD dimension vs k)")
+plt.xlabel("Number of clusters k")
+plt.ylabel("TSVD dimension")
+plt.tight_layout()
 plt.show()
