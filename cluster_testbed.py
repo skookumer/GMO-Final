@@ -13,8 +13,55 @@ from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
 import pandas as pd
 
-def get_cluster_dists(labels, indices=None):
+# Gap Statistic Implementation for KMeans Clustering Evaluation
+def compute_gap_statistic(X, k, wcss, B=5, random_state=42):
+    '''This function computes the Gap Statistic for a given clustering result.
+    Parameters:
+    - X: The original data array (n_samples x n_features).
+    - k: Number of clusters.
+    - wcss: Within-cluster sum of squares for the original data.
+    - B: Number of reference datasets to generate (default is 5).
+    - random_state: Seed for reproducibility (default is 42).
+    Returns:
+    - gap: The computed Gap Statistic value.
+    - sk: The standard deviation of the log Wk* values.
+    '''
+    rng = np.random.default_rng(random_state)
+    n_samples, n_features = X.shape
+    xmin = X.min(axis=0)
+    xmax = X.max(axis=0)
 
+    log_wk = np.log(wcss)
+    log_wkbs = np.zeros(B)
+
+    for b in range(B):
+        Xb = rng.uniform(xmin, xmax, size=X.shape)
+        km_ref = KMeans(
+            n_clusters=k,
+            n_init=5,
+            max_iter=300,
+            random_state=random_state + b,
+        )
+        km_ref.fit(Xb)
+        log_wkbs[b] = np.log(km_ref.inertia_)
+
+    gap = log_wkbs.mean() - log_wk
+    sk = np.sqrt(1.0 + 1.0 / B) * log_wkbs.std(ddof=1)
+    return gap, sk
+
+def get_cluster_dists(labels, indices=None):
+    '''Computes cluster aisle distributions and inter-cluster distances.
+    Parameters:
+    - labels: Cluster labels for each data point.
+    - indices: Optional indices of data points to consider.
+    Returns:
+    - means: Mean values for each cluster.
+    - cluster_aisles: Raw aisle distributions for each cluster.
+    - normalized_aisles: PCA-reduced normalized aisle distributions.
+    - avg_separation: Average L2 distance between cluster profiles.
+    - min_separation: Minimum L2 distance between cluster profiles.
+    - dist_matrix: Full distance matrix between cluster profiles.
+    '''
     pca = PCA(n_components=4)
 
     if indices is None:
@@ -38,7 +85,7 @@ def get_cluster_dists(labels, indices=None):
 
     return means, cluster_aisles, normalized_aisles, avg_separation, min_separation, dist_matrix
 
-
+# load data and set up PCA and KMeans instances
 l = CSR_Loader()
 pc = PCA(n_components=6) #from sindico
 km = KMeans(n_clusters=4)
@@ -51,7 +98,7 @@ aisle_matrix, indices = l.load_reduced_random(filename="hot_customers_aisles", s
 aisle_matrix = normalize(aisle_matrix, norm="l1", axis=1)
 am_reduced = pc.fit_transform(aisle_matrix)[:, [4, 1]]
 labels = km.fit_predict(am_reduced)
-
+# Plotting the clusters based on the reduced dimensions (dimensions 1 and 4)
 plt.figure(figsize=(10, 8))
 
 scatter = plt.scatter(
@@ -144,6 +191,7 @@ K_VALUES = [4, 6, 8, 10]
 
 results = [] # to store results
 
+# TSVD + KMeans sweep and metrics calculation
 for n_comp in TSVD_COMPONENTS:
     tsvd = TruncatedSVD(n_components=n_comp, random_state=42)
     X_svd = tsvd.fit_transform(aisle_matrix)
@@ -155,7 +203,7 @@ for n_comp in TSVD_COMPONENTS:
         ch_z = calinski_harabasz_score(X_svd, labels_z)
         db_z = davies_bouldin_score(X_svd, labels_z)
         _, _, _, avg_sep_z, min_sep_z, _ = get_cluster_dists(labels_z, indices)
-
+        gap_z, gap_se_z = compute_gap_statistic(X_svd, k, wcss_z)
         print(
             f"UPDATED-TSVD: d={n_comp:2d}, k={k:2d} | "
             f"WCSS={wcss_z:12.1f} | Sil={sil_z:6.3f} | "
@@ -170,11 +218,13 @@ for n_comp in TSVD_COMPONENTS:
             "silhouette": sil_z,
             "ch_index": ch_z,
             "db_index": db_z,
+            "gap": gap_z, 
+            "gap_se": gap_se_z,          
             "avg_separation": avg_sep_z,
             "min_separation": min_sep_z,
         })
 
-# converts metrics to DataFrame and export to Excel-friendly CSV
+# converts metrics to DataFrame and exports to CSV
 metrics_df = pd.DataFrame(results)
 metrics_df.to_csv("tsvd_kmeans_metrics.csv", index=False)
 print("Exported TSVD + KMeans metrics to tsvd_kmeans_metrics.csv")
@@ -185,6 +235,7 @@ metric_info = [
     ("silhouette", "Silhouette Score"),
     ("ch_index", "Calinski–Harabasz Index"),
     ("db_index", "Davies–Bouldin Index"),
+    ("gap", "Gap Statistic"),              
 ]
 
 for metric, ylabel in metric_info:
