@@ -13,6 +13,31 @@ from sklearn.cluster import KMeans
 from matplotlib import pyplot as plt
 import pandas as pd
 
+# Gap Statistic Implementation for KMeans Clustering Evaluation
+def compute_gap_statistic(X, k, wcss, B=5, random_state=42):
+    rng = np.random.default_rng(random_state)
+    n_samples, n_features = X.shape
+    xmin = X.min(axis=0)
+    xmax = X.max(axis=0)
+
+    log_wk = np.log(wcss)
+    log_wkbs = np.zeros(B)
+
+    for b in range(B):
+        Xb = rng.uniform(xmin, xmax, size=X.shape)
+        km_ref = KMeans(
+            n_clusters=k,
+            n_init=5,
+            max_iter=300,
+            random_state=random_state + b,
+        )
+        km_ref.fit(Xb)
+        log_wkbs[b] = np.log(km_ref.inertia_)
+
+    gap = log_wkbs.mean() - log_wk
+    sk = np.sqrt(1.0 + 1.0 / B) * log_wkbs.std(ddof=1)
+    return gap, sk
+
 def get_cluster_dists(labels, indices=None):
 
     pca = PCA(n_components=4)
@@ -155,7 +180,7 @@ for n_comp in TSVD_COMPONENTS:
         ch_z = calinski_harabasz_score(X_svd, labels_z)
         db_z = davies_bouldin_score(X_svd, labels_z)
         _, _, _, avg_sep_z, min_sep_z, _ = get_cluster_dists(labels_z, indices)
-
+        gap_z, gap_se_z = compute_gap_statistic(X_svd, k, wcss_z)
         print(
             f"UPDATED-TSVD: d={n_comp:2d}, k={k:2d} | "
             f"WCSS={wcss_z:12.1f} | Sil={sil_z:6.3f} | "
@@ -170,6 +195,8 @@ for n_comp in TSVD_COMPONENTS:
             "silhouette": sil_z,
             "ch_index": ch_z,
             "db_index": db_z,
+            "gap": gap_z, 
+            "gap_se": gap_se_z,          
             "avg_separation": avg_sep_z,
             "min_separation": min_sep_z,
         })
@@ -185,6 +212,7 @@ metric_info = [
     ("silhouette", "Silhouette Score"),
     ("ch_index", "Calinski–Harabasz Index"),
     ("db_index", "Davies–Bouldin Index"),
+    ("gap", "Gap Statistic"),              
 ]
 
 for metric, ylabel in metric_info:

@@ -1,0 +1,14 @@
+# Ignore large Instacart data
+instacart_data/
+*.csv
+
+# Ignore all parquet files
+parquet_files/
+*.parquet
+
+# Ignore Zone.Identifier (Windows metadata)
+*.Zone.Identifier
+
+# Python cache
+__pycache__/
+*.pyc
