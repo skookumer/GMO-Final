@@ -7,6 +7,7 @@ import random
 
 from scipy.sparse import spmatrix
 from sklearn.metrics import calinski_harabasz_score
+from sklearn.preprocessing import normalize
 import matplotlib.pyplot as plt
 
 from itertools import combinations, chain
@@ -33,10 +34,11 @@ def convert_to_numpy(obj):
     if isinstance(obj, dict):
         return {k: convert_to_numpy(v) for k, v in obj.items()}
     elif isinstance(obj, list):
-        # Flatten if it's a list of single-element lists
-        if obj and isinstance(obj[0], list) and len(obj[0]) == 1:
-            return np.array([item[0] for item in obj])
-        # Empty or numeric list
+        # Check if it's a list of lists (nested structure to preserve)
+        if obj and isinstance(obj[0], list):
+            # Convert each inner list to a numpy array
+            return [np.array(item) for item in obj]
+        # Empty or numeric list - convert to array
         if not obj or isinstance(obj[0], (int, float)):
             return np.array(obj)
         return [convert_to_numpy(item) for item in obj]
@@ -122,7 +124,7 @@ class Gen_Optimizer:
 
         elif mode in ["testclustomers", "clustomers"]:
             from sklearn.decomposition import TruncatedSVD as TSVD
-            self.metrics = ["WCSS", "CH-I"]
+            self.metrics = metrics
             self.memo_path = self.memo_path / "clusterer"
             
             print("initializing matrices")
@@ -1155,7 +1157,12 @@ class Gen_Optimizer:
                     return mutant
                 
         def make_child(p, q, r, u):
-            l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
+            sd = abs(len(p) - len(q)) / 4 + 1.0
+            mean = (len(p) + len(q)) / 2
+            l = int(np.random.normal(mean, sd))
+            l = max(2, l)
+
+            # l = np.random.choice([len(p), len(q), len(p) - 1, len(p) + 1, len(q) - 1, len(q) + 1])
             # l = len(r) + min(len(p - r), len(q - r))
             if l > len(r):
                 child = [np.int64(k) for k in r]
@@ -1167,12 +1174,8 @@ class Gen_Optimizer:
                     child.extend(u)
                     mutant = choose_nonredundant_random(remainder, child)
                     child.extend(mutant)
-            elif l <= len(u):
-                child = list(np.random.choice(u, l, replace=False))
-            else:
-                child = list(u)
-                mutant = choose_nonredundant_random(l - len(u), child)
-                child.extend(mutant)
+            elif l <= len(r):
+                child = list(np.random.choice(r, l, replace=False))
             return child
 
 
@@ -1180,14 +1183,14 @@ class Gen_Optimizer:
             children = []
             p = set(p)
             q = set(q)
-            r = p & q
+            r = (p & q)
             u = list((p | q) - r)
             n_children = np.random.poisson(lam=2)
             for i in range(n_children):
-                child = make_child(p, q, r, u)
+                child = make_child(p, q, list(r), u)
                 pids, tids, count = self.get_itemset_support_basic(child)
                 while np.sum(count) == 0:
-                    child = make_child(p, q, r, u)
+                    child = make_child(p, q, list(r), u)
                     pids, tids, count = self.get_itemset_support_basic(child)
                 children.append(child)
             return children
@@ -1377,6 +1380,100 @@ class Gen_Optimizer:
 
         plt.show()
 
+    def write_rules_csv(self):
+
+        self.load_memos(u=1)
+        data = self.m1
+
+        prod_map = pd.read_parquet(self.path / "hot_map_products.parquet")
+        prod_names = pd.read_csv(self.path.parent / "instacart_data" / "products.csv")
+
+        pts = []
+        for key in data:
+            ant_ids = [prod_map[prod_map["col_id"] == id]["product_id"].iloc[0] for id in data[key]["tag"][0]]
+            coq_ids = [prod_map[prod_map["col_id"] == id]["product_id"].iloc[0] for id in data[key]["tag"][1]]
+            ant_names = [prod_names[prod_names["product_id"] == pid]["product_name"].iloc[0] for pid in ant_ids]
+            coq_names = [prod_names[prod_names["product_id"] == pid]["product_name"].iloc[0] for pid in coq_ids]
+
+            pts.append({"antecedent": data[key]["tag"][0],
+                        "consequent": data[key]["tag"][1],
+                        "ant_name": ant_names,
+                        "coq_name": coq_names,
+                        "support": data[key]["sup"], 
+                        "confidence": data[key]["conf"], 
+                        "lift": data[key]["lift"],
+                        "iteration": data[key]["cycle"]
+                        })
+        
+        df = pd.DataFrame(pts)
+        df.to_csv(self.memo_path / "NSGA_rules.csv", index=False)
+
+
+    def iiid_plot_multi(self, filenames=["minsup 20, mut 0.1, 30 trials, sup jacc, VL/memo_1.jsonl", "minsup 20, mut 0.1, 30 trials, sup conf, VL/memo_1.jsonl"]):
+
+        colors = ["blue", "purple", "green", "red", "orange"] # Added a few more just in case
+        names = ["Support, Jaccard","Support, Confidence"]
+        
+        fig = plt.figure(figsize=(10, 8))
+        ax = fig.add_subplot(111, projection='3d')
+
+
+        for i, file in enumerate(filenames):
+            if True:
+                # 1. Generate a Label: Clean up the filename to make it readable in the legend
+                # This splits by '/' and takes the first part (the folder name usually)
+                label_name = names[i]
+                
+                data = {}
+                # Ensure self.memo_path is a Path object. If it's a string, change to: Path(self.memo_path) / file
+                full_path = self.memo_path / file 
+                
+                with open(full_path, 'r') as f:
+                    for line in f:
+                        entry = json.loads(line)
+                        for str_key, value in entry.items():
+                            # Parsing logic maintained from your snippet
+                            key = tuple(np.int64(x) for x in ast.literal_eval(str_key))
+                            # Assuming convert_to_numpy is defined elsewhere in your class/global scope
+                            converted_value = convert_to_numpy(value) # Added 'self.' if it's a method
+                            data[key] = converted_value
+
+                pts = []
+                for key in data:
+                    # Safety check for log(0)
+                    sup = data[key]["sup"]
+                    lift_val = data[key]["lift"]
+                    
+                    # Avoid errors if support or lift are 0
+                    log_sup = np.log(sup) if sup > 0 else 0
+                    log_lift = np.log(lift_val) if lift_val > 0 else 0
+                    
+                    pts.append((log_sup, data[key]["conf"], log_lift))
+
+                if pts:
+                    support, confidence, lift = zip(*pts)
+                    if i == 0:
+                        op = 1
+                    else:
+                        op = 0.5
+                    # 2. Add the 'label' argument here
+                    ax.scatter(support, confidence, lift, 
+                            color=colors[i % len(colors)], 
+                            marker='o', 
+                            alpha=op, 
+                            label=label_name)
+
+        ax.set_xlabel('Log(Support)')
+        ax.set_ylabel('Confidence')
+        ax.set_zlabel('Log(Lift)')
+        ax.set_title('Association Rules: Support vs Confidence vs Lift')
+        
+        # 3. Use Legend instead of Colorbar
+        ax.legend(loc='best')
+        ax.legend(title="Objectives", loc='best')
+
+        plt.show()
+
 
 
     
@@ -1469,34 +1566,34 @@ class Gen_Optimizer:
 
     
     def genetically_cluster(self, n_workers = 1, cycles=10):
-        # self.load_memos()
-        # self.init_clusters()
-        # self.cycle = 1
+        self.load_memos()
+        self.init_clusters()
+        self.cycle = 1
 
 
-        # if self.cycle == 1 or len(self.m1) == 0:
-        #     with ThreadPoolExecutor(max_workers=n_workers) as executor:
-        #         list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
+        if self.cycle == 1 or len(self.m1) == 0:
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
         
-        # for i in range(cycles):
+        for i in range(cycles):
 
-        #     survivors = self.select_survivors()
-        #     print("SURVIVORS", len(survivors))
-        #     self.cross_clusters(survivors, n_workers=n_workers)
+            survivors = self.select_survivors()
+            print("SURVIVORS", len(survivors))
+            self.cross_clusters(survivors, n_workers=n_workers)
 
-        #     with ThreadPoolExecutor(max_workers=n_workers) as executor:
-        #         list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                list(executor.map(lambda p: self.compute_cluster_fitness(p), self.popn))
 
-        #     self.prune_memos()
-        #     self.cycle += 1
-        #     if i % 10 == 0:
-        #         self.save_popn()
+            self.prune_memos()
+            self.cycle += 1
+            if i % 10 == 0:
+                self.save_popn()
     
-        # survivors = self.select_survivors(return_fittest=True)
-        # fuzzy_clusters = self.soft_cluster(survivors)
-        # fuzzy_df = pd.DataFrame(fuzzy_clusters)
-        # fuzzy_df.to_pickle(self.memo_path / 'fuzzy_memberships.pkl')
-        # self.plot_fuzzy_umap()
+        survivors = self.select_survivors(return_fittest=True)
+        fuzzy_clusters = self.soft_cluster(survivors)
+        fuzzy_df = pd.DataFrame(fuzzy_clusters)
+        fuzzy_df.to_pickle(self.memo_path / 'fuzzy_memberships.pkl')
+        self.plot_fuzzy_umap()
 
 
         keys = list(self.m1.keys())
@@ -1513,29 +1610,30 @@ class Gen_Optimizer:
         df = pd.DataFrame(for_df)
         df.to_csv(self.memo_path / "df.csv")
 
-        from sklearn.cluster import KMeans
-        clu = KMeans(n_clusters=3,algorithm="elkan")
-        clu.fit_predict(self.cid_matrix[:self.cid_range])
-        chi = calinski_harabasz_score(self.cid_matrix[:self.cid_range], clu.labels_)
-        print("KMeans wcss", clu.inertia_)
-        print("CH-Index", chi)
+        # from sklearn.cluster import KMeans
+        # clu = KMeans(n_clusters=3,algorithm="elkan")
+        # clu.fit_predict(self.cid_matrix[:self.cid_range])
+        # chi = calinski_harabasz_score(self.cid_matrix[:self.cid_range], clu.labels_)
+        # print("KMeans wcss", clu.inertia_)
+        # print("CH-Index", chi)
 
 
 
 
 
-geno = Gen_Optimizer(smoothing_alpha=0, uniform=True, mode="rulemine", 
-                     pop_cap=100, mut_rate=0.1, k_range=(2, 3), 
-                     toprint=True, metrics=["sup", "conf"])
-# geno.genetically_modify(cycles=40)
-geno.dot_plot_popn()
+# geno = Gen_Optimizer(smoothing_alpha=0, uniform=True, mode="rulemine", 
+#                      pop_cap=1000, mut_rate=0.1, k_range=(2, 3), 
+#                      toprint=True, metrics=["sup", "conf"])
+# geno.genetically_modify(cycles=60)
+# geno.dot_plot_popn()
 # geno.iiid_plot_popn()
+# geno.iiid_plot_multi(["minsup 20, mut 0.1, 30 trials, sup conf, VL/memo_1.jsonl", "memo_1.jsonl"])
+# geno.write_rules_csv()
 
 
-# genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=20, toprint=False, mut_rate=1)
-
-# genc.genetically_cluster(n_workers=8, cycles=10)
-# # genc.plot_fuzzy_umap()
+genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=100, toprint=True, mut_rate=0.5, metrics=["WCSS", "CH-I"])
+genc.genetically_cluster(n_workers=8, cycles=10)
+genc.plot_fuzzy_umap()
 
 
 
