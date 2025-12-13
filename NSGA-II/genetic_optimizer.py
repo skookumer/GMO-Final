@@ -6,8 +6,15 @@ import os
 import random
 
 from scipy.sparse import spmatrix
-from sklearn.metrics import calinski_harabasz_score
+from sklearn.metrics import (                       
+    silhouette_score,
+    calinski_harabasz_score,
+    davies_bouldin_score,
+)
+from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.preprocessing import normalize
+from sklearn.decomposition import TruncatedSVD as TSVD
+from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
 from itertools import combinations, chain
@@ -123,7 +130,6 @@ class Gen_Optimizer:
             self.item_id_range = minsup_cols #tidset_sparse.shape[1]
 
         elif mode in ["testclustomers", "clustomers"]:
-            from sklearn.decomposition import TruncatedSVD as TSVD
             self.metrics = metrics
             self.memo_path = self.memo_path / "clusterer"
             
@@ -131,7 +137,9 @@ class Gen_Optimizer:
 
             # matrix = self.loader.load(self.filename)
             matrix, indices = self.loader.load_reduced_random("hot_customers_products", seed=42, n=10000)
+            self.cid_matrix_indices = indices
             svd = TSVD(n_components=n_components)
+            matrix = normalize(matrix, norm="l1", axis=1)
             self.cid_matrix = svd.fit_transform(matrix)
             self.cid_bounds = [(self.cid_matrix[:, i].min(), self.cid_matrix[:, i].max()) for i in range(self.cid_matrix.shape[1])]
             self.aid_matrix = self.loader.load("hot_customers_aisles")[indices, :]
@@ -425,7 +433,10 @@ class Gen_Optimizer:
         for i in range(2):
             with open(self.memo_path / self.memo_filenames[i], "w") as f:
                 for key, value in memos[i].items():
-                    entry = {str(tuple(int(x) for x in key)): value}
+                    if self.mode in ["clustomers", "testclustomers"]:
+                        entry = {str(tuple(item for sublist in key for item in sublist)): value}
+                    else:
+                        entry = {str(tuple(int(x) for x in key)): value}
                     f.write(json.dumps(entry, cls=NumpyEncoder) + "\n")
     
     def prune_memos(self):
@@ -720,8 +731,10 @@ class Gen_Optimizer:
 
         if self.toprint:
             print("scoring")
-        # #the score
-        # Convert clusters to labels
+        
+
+        '''CH-Index'''
+        
         labels = np.full(self.items, -1)
         for cluster_idx, cluster in enumerate(clusters):
             for point_id in cluster["arr"]:
@@ -733,6 +746,32 @@ class Gen_Optimizer:
                 labels)
         else:
             ch_score = 0
+
+        '''aisle separation'''
+        if "al_sep" in self.metrics:
+            pca = PCA(n_components=min(len(clusters), 4))
+            means, cluster_aisles = self.loader.get_aisles(labels, self.cid_matrix_indices)
+
+            normalized_aisles = []
+            for i in range(len(cluster_aisles)):
+                normalized_aisles.append(cluster_aisles[i] / cluster_aisles[i].sum())
+
+            cluster_matrix = np.vstack(normalized_aisles)
+            cluster_profiles = normalize(cluster_matrix, norm='l1', axis=1)
+            normalized_aisles = pca.fit_transform(cluster_profiles)
+            dist_matrix = euclidean_distances(cluster_profiles, cluster_profiles)
+            mask = np.triu(np.ones_like(dist_matrix, dtype=bool), k=1)
+
+            avg_separation = np.mean(dist_matrix[mask])
+        else:
+            avg_separation = 0
+    
+        '''silhouette'''
+        if "sil" in self.metrics:
+            sil = silhouette_score(self.cid_matrix, labels)
+        else:
+            sil = 0
+
 
         if self.toprint:
             print("entropy")
@@ -763,8 +802,10 @@ class Gen_Optimizer:
                 "WCSS": -np.sum([cluster["ssd"] for cluster in clusters]),
                 "CH-I": ch_score,
                 "al_ent": np.var(al_ent),
+                "al_sep": avg_separation,
                 "dp_ent": np.var(dp_ent),
                 "bcs": np.sum(bcs),
+                "sil": sil,
                 "b_size": 0,
                 "cycle": self.cycle}
         if self.toprint:
@@ -1407,6 +1448,52 @@ class Gen_Optimizer:
         
         df = pd.DataFrame(pts)
         df.to_csv(self.memo_path / "NSGA_rules.csv", index=False)
+    
+    def write_clusters_parquet(self, to_max="WCSS"):
+        import re
+
+        fuzzy_matrix = pd.read_pickle(self.memo_path / "fuzzy_memberships.pkl")
+        fuzzy_matrix = fuzzy_matrix.values + 1e-10
+        fuzzy_matrix = fuzzy_matrix / fuzzy_matrix.sum(axis=1, keepdims=True)
+        fuzzy_cluster_assignments = np.argmax(fuzzy_matrix, axis=1)
+
+        data = {}
+        with open(self.memo_path / "memo_1.jsonl") as f:
+            for line in f:
+                entry = json.loads(line)
+                for str_key, value in entry.items():
+                    key = tuple(int(x) for x in re.findall(r'\d+', str_key))
+                    converted_value = convert_to_numpy(value)
+                    data[key] = converted_value
+
+        data_sorted = sorted(data.items(), key = lambda x: x[1][to_max], reverse=True)
+        best = data_sorted[:10]
+
+        results = []
+
+        for entry in best:
+            value = entry[1]  # entry[0] is the key, entry[1] is the value
+            labels = np.zeros(len(fuzzy_cluster_assignments), dtype=int)
+            for i in range(len(value["clusters"])):
+                for j in range(len(value["clusters"][i]["arr"])):
+                    labels[value["clusters"][i]["arr"][j]] = int(i)
+
+            results.append({"type": "best", "labels": labels, "tsvd": 8, "k": len(value["clusters"]), "WCSS": -value["WCSS"]})
+
+        fuz_wcss = 0
+        for i in range(len(np.unique(fuzzy_cluster_assignments))):
+            pts = self.cid_matrix[fuzzy_cluster_assignments == i]
+            if len(pts) > 0:
+                centroid = pts.mean(axis=0)
+                fuz_wcss += np.sum((pts - centroid) ** 2)
+
+        results.append({"type": "fuzzy", "labels": fuzzy_cluster_assignments, "tsvd": 8, "k": fuzzy_matrix.shape[1], "WCSS": fuz_wcss})
+
+        df = pd.DataFrame(results)
+        df.to_parquet(self.path / "NSGA_clusters.parquet")
+
+
+
 
 
     def iiid_plot_multi(self, filenames=["minsup 20, mut 0.1, 30 trials, sup jacc, VL/memo_1.jsonl", "minsup 20, mut 0.1, 30 trials, sup conf, VL/memo_1.jsonl"]):
@@ -1568,6 +1655,7 @@ class Gen_Optimizer:
     def genetically_cluster(self, n_workers = 1, cycles=10):
         self.load_memos()
         self.init_clusters()
+        # self.load_popn()
         self.cycle = 1
 
 
@@ -1588,6 +1676,7 @@ class Gen_Optimizer:
             self.cycle += 1
             if i % 10 == 0:
                 self.save_popn()
+        self.save_memos()
     
         survivors = self.select_survivors(return_fittest=True)
         fuzzy_clusters = self.soft_cluster(survivors)
@@ -1631,9 +1720,9 @@ class Gen_Optimizer:
 # geno.write_rules_csv()
 
 
-genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=100, toprint=True, mut_rate=0.5, metrics=["WCSS", "CH-I"])
-genc.genetically_cluster(n_workers=8, cycles=10)
-genc.plot_fuzzy_umap()
+genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=100, toprint=True, mut_rate=0.005, metrics=["al_sep", "sil"])
+# genc.genetically_cluster(n_workers=12, cycles=50)
+genc.write_clusters_parquet(to_max = "CH-I")
 
 
 
