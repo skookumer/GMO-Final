@@ -1,3 +1,11 @@
+#point the directory back to the parent
+from pathlib import Path
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
 from PAMI.frequentPattern.basic import FPGrowth as fpgrowth
 from instacart_loader import CSR_Loader
 import matplotlib.pyplot as plt

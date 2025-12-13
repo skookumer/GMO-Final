@@ -1,6 +1,14 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
+
+
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
 import platform
 import os
 import random
@@ -85,7 +93,7 @@ class Gen_Optimizer:
 
         self.loader = CSR_Loader()
         self.filename = "hot_baskets_products"
-        self.path = Path(__file__).parent / "parquet_files"
+        self.path = gmo_final_path / "parquet_files"
 
         if mode in ["testmode", "rulemine"]:
             dense_name = f"{self.filename}_tidset_dense.parquet"
@@ -1720,9 +1728,9 @@ class Gen_Optimizer:
 # geno.write_rules_csv()
 
 
-genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=100, toprint=True, mut_rate=0.005, metrics=["al_sep", "sil"])
-# genc.genetically_cluster(n_workers=12, cycles=50)
-genc.write_clusters_parquet(to_max = "CH-I")
+# genc = Gen_Optimizer(mode = "clustomers", uniform=True, pop_cap=100, toprint=True, mut_rate=0.005, metrics=["al_sep", "sil"])
+# # genc.genetically_cluster(n_workers=12, cycles=50)
+# genc.write_clusters_parquet(to_max = "CH-I")
 
 
 

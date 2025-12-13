@@ -1,6 +1,13 @@
+#point the directory back to the parent
+from pathlib import Path
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
 from instacart_loader import CSR_Loader
 import os
-from pathlib import Path
 import numpy as np
 from sklearn.decomposition import PCA, TruncatedSVD
 from sklearn.metrics import (                       
@@ -282,7 +289,7 @@ if os.path.exists(Path(__file__).parent / "KMeans_clusters.parquet") is False:
 km_results = pd.read_parquet(Path(__file__).parent / "KMeans_clusters.parquet")
 print(km_results.head())
 
-parquet_dir = Path(__file__).parent / "parquet_files"
+parquet_dir = gmo_final_path / "parquet_files"
 nsga_files = [f for f in parquet_dir.iterdir() if 'NSGA' in f.name]
 
 dfs = []

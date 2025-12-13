@@ -20,6 +20,13 @@ Course: DS5230 - Northeastern University
 import numpy as np
 import pandas as pd
 from pathlib import Path
+#point the directory back to the parent
+import sys
+
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
 from scipy.sparse import csr_matrix, coo_matrix, hstack
 from sklearn.decomposition import PCA, TruncatedSVD
 from sklearn.cluster import AffinityPropagation
@@ -46,7 +53,7 @@ class CSR_Loader:
     """
     
     def __init__(self, parquet_path="parquet_files"):
-        self.path = Path(parquet_path)
+        self.path = gmo_final_path / Path(parquet_path)
         
         # Mapping of data files to their row/column maps
         self.name_map = {

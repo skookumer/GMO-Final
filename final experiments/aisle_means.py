@@ -1,6 +1,23 @@
-import matplotlib.pyplot as plt
+#point the directory back to the parent
+from pathlib import Path
+import sys
 
-aisles, indices = self.loader.load_reduced_random(filename="hot_customers_aisles", seed=42, n=10000)
+current_file = Path(__file__).resolve()
+gmo_final_path = current_file.parent.parent
+sys.path.append(str(gmo_final_path))
+
+import matplotlib.pyplot as plt
+import numpy as np
+from instacart_loader import CSR_Loader
+from sklearn.metrics import (
+    silhouette_score,
+    calinski_harabasz_score,
+    davies_bouldin_score,
+)
+
+loader = CSR_Loader()
+
+aisles, indices = loader.load_reduced_random(filename="hot_customers_aisles", seed=42, n=10000)
 aisles_dense = aisles.toarray() if hasattr(aisles, 'toarray') else aisles
 
 col_indices = np.arange(aisles_dense.shape[1])
@@ -67,7 +84,7 @@ def plot_distributions_scatter(dists, labels=None, figsize=(12, 6), s=50, alpha=
 # plot_overlapping_distributions(dists)
 # plot_overlapping_distributions(dists, labels=['Cluster 0', 'Cluster 1', 'Cluster 2'])
 
-data, indices = self.loader.load_reduced_random("hot_customers_products", seed=42, n=10000)
+data, indices = loader.load_reduced_random("hot_customers_products", seed=42, n=10000)
 from sklearn.decomposition import TruncatedSVD
 tsvd = TruncatedSVD(n_components=8)
 data = tsvd.fit_transform(data)
@@ -89,9 +106,9 @@ for i in range(len(labels)):
 dists = []
 for cluster in clusters:
     print("len", len(cluster))
-    norm_ent, raw_ent, dist, mean_x = self.loader.get_entropy(cluster)
+    norm_ent, raw_ent, dist, mean_x = loader.get_entropy(cluster)
     print("aisles", mean_x)
     dists.append(dist)
-    norm_ent, raw_ent, dist, mean_x = self.loader.get_entropy(cluster, "hot_customers_depts")
+    norm_ent, raw_ent, dist, mean_x = loader.get_entropy(cluster, "hot_customers_depts")
     print("depts", mean_x)
 plot_distributions_scatter(dists)
